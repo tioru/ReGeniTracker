@@ -3,8 +3,6 @@ name: Deploy Angular App to GitHub Pages
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 permissions:
   contents: write
@@ -33,10 +31,10 @@ jobs:
     - name: Configure Git
       run: |
         git config --global user.email "contact@regenitracker.com"
-        git config --global user.name "[WORKFLOW] GeniTracker Deploy"
+        git config --global user.name "[WORKFLOW] ReGeniTracker Deploy"
         
     - name: Deploy with angular-cli-ghpages
       run: |
-        npm run ng deploy -- --base-href=/GeniTracker/ --no-silent
+        npm run ng deploy -- --base-href=/ReGeniTracker/ --no-silent
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
