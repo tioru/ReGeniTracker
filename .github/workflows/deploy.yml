@@ -1,0 +1,42 @@
+name: Deploy Angular App to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '24'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Configure Git
+      run: |
+        git config --global user.email "contact@regenitracker.com"
+        git config --global user.name "[WORKFLOW] GeniTracker Deploy"
+        
+    - name: Deploy with angular-cli-ghpages
+      run: |
+        npm run ng deploy -- --base-href=/GeniTracker/ --no-silent
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
