@@ -35,6 +35,6 @@ jobs:
         
     - name: Deploy with angular-cli-ghpages
       run: |
-        npm run ng deploy --no-silent
+        npm run ng deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
