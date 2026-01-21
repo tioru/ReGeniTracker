@@ -1,0 +1,5 @@
+@use './../variables.scss' as vars;
+
+.topbar {
+    height: vars.$topbar-height;
+}
