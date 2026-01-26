@@ -1,9 +1,19 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { CharactersListingComponent } from '../characters-listing/characters-listing.component';
+
+export enum Pages {
+  HOME = "",
+  CHARACTERS_LISTING = "characters"
+}
 
 export const routes: Routes = [
     {
-        path: '',
+        path: Pages.HOME,
         component: HomeComponent
+    },
+    {
+        path: Pages.CHARACTERS_LISTING,
+        component: CharactersListingComponent
     }
 ];

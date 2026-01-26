@@ -1,8 +1,8 @@
 @use './variables' as vars;
 
 @font-face {
-    font-family: Genshin;
-    src: url(assets/font/genshin_policy.ttf);
+  font-family: Genshin;
+  src: url(assets/font/genshin_policy.ttf);
 }
 
 /*Easy SCSS*/
@@ -119,4 +119,12 @@
   .gap#{$i * 10} {
     gap: #{$i * 10 + 'px'};
   }
+}
+
+/*SCSS Reset*/
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
 }
