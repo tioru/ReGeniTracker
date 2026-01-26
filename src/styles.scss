@@ -1,1 +1,130 @@
-/* You can add global styles to this file, and also import other style files */
+@use './variables' as vars;
+
+@font-face {
+  font-family: Genshin;
+  src: url(assets/font/genshin_policy.ttf);
+}
+
+/*Easy SCSS*/
+
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.jcs {
+  justify-content: start;
+}
+
+.jcc {
+  justify-content: center;
+}
+
+.jcsb {
+  justify-content: space-between;
+}
+
+.jcsa {
+  justify-content: space-around;
+}
+
+.jcse {
+  justify-content: space-evenly;
+}
+
+.jce {
+  justify-content: end;
+}
+
+.aic {
+  align-items: center;
+}
+
+.tas {
+  text-align: start;
+}
+
+.tac {
+  text-align: center;
+}
+
+.fh {
+  height: 100%;
+}
+
+.fw {
+  width: 100%;
+}
+
+@for $i from 1 through 9 {
+    .h#{$i * 10} {
+      height: #{$i * 10 + '%'};
+    }
+}
+
+@for $i from 1 through 9 {
+    .w#{$i * 10} {
+      width: #{$i * 10 + '%'};
+    }
+}
+
+@for $i from 1 through 5 {
+  .ml#{$i * 10} {
+    margin-left: #{$i * 10 + 'px'};
+  }
+}
+
+@for $i from 1 through 5 {
+  .mr#{$i * 10} {
+    margin-right: #{$i * 10 + 'px'};
+  }
+}
+
+@for $i from 1 through 10 {
+  .mt#{$i * 10} {
+    margin-top: #{$i * 10 + 'px'};
+  }
+}
+
+@for $i from 1 through 10 {
+  .mb#{$i * 10} {
+    margin-bottom: #{$i * 10 + 'px'};
+  }
+}
+
+@for $i from 1 through 10 {
+  .m#{$i * 10} {
+    margin: #{$i * 10 + 'px'};
+  }
+}
+
+@for $i from 1 through 10 {
+  .p#{$i * 10} {
+    padding: #{$i * 10 + 'px'};
+  }
+}
+
+@for $i from 1 through 5 {
+  .gap#{$i * 10} {
+    gap: #{$i * 10 + 'px'};
+  }
+}
+
+/*SCSS Reset*/
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+}
