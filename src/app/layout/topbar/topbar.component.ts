@@ -7,6 +7,7 @@ import { Pages } from '../../app.routes';
   imports: [],
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.scss',
+  standalone: true
 })
 export class TopbarComponent {
   public pages : typeof Pages = Pages;
