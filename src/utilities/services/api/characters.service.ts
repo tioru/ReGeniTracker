@@ -3,10 +3,9 @@ import { Injectable } from "@angular/core";
 import { ProjectClass } from "../../classes/class";
 import { environment } from "../../../environments/environment";
 import { BehaviorSubject, catchError, forkJoin, from, map, Observable, of, switchMap } from "rxjs";
-import { CacheService } from "../cache.service";
+import { CacheService } from "../../provider/cache.service";
 
-const CHARACTERS_LISTING_CACHE_KEY = 'characters_listing_cache_key';
-const CHARACTER_CACHE_KEY = '_character_cache_key';
+const TTL_EXPIRATION_MINUTES = 5;
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +23,7 @@ export class CharactersService{
   public selectedCharacter$ = this.selectedCharactersSubject.asObservable();
 
   public charactersListingLoaded : boolean = false;
+  private readonly defaultTTL = TTL_EXPIRATION_MINUTES * 60 * 1000;
 
   private getHttpHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -121,7 +121,6 @@ export class CharactersService{
   }    
 
   public loadCharacter(characterName : string) : void {
-    console.log('Loading character:', characterName);
     from(this.cacheService.get<ProjectClass.Remote.Character>(characterName + CHARACTER_CACHE_KEY)).pipe(
       switchMap(cached => {
         if (cached) {

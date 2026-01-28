@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
-const TTL_EXPIRATION_MINUTES = 5;
-
 @Injectable({
     providedIn: 'root'
 })
@@ -12,33 +10,33 @@ export class CacheService {
     private readonly cacheTTL : Map<string, number> = new Map();
 
     private readonly observers = new Map<string, BehaviorSubject<any>>();
-    private readonly defaultTTL = TTL_EXPIRATION_MINUTES * 60 * 1000;
+
 
     constructor() {
     }
 
-    public set<T>(key: string, data: T, ttl : number = this.defaultTTL): void {    
+    public set<T>(key: string, data: T, ttl : number): void {    
         if (!(this.cache.has(key))) {
             this.cache.set(key, new BehaviorSubject<T>(data));
             this.cacheTTL.set(key, Date.now() + ttl)
         }
     }
 
-    public async get<T>(key: string): T | null {
-        const entry = this.cache.has(key);
+    public get<T>(key: string): T | null {
+        const entry = this.cache.get(key);
+        const entryTTL = this.cacheTTL.get(key);
 
-        if (!entry) {
+        if (!entry || !entryTTL) {
           return null;
         }
 
-        const entryTTL = this.cacheTTL.get(key) || return null;
-        const isExpired = Date.now() > this.cacheTTL.get(key);
+        const isExpired = Date.now() > entryTTL;
         if (isExpired) {
-          await this.clear(key);
+          this.clear(key);
           return null;
         }
 
-        return entry.data as T;
+        return entry as T;
     }
 
     public watch<T>(key: string): Observable<T| null> {
@@ -62,16 +60,16 @@ export class CacheService {
     }
 
     public async getCacheSize(): Promise<number> {
-        return this.db.count('cache');
+        return this.cache.size;
     }
 
     public async getAllKeys(): Promise<string[]> {
-        return this.db.getAllKeys('cache');
+        return Array.from(this.cache.keys());
     }
 
     public async seeAll(): Promise<void> {
-        this.db.getAll('cache').then(entries => {
-          console.log(entries);
+        this.cache.forEach((value, key) => {
+          console.log(key, value);
         });
     }
 }

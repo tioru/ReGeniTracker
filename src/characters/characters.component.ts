@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CharactersService } from '../utilities/services/api/characters.service';
 import { CommonModule } from '@angular/common';
-import { CacheService } from '../utilities/services/cache.service';
+import { CacheService } from '../utilities/provider/cache.service';
 
 @Component({
   selector: 'app-characters-listing',
