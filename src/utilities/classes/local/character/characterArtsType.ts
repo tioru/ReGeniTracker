@@ -1,4 +1,4 @@
-export const LCharacterArtsArray = [
+export const CharacterArtsArray = [
   "card" ,
   "constellation" ,
   "constellation1" ,
@@ -22,9 +22,9 @@ export const LCharacterArtsArray = [
   "talentPassive2" ,
   "talentSkill" ] as const
 
-export type LCharacterArtsTypeClass = typeof LCharacterArtsArray;
+export type CharacterArtsTypeClass = typeof CharacterArtsArray;
 
-export enum LCharacterArtsTypeListEnum {
+export enum CharacterArtsTypeListEnum {
   CARD = "card",
   CONSTELLATION = "constellation",
   CONSTELLATION_1 = "constellation1",

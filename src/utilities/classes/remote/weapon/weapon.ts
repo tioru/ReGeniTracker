@@ -1,4 +1,4 @@
-export class RWeaponClass {
+export class WeaponClass {
   name : string | null = null;
   type : string | null = null;
   rarity : number | null = null;
@@ -10,7 +10,7 @@ export class RWeaponClass {
   ascensionMaterial : string | null = null;
   id : string | null = null;
 
-  constructor(init?:Partial<RWeaponClass>) {
+  constructor(init?:Partial<WeaponClass>) {
     Object.assign(this, init);
   }
 }

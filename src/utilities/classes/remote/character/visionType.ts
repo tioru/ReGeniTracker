@@ -1,6 +1,6 @@
-export type RVisionTypeClass = "Geo" | "Pyro" | "Dendro" | "Electro" | "Hydro" | "Cryo" | "Anemo"
+export type VisionTypeClass = "Geo" | "Pyro" | "Dendro" | "Electro" | "Hydro" | "Cryo" | "Anemo"
 
-export enum RVisionTypeListEnum {
+export enum VisionTypeListEnum {
   GEO = "Geo",
   PYRO = "Pyro",
   DENDRO = "Dendro",

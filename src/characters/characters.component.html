@@ -1,22 +1,26 @@
 <div class="flex aic jcc column gap30">
   <div class="flex gap50">
-    @if (!charactersService.charactersListingLoaded) {
-      <span>Loading</span>
-    } @else {
-      <span>No loading</span>
-    }
+    <div class="flex column aic jcc gap10" style="background-color: rgb(204, 204, 204);">
+      <span>Loaded characters ?</span>
+      @if (!charactersService.charactersLoaded) {
+        <span>Loading</span>
+      } @else {
+        <span>No loading</span>
+      }
+    </div>
+    
 
-    <div class="flex aic jcc column gap20">
+    <div class="flex aic jcc column gap20" style="background-color: rgb(204, 204, 204);">
       <button (click)="charactersService.deselectCharacter()">Remove Selection</button>
-      <button (click)="cacheService.seeAll()">See All Cache</button>
-      <button (click)="cacheService.clearAll()">Clear Cache</button>
+      <button (click)="cacheProvider.seeAll()">See All Cache</button>
+      <button (click)="cacheProvider.clearAll()">Clear Cache</button>
     </div>
 
-    <div>
-      @if (charactersService.selectedCharacter$ | async; as selectedCharacter) {
+    <div class="flex aic jcc" style="background-color: rgb(204, 204, 204);">
+      @if (charactersService.loadedCharacter$ | async; as loadedCharacter) {
         <div>
           <h1>
-            Selected Character Name: {{selectedCharacter.name}}
+            Selected Character Name: {{loadedCharacter.name}}
           </h1>
         </div>
       } @else {
@@ -25,15 +29,24 @@
     </div>
   </div>
 
-  <div class="flex aic jcc column gap20">
-    <h2>Characters List</h2>
-    @for (character of charactersService.charactersListing$ | async; track $index) {
-      <div class="flex aic jcc gap20">
-        <p>{{ character.name }}</p>
-        @if(character.name) {
-          <button (click)="charactersService.loadCharacter(character.name)">Load {{character.name}}</button>
-        }
-      </div>
-    }
+  <div class="fw flex aic jcc gap50 fh">
+    <div class="flex aic jcc column gap20 fh" style="overflow: scroll; height: 700px; background-color: rgb(204, 204, 204); padding: 10px; flex: 1;">
+      <h2>Characters List</h2>
+      @for (character of charactersService.characters$ | async; track $index) {
+        <div class="flex aic jcc gap20">
+          <p>{{ character.name }}</p>
+          @if(character.name) {
+            <button (click)="charactersService.loadCharacter(character.name)">Load {{character.name}}</button>
+          }
+        </div>
+      }
+    </div>
+    <div class="flex aic jcc column fh" style="flex: 1;">
+      <span>
+        Character Info Loaded:
+      </span>
+      <span>{{charactersService.loadedCharacter$ | async| json}}</span>
+    </div>
   </div>
+  
 </div>

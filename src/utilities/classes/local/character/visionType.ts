@@ -1,6 +1,6 @@
-export type LVisionTypeClass = "GEO" | "PYRO" | "DENDRO" | "ELECTRO" | "HYDRO" | "CRYO" | "ANEMO"
+export type VisionTypeClass = "GEO" | "PYRO" | "DENDRO" | "ELECTRO" | "HYDRO" | "CRYO" | "ANEMO"
 
-export enum LVisionTypeListEnum {
+export enum VisionTypeListEnum {
   GEO = "GEO",
   PYRO = "PYRO",
   DENDRO = "DENDRO",

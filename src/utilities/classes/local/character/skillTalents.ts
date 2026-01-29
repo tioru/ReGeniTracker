@@ -1,15 +1,15 @@
-import { LAttributeScalingClass } from "./attributeScaling";
-import { LUpgradeClass } from "./upgrade";
+import { AttributeScalingClass } from "./attributeScaling";
+import { UpgradeClass } from "./upgrade";
 
-export class LSkillTalentsClass {
+export class SkillTalentsClass {
   name : string | null = null;
   unlock : string | null = null;
   description : string | null = null;
-  upgrades : Array<LUpgradeClass> = [];
+  upgrades : Array<UpgradeClass> = [];
   type : string | null = null;
-  attributeScaling : Array<LAttributeScalingClass> = [];
+  attributeScaling : Array<AttributeScalingClass> = [];
 
-  constructor(init?:Partial<LSkillTalentsClass>) {
+  constructor(init?:Partial<SkillTalentsClass>) {
     Object.assign(this, init);
   }
 }

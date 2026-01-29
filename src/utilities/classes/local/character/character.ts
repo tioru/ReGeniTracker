@@ -1,13 +1,13 @@
-import { LSkillTalentsClass } from "./skillTalents"
-import { LPassiveTalentsClass } from "./passiveTalents"
-import { LConstellationClass } from "./constellations"
-import { LAscentionMaterialsClass } from "./ascensionMaterials"
-import { LVisionTypeClass } from "./visionType"
+import { SkillTalentsClass } from "./skillTalents"
+import { ConstellationClass } from "./constellations"
+import { AscentionMaterialsClass } from "./ascensionMaterials"
+import { VisionTypeClass } from "./visionType"
+import { PassiveTalentsClass } from "./passiveTalents";
 
-export class LCharacterClass {
+export class CharacterClass {
   name : string | null = null;
   title : string | null = null;
-  vision : LVisionTypeClass | null = null;
+  vision : VisionTypeClass | null = null;
   weapon : string | null = null;
   gender : string | null = null;
   nation : string | null = null;
@@ -17,22 +17,22 @@ export class LCharacterClass {
   constellation : string | null = null;
   birthday : string | null = null;
   description : string | null = null;
-  skillTalents : Array<LSkillTalentsClass> = [];
-  passiveTalents : Array<LPassiveTalentsClass> = [];
-  constellations : Array<LConstellationClass> = [];
+  skillTalents : Array<SkillTalentsClass> = [];
+  passiveTalents : Array<PassiveTalentsClass> = [];
+  constellations : Array<ConstellationClass> = [];
   visionKey : string | null = null;
   weaponType : string | null = null;
   ascensionMaterials : {
-    level20 : LAscentionMaterialsClass[]
-    level40 : LAscentionMaterialsClass[]
-    level50 : LAscentionMaterialsClass[]
-    level60 : LAscentionMaterialsClass[]
-    level70 : LAscentionMaterialsClass[]
-    level80 : LAscentionMaterialsClass[]
+    level20 : AscentionMaterialsClass[]
+    level40 : AscentionMaterialsClass[]
+    level50 : AscentionMaterialsClass[]
+    level60 : AscentionMaterialsClass[]
+    level70 : AscentionMaterialsClass[]
+    level80 : AscentionMaterialsClass[]
   } | null = null;
   id : string | null = null;
 
-  constructor(init?:Partial<LCharacterClass>) {
+  constructor(init?:Partial<CharacterClass>) {
     Object.assign(this, init);
   }
 }

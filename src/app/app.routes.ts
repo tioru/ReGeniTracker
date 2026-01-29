@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { CharactersListingComponent } from '../characters-listing/characters.component';
+import { CharactersComponent } from '../characters/characters.component';
 
 export enum Pages {
   HOME = "",
@@ -8,12 +8,6 @@ export enum Pages {
 }
 
 export const routes: Routes = [
-    {
-        path: Pages.HOME,
-        component: HomeComponent
-    },
-    {
-        path: Pages.CHARACTERS_LISTING,
-        component: CharactersListingComponent
-    }
+    { path: Pages.HOME, component: HomeComponent },
+    { path: Pages.CHARACTERS_LISTING, component: CharactersComponent}
 ];
