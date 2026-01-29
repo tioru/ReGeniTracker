@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-characters',
+  selector: 'app-character',
   imports: [],
-  templateUrl: './characters.component.html',
-  styleUrl: './characters.component.scss',
+  templateUrl: './character.component.html',
+  styleUrl: './character.component.scss',
   standalone: true
 })
 export class CharactersComponent {

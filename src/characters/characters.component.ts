@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CharactersService } from '../utilities/services/api/characters.service';
 import { CommonModule } from '@angular/common';
-import { CacheService } from '../utilities/services/cache.service';
+import { CacheProvider } from '../utilities/provider/cache.provider';
 
 @Component({
-  selector: 'app-characters-listing',
+  selector: 'app-characters',
   imports: [CommonModule],
-  templateUrl: './characters-listing.component.html',
-  styleUrl: './characters-listing.component.scss',
+  templateUrl: './characters.component.html',
+  styleUrl: './characters.component.scss',
   standalone: true
 })
-export class CharactersListingComponent implements OnInit{
+export class CharactersComponent implements OnInit{
   constructor(
     public charactersService : CharactersService,
-    public cacheService : CacheService
+    public cacheProvider : CacheProvider
   ) {}
 
   ngOnInit(): void {

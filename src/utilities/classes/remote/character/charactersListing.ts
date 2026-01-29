@@ -1,12 +1,12 @@
-import { RVisionTypeClass } from "./visionType";
+import { VisionTypeClass } from "./visionType";
 
-export class RCharacterListingClass {
+export class CharacterListingClass {
   name : string | null = null;
   icon : string | null = null;
-  vision : RVisionTypeClass | null = null;
+  vision : VisionTypeClass | null = null;
   release : string | null = null;
     
-  constructor(init?:Partial<RCharacterListingClass>) {
+  constructor(init?:Partial<CharacterListingClass>) {
     Object.assign(this, init);
   }
 }

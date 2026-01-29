@@ -1,15 +1,15 @@
-import { RAttributeScalingClass } from "./attributeScaling";
-import { RUpgradeClass } from "./upgrade";
+import { AttributeScalingClass } from "./attributeScaling";
+import { UpgradeClass } from "./upgrade";
 
-export class RSkillTalentsClass {
+export class SkillTalentsClass {
   name : string | null = null;
   unlock : string | null = null;
   description : string | null = null;
-  upgrades : Array<RUpgradeClass> = [];
+  upgrades : Array<UpgradeClass> = [];
   type : string | null = null;
-  "attribute-scaling" : Array<RAttributeScalingClass> = [];
+  "attribute-scaling" : Array<AttributeScalingClass> = [];
 
-  constructor(init?:Partial<RSkillTalentsClass>) {
+  constructor(init?:Partial<SkillTalentsClass>) {
     Object.assign(this, init);
   }
 }

@@ -1,13 +1,13 @@
-import { RSkillTalentsClass } from "./skillTalents"
-import { RPassiveTalentsClass } from "./passiveTalents"
-import { RConstellationClass } from "./constellations"
-import { RAscentionMaterialsClass } from "./ascensionMaterials"
-import { RVisionTypeClass } from "./visionType"
+import { SkillTalentsClass } from "./skillTalents"
+import { PassiveTalentsClass } from "./passiveTalents"
+import { ConstellationClass } from "./constellations"
+import { AscentionMaterialsClass } from "./ascensionMaterials"
+import { VisionTypeClass } from "./visionType"
 
-export class RCharacterClass {
+export class CharacterClass {
   name : string | null = null;
   title : string | null = null;
-  vision : RVisionTypeClass | null = null;
+  vision : VisionTypeClass | null = null;
   weapon : string | null = null;
   gender : string | null = null;
   nation : string | null = null;
@@ -17,22 +17,22 @@ export class RCharacterClass {
   constellation : string | null = null;
   birthday : string | null = null;
   description : string | null = null;
-  skillTalents : Array<RSkillTalentsClass> = [];
-  passiveTalents : Array<RPassiveTalentsClass> = [];
-  constellations : Array<RConstellationClass> = [];
+  skillTalents : Array<SkillTalentsClass> = [];
+  passiveTalents : Array<PassiveTalentsClass> = [];
+  constellations : Array<ConstellationClass> = [];
   vision_key : string | null = null;
   weapon_type : string | null = null;
   ascension_materials : {
-    level20 : RAscentionMaterialsClass[]
-    level40 : RAscentionMaterialsClass[]
-    level50 : RAscentionMaterialsClass[]
-    level60 : RAscentionMaterialsClass[]
-    level70 : RAscentionMaterialsClass[]
-    level80 : RAscentionMaterialsClass[]
+    level20 : AscentionMaterialsClass[]
+    level40 : AscentionMaterialsClass[]
+    level50 : AscentionMaterialsClass[]
+    level60 : AscentionMaterialsClass[]
+    level70 : AscentionMaterialsClass[]
+    level80 : AscentionMaterialsClass[]
   } | null = null;
   id : string | null = null;
 
-  constructor(init?:Partial<RCharacterClass> ) {
+  constructor(init?:Partial<CharacterClass> ) {
     Object.assign(this, init);
   }
 }

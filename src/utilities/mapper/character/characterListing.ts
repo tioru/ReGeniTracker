@@ -10,7 +10,7 @@ export class CharacterListingMapper {
         public visionTypeMapper : VisionTypeMapper
     ) {}
 
-    public mapRemote(rCharacterListing : ProjectClass.Remote.CharacterListing) : ProjectClass.Local.CharacterListing {
+    public mapRemote(rCharacterListing : ProjectClass.Remote.Characters) : ProjectClass.Local.CharacterListing {
         return new ProjectClass.Local.CharacterListing({
             name : rCharacterListing.name,
             icon : rCharacterListing.icon,

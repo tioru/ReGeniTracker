@@ -1,4 +1,4 @@
-export class RCharacterArtsClass {
+export class CharacterArtsClass {
     card : string | null = null;
     constellation : string | null = null;
     "constellation-1" : string | null = null;
@@ -22,7 +22,7 @@ export class RCharacterArtsClass {
     "talent-passive-2" : string | null = null;
     "talent-skill" : string | null = null;
 
-    constructor(init?:Partial<RCharacterArtsClass> ) {
+    constructor(init?:Partial<CharacterArtsClass> ) {
         Object.assign(this, init);
     }
 }

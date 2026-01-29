@@ -1,4 +1,4 @@
-export const RCharacterArtsArray = [
+export const CharacterArtsArray = [
   "card" ,
   "constellation" ,
   "constellation-1" ,
@@ -22,9 +22,9 @@ export const RCharacterArtsArray = [
   "talent-passive-2" ,
   "talent-skill" ] as const;
 
-export type RCharacterArtsTypeClass = typeof RCharacterArtsArray;
+export type CharacterArtsTypeClass = typeof CharacterArtsArray;
 
-export enum RCharacterArtsTypeListEnum {
+export enum CharacterArtsTypeListEnum {
   CARD = "card",
   CONSTELLATION = "constellation",
   CONSTELLATION_1 = "constellation-1",

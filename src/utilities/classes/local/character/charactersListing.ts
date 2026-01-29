@@ -1,12 +1,12 @@
-import { LVisionTypeClass } from "./visionType";
+import { VisionTypeClass } from "./visionType";
 
-export class LCharacterListingClass {
+export class CharacterListingClass {
   name : string | null = null;
   icon : string | null = null;
-  vision : LVisionTypeClass | null = null;
+  vision : VisionTypeClass | null = null;
   releaseDate : string | null = null;
     
-  constructor(init?:Partial<LCharacterListingClass>) {
+  constructor(init?:Partial<CharacterListingClass>) {
     Object.assign(this, init);
   }
 }
