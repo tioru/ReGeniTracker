@@ -1,0 +1,43 @@
+.characterCardContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+    gap: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+    padding: 10px 0;
+    overflow: auto;
+    width: 98%;
+}
+
+.characterCard  {
+    --border-radius: 1rem;
+    border-radius: var(--border-radius);
+
+    .topSection {
+        position: relative;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        background: transparent;
+        backdrop-filter: blur(12px);
+
+        &::before {
+          content: "";
+          position: absolute;
+          z-index: -1;
+          inset: 0;
+          border-radius: inherit;
+          border: 2px solid transparent;
+          background: linear-gradient(hsl(259, 13%, 28%), hsl(252, 9%, 22%)) border-box;
+          mask: linear-gradient(black, black) border-box,
+            linear-gradient(black, black) padding-box;
+          mask-composite: subtract;
+        }
+    }
+
+    .bottomSection {
+        background: rgb(201, 201, 201);
+    }
+
+  .name {
+    color: white;
+  }
+}

@@ -1,11 +1,11 @@
-export type VisionTypeClass = "Geo" | "Pyro" | "Dendro" | "Electro" | "Hydro" | "Cryo" | "Anemo"
+export type VisionTypeClass = "GEO" | "PYRO" | "DENDRO" | "ELECTRO" | "HYDRO" | "CRYO" | "ANEMO"
 
 export enum VisionTypeListEnum {
-  GEO = "Geo",
-  PYRO = "Pyro",
-  DENDRO = "Dendro",
-  ELECTRO = "Electro",
-  HYDRO = "Hydro",
-  CRYO = "Cryo",
-  ANEMO = "Anemo",
+  GEO = "GEO",
+  PYRO = "PYRO",
+  DENDRO = "DENDRO",
+  ELECTRO = "ELECTRO",
+  HYDRO = "HYDRO",
+  CRYO = "CRYO",
+  ANEMO = "ANEMO"
 }

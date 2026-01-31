@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { CharactersComponent } from '../characters/characters.component';
+import { CharactersComponent } from './characters/characters.component';
 
 export enum Pages {
   HOME = "",

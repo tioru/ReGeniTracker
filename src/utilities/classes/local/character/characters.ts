@@ -1,12 +1,12 @@
 import { VisionTypeClass } from "./visionType";
 
-export class CharacterListingClass {
+export class CharactersClass {
   name : string | null = null;
-  icon : string | null = null;
+  gachaSplash : string | null = null;
   vision : VisionTypeClass | null = null;
   releaseDate : string | null = null;
     
-  constructor(init?:Partial<CharacterListingClass>) {
+  constructor(init?:Partial<CharactersClass>) {
     Object.assign(this, init);
   }
 }

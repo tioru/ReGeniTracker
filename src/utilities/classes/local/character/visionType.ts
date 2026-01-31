@@ -7,5 +7,5 @@ export enum VisionTypeListEnum {
   ELECTRO = "ELECTRO",
   HYDRO = "HYDRO",
   CRYO = "CRYO",
-  ANEMO = "ANEMO",
+  ANEMO = "ANEMO"
 }

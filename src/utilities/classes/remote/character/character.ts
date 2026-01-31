@@ -20,7 +20,7 @@ export class CharacterClass {
   skillTalents : Array<SkillTalentsClass> = [];
   passiveTalents : Array<PassiveTalentsClass> = [];
   constellations : Array<ConstellationClass> = [];
-  vision_key : string | null = null;
+  vision_key : VisionTypeClass | null = null;
   weapon_type : string | null = null;
   ascension_materials : {
     level20 : AscentionMaterialsClass[]

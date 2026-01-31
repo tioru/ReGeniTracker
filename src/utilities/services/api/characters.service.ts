@@ -2,8 +2,10 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ProjectClass } from "../../classes/class";
 import { environment } from "../../../environments/environment";
-import { BehaviorSubject, catchError, firstValueFrom, forkJoin, map, Observable, of, switchMap } from "rxjs";
+import { BehaviorSubject, catchError, firstValueFrom, forkJoin, map, Observable, of } from "rxjs";
 import { CacheProvider } from "../../provider/cache.provider";
+import { CharactersMapper } from "../../mapper/character/characters";
+import { CharacterMapper } from "../../mapper/character/character";
 
 const TTL_EXPIRATION_MINUTES = 60;
 const CHARACTER_CACHE_KEY = "_character";
@@ -16,13 +18,15 @@ const CHARACTERS_NAME_CACHE_KEY = "characters_name";
 export class CharactersService{
   constructor(
     public http: HttpClient,
-    private readonly cacheProvider: CacheProvider
+    private readonly cacheProvider: CacheProvider,
+    private readonly charactersMapper: CharactersMapper,
+    private readonly characterMapper: CharacterMapper
   ){}
 
-  private readonly charactersSubject = new BehaviorSubject<ProjectClass.Remote.Characters[]>([]);
+  private readonly charactersSubject = new BehaviorSubject<ProjectClass.Local.Characters[]>([]);
   public characters$ = this.charactersSubject.asObservable();
 
-  private readonly loadedCharactersSubject = new BehaviorSubject<ProjectClass.Remote.Character | null>(null);
+  private readonly loadedCharactersSubject = new BehaviorSubject<ProjectClass.Local.Character | null>(null);
   public loadedCharacter$ = this.loadedCharactersSubject.asObservable();
 
   public charactersLoaded : boolean = false;
@@ -62,7 +66,7 @@ export class CharactersService{
 
     if (charactersEntry) {
       this.charactersLoaded = true;
-      this.charactersSubject.next(charactersEntry);
+      this.charactersSubject.next(this.charactersMapper.mapRemoteToLocalArray(charactersEntry));
     } else {
       const charactersName = await firstValueFrom(this.loadCharactersName());
   
@@ -76,25 +80,35 @@ export class CharactersService{
           observe: 'response'
         }).pipe(
           map((response) => {
-            const character = response.body as ProjectClass.Remote.Character
+            const character = response.body as ProjectClass.Remote.Characters;
             return { 
-              vision: character.vision,
+              vision_key: character.vision_key,
               release: character.release
             };
           })
         );
     
-        const iconRequest = this.http.get(`${environment.apiUrl}/characters/${name}/icon-big`, {
+        const gachaSplashRequest = this.http.get(`${environment.apiUrl}/characters/${name}/gacha-splash`, {
           headers: this.getHttpHeaders(),
           observe: 'response',
           responseType: 'blob'
         }).pipe(
-          map(iconResponse => iconResponse.body ? URL.createObjectURL(iconResponse.body) : '')
+          map(iconResponse => iconResponse.body ? URL.createObjectURL(iconResponse.body) : ''),
+          catchError(() => of(''))
         );
     
-        return forkJoin([generalInformationRequest, iconRequest]).pipe(
-          map(([generalData, icon]) =>
-            new ProjectClass.Remote.Characters({ name, icon, vision: generalData.vision, release: generalData.release })
+        return forkJoin([generalInformationRequest, gachaSplashRequest]).pipe(
+          map(([generalData, gachaSplash]) =>
+            this.charactersMapper.mapRemote( 
+              new ProjectClass.Remote.Characters(
+                { 
+                  name: name, 
+                  gachaSplash: gachaSplash, 
+                  vision_key: generalData.vision_key, 
+                  release: generalData.release 
+                }
+              )
+            )
           )
         );
       });
@@ -138,7 +152,7 @@ export class CharactersService{
     const entry = this.cacheProvider.get<ProjectClass.Remote.Character>(characterName);
 
     if (entry) {
-      this.loadedCharactersSubject.next(entry);
+      this.loadedCharactersSubject.next(this.characterMapper.mapRemote(entry));
       this.characterLoaded = true;
     } else {
       this.http.get(`${environment.apiUrl}/characters/${characterName}`, {headers: this.getHttpHeaders(),observe: 'response'}).subscribe((response) => {
@@ -146,7 +160,7 @@ export class CharactersService{
         const etag = response.headers.get('ETag');
 
         if (loadedCharacter) {
-          this.loadedCharactersSubject.next(loadedCharacter);
+          this.loadedCharactersSubject.next(this.characterMapper.mapRemote(loadedCharacter));
           this.cacheProvider.set(characterName + CHARACTER_CACHE_KEY, { loadedCharacter, etag }, this.defaultTTL);
 
           this.characterLoaded = true;

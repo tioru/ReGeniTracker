@@ -24,34 +24,37 @@ export class CharacterMapper {
         })
     }
 
-    public mapRemote(rCharacter : ProjectClass.Remote.Character) : ProjectClass.Local.Character {
-        return new ProjectClass.Local.Character({
-            name : rCharacter.name,
-            title : rCharacter.title,
-            vision : rCharacter.vision ? this.visionTypeMapper.mapRemote(rCharacter.vision) : null,
-            weapon : rCharacter.weapon,
-            gender : rCharacter.gender,
-            nation : rCharacter.nation,
-            affiliation : rCharacter.affiliation,
-            rarity : rCharacter.rarity,
-            releaseDate : rCharacter.release,
-            constellation : rCharacter.constellation,
-            birthday : rCharacter.birthday,
-            description : rCharacter.description,
-            skillTalents : this.skillTalentsMapper.mapRemoteArray(rCharacter.skillTalents),
-            passiveTalents : this.passiveTalentsMapper.mapRemoteArray(rCharacter.passiveTalents),
-            constellations : this.constellationsMapper.mapRemoteArray(rCharacter.constellations),
-            visionKey : rCharacter.vision_key,
-            weaponType : rCharacter.weapon_type,
-            ascensionMaterials : {
-                level20 : rCharacter.ascension_materials?.level20 ? this.ascentionMaterialsMapper.mapRemoteArray(rCharacter.ascension_materials.level20) : [],
-                level40 : rCharacter.ascension_materials?.level40 ? this.ascentionMaterialsMapper.mapRemoteArray(rCharacter.ascension_materials.level40) : [],
-                level50 : rCharacter.ascension_materials?.level50 ? this.ascentionMaterialsMapper.mapRemoteArray(rCharacter.ascension_materials.level50) : [],
-                level60 : rCharacter.ascension_materials?.level60 ? this.ascentionMaterialsMapper.mapRemoteArray(rCharacter.ascension_materials.level60) : [],
-                level70 : rCharacter.ascension_materials?.level70 ? this.ascentionMaterialsMapper.mapRemoteArray(rCharacter.ascension_materials.level70) : [],
-                level80 : rCharacter.ascension_materials?.level80 ? this.ascentionMaterialsMapper.mapRemoteArray(rCharacter.ascension_materials.level80) : [],
-            },
-            id: rCharacter.id
-        })
+    public mapRemote(character : ProjectClass.Remote.Character) : ProjectClass.Local.Character {
+        try {
+            return new ProjectClass.Local.Character({
+                name : character.name,
+                title : character.title,
+                vision : character.vision_key ? this.visionTypeMapper.mapRemote(character.vision_key) : null,
+                weapon : character.weapon,
+                gender : character.gender,
+                nation : character.nation,
+                affiliation : character.affiliation,
+                rarity : character.rarity,
+                releaseDate : character.release,
+                constellation : character.constellation,
+                birthday : character.birthday,
+                description : character.description,
+                skillTalents : this.skillTalentsMapper.mapRemoteArray(character.skillTalents),
+                passiveTalents : this.passiveTalentsMapper.mapRemoteArray(character.passiveTalents),
+                constellations : this.constellationsMapper.mapRemoteArray(character.constellations),
+                weaponType : character.weapon_type,
+                ascensionMaterials : {
+                    level20 : character.ascension_materials?.level20 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level20) : [],
+                    level40 : character.ascension_materials?.level40 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level40) : [],
+                    level50 : character.ascension_materials?.level50 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level50) : [],
+                    level60 : character.ascension_materials?.level60 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level60) : [],
+                    level70 : character.ascension_materials?.level70 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level70) : [],
+                    level80 : character.ascension_materials?.level80 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level80) : [],
+                },
+                id: character.id
+            })
+        } catch (error) {
+          throw new Error("Error mapping Remote Character to Local Character  : " + error);
+        }
     }
 }
