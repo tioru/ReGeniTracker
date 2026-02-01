@@ -8,9 +8,13 @@
       </div>
       <div class="characterCardContainer fh">
         @for (character of charactersService.characters$ | async; track $index) {
-          <div class="characterCard">
+          <div class="characterCard" (click)="openCharacterInfo(character)">
             <div class="topSection">
-              <img [src]="character.gachaSplash">
+              @if(!character.gachaSplash) {
+                <span>Pas d'image</span>
+              } @else {
+                <img [src]="character.gachaSplash">
+              }
             </div>
             <div class="bottomSection">
               <h1 class="name">{{character.name}}</h1>
