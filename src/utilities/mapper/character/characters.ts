@@ -18,7 +18,7 @@ export class CharactersMapper {
         try {
             return new ProjectClass.Local.Characters({
                   name : characters.name,
-                  gachaSplash : characters.gachaSplash,
+                  img : characters.img,
                   vision : characters.vision_key ? this.visionTypeMapper.mapRemote(characters.vision_key) : null,
                   releaseDate : characters.release,
               })

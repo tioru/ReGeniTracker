@@ -88,7 +88,7 @@ export class CharactersService{
           })
         );
     
-        const gachaSplashRequest = this.http.get(`${environment.apiUrl}/characters/${name}/gacha-splash`, {
+        const portraitRequest = this.http.get(`${environment.apiUrl}/characters/${name}/portrait`, {
           headers: this.getHttpHeaders(),
           observe: 'response',
           responseType: 'blob'
@@ -97,13 +97,13 @@ export class CharactersService{
           catchError(() => of(''))
         );
     
-        return forkJoin([generalInformationRequest, gachaSplashRequest]).pipe(
-          map(([generalData, gachaSplash]) =>
+        return forkJoin([generalInformationRequest, portraitRequest]).pipe(
+          map(([generalData, img]) =>
             this.charactersMapper.mapRemote( 
               new ProjectClass.Remote.Characters(
                 { 
                   name: name, 
-                  gachaSplash: gachaSplash, 
+                  img: img, 
                   vision_key: generalData.vision_key, 
                   release: generalData.release 
                 }

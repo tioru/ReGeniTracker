@@ -10,10 +10,10 @@
         @for (character of charactersService.characters$ | async; track $index) {
           <div class="characterCard" (click)="openCharacterInfo(character)">
             <div class="topSection">
-              @if(!character.gachaSplash) {
+              @if(!character.img) {
                 <span>Pas d'image</span>
               } @else {
-                <img [src]="character.gachaSplash">
+                <img [src]="character.img">
               }
             </div>
             <div class="bottomSection">

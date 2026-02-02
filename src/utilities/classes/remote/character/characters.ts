@@ -2,7 +2,7 @@ import { VisionTypeClass } from "./visionType";
 
 export class CharactersClass {
   name : string | null = null;
-  gachaSplash : string | null = null;
+  img : string | null = null;
   vision_key : VisionTypeClass | null = null;
   release : string | null = null;
     
