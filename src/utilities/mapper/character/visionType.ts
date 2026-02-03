@@ -7,8 +7,8 @@ import { ProjectClass } from "../../classes/class";
 export class VisionTypeMapper {
     constructor() {}
 
-    public mapRemote(vision: ProjectClass.Remote.VisionType): ProjectClass.Local.VisionType {
-        switch(vision) {
+    public mapRemote(visionKey: ProjectClass.Remote.VisionType): ProjectClass.Local.VisionType {
+        switch(visionKey) {
             case ProjectClass.Remote.VisionTypeList.ANEMO:
                 return ProjectClass.Local.VisionTypeList.ANEMO;
             case ProjectClass.Remote.VisionTypeList.CRYO:
@@ -24,7 +24,7 @@ export class VisionTypeMapper {
             case ProjectClass.Remote.VisionTypeList.PYRO:
                 return ProjectClass.Local.VisionTypeList.PYRO;
             default:
-                throw new Error(`Unsupported vision type: ${vision}`);
+                throw new Error(`Unsupported vision type: ${visionKey}`);
         }
     }
 }

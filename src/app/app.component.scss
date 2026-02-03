@@ -1,5 +1,16 @@
 @use './../variables.scss' as vars;
 
+main {
+  background-image: url("./../assets/img/Background.png");
+  background-size: cover;
+  height: vars.$height-after-topbar;
+
+  .blurEffect {
+    backdrop-filter: blur(6px);
+  }
+}
+
 .topbarContainer {
     height: vars.$topbar-height;
 }
+

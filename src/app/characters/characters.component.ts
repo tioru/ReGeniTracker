@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CharactersService } from '../utilities/services/api/characters.service';
 import { CommonModule } from '@angular/common';
-import { CacheProvider } from '../utilities/provider/cache.provider';
+import { CacheProvider } from '../../utilities/provider/cache.provider';
+import { CharactersService } from '../../utilities/services/api/characters.service';
+import { ProjectClass } from '../../utilities/classes/class';
 
 @Component({
   selector: 'app-characters',
@@ -11,6 +12,8 @@ import { CacheProvider } from '../utilities/provider/cache.provider';
   standalone: true
 })
 export class CharactersComponent implements OnInit{
+  public characterInfoDialogOpen : boolean = false;
+
   constructor(
     public charactersService : CharactersService,
     public cacheProvider : CacheProvider
@@ -18,5 +21,12 @@ export class CharactersComponent implements OnInit{
 
   ngOnInit(): void {
     this.charactersService.loadCharacters();
+  }
+
+  public openCharacterInfo(character : ProjectClass.Local.Characters) : void {
+    if (character.name) {
+      console.log("Loading character info for:", character.name);
+      this.charactersService.loadCharacter(character.name);
+    }
   }
 }

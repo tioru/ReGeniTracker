@@ -1,0 +1,27 @@
+<div class="charactersTopContainer flex aic jcc column gap30 fh fw">
+  @if (!charactersService.charactersLoaded) {
+    <span>Loading</span>
+  } @else {
+    <div class="gap30 flex aic jcc column fw fh">
+      <div class="">
+      <input >
+      </div>
+      <div class="characterCardContainer fh">
+        @for (character of charactersService.characters$ | async; track $index) {
+          <div class="characterCard" (click)="openCharacterInfo(character)">
+            <div class="topSection">
+              @if(!character.img) {
+                <span>Pas d'image</span>
+              } @else {
+                <img [src]="character.img">
+              }
+            </div>
+            <div class="bottomSection">
+              <h1 class="name">{{character.name}}</h1>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
