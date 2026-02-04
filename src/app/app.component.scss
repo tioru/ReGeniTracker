@@ -5,7 +5,8 @@ main {
     radial-gradient(circle at 20% 20%, #1a2332 0%, transparent 40%),
     radial-gradient(circle at 80% 80%, #0d1b2a 0%, transparent 40%),
     radial-gradient(circle at 40% 60%, #162238 0%, transparent 30%),
-    radial-gradient(circle at 60% 40%, #0a1520 0%, transparent 35%);
+    radial-gradient(circle at 60% 40%, #0a1520 0%, transparent 35%),
+    #000000;
   height: vars.$height-after-topbar;
 
   .blurEffect {
