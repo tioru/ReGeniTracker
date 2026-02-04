@@ -8,7 +8,7 @@
       </div>
       <div class="characterCardContainer fh">
         @for (character of charactersService.characters$ | async; track $index) {
-          <div class="characterCard" (click)="openCharacterInfo(character)">
+          <div [class]="'characterCard ' + character.vision" (click)="openCharacterInfo(character)">
             <div class="topSection">
               @if(!character.img) {
                 <span>Pas d'image</span>

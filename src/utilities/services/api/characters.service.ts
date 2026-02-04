@@ -62,12 +62,13 @@ export class CharactersService{
   }
 
   public async loadCharacters(): Promise<void> {
-    const charactersEntry = this.cacheProvider.get<ProjectClass.Remote.Characters[]>(CHARACTERS_CACHE_KEY);
+    const charactersEntry = this.cacheProvider.get<ProjectClass.Local.Characters[]>(CHARACTERS_CACHE_KEY);
 
     if (charactersEntry) {
       this.charactersLoaded = true;
-      this.charactersSubject.next(this.charactersMapper.mapRemoteToLocalArray(charactersEntry));
+      this.charactersSubject.next(charactersEntry);
     } else {
+      this.charactersLoaded = false;
       const charactersName = await firstValueFrom(this.loadCharactersName());
   
       if (!charactersName) {
@@ -105,6 +106,7 @@ export class CharactersService{
       });
 
       forkJoin(characterRequests).subscribe(characters => {
+        this.charactersLoaded = true;
         this.charactersSubject.next(characters);
         this.cacheProvider.set(CHARACTERS_CACHE_KEY, characters, this.defaultTTL);
       });
