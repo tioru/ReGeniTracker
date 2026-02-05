@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Sanitizer } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CacheProvider } from '../../utilities/provider/cache.provider';
 import { CharactersService } from '../../utilities/services/api/characters.service';

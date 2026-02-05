@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -22,16 +22,34 @@ export class CacheProvider {
         const entryTTL = localStorage.getItem(`${key}_ttl`);
 
         if (!entry || !entryTTL) {
-          return null;
+            console.log(`CacheProvider: No cache found for key ${key}`);
+            return null;
         }
 
         const isExpired = Date.now() > Number.parseInt(entryTTL);
         if (isExpired) {
-          this.clear(key);
-          return null;
+            console.log(`CacheProvider: Cache expired for key ${key}`);
+            this.clear(key);
+            return null;
         }
 
+        console.log(`CacheProvider: Cache hit for key ${key}`);
         return JSON.parse(entry) as T;
+    }
+
+    public async setImage(key: string, file: File, ttl: number): Promise<void> {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            
+            reader.onload = (e: any) => {
+                const base64Image = e.target.result;
+                this.set(key, base64Image, ttl);
+                resolve();
+            };
+            
+            reader.onerror = () => reject(new Error('Erreur de lecture du fichier'));
+            reader.readAsDataURL(file);
+        });
     }
 
     public async clear(key: string): Promise<void> {

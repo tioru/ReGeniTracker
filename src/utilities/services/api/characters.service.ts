@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ProjectClass } from "../../classes/class";
 import { environment } from "../../../environments/environment";
-import { BehaviorSubject, catchError, firstValueFrom, forkJoin, map, Observable, of } from "rxjs";
+import { BehaviorSubject, catchError, firstValueFrom, forkJoin, map, Observable, of, switchMap } from "rxjs";
 import { CacheProvider } from "../../provider/cache.provider";
 import { CharactersMapper } from "../../mapper/character/characters";
 import { CharacterMapper } from "../../mapper/character/character";
@@ -62,12 +62,13 @@ export class CharactersService{
   }
 
   public async loadCharacters(): Promise<void> {
-    const charactersEntry = this.cacheProvider.get<ProjectClass.Remote.Characters[]>(CHARACTERS_CACHE_KEY);
+    const charactersEntry = this.cacheProvider.get<ProjectClass.Local.Characters[]>(CHARACTERS_CACHE_KEY);
 
     if (charactersEntry) {
       this.charactersLoaded = true;
-      this.charactersSubject.next(this.charactersMapper.mapRemoteToLocalArray(charactersEntry));
+      this.charactersSubject.next(charactersEntry);
     } else {
+      this.charactersLoaded = false;
       const charactersName = await firstValueFrom(this.loadCharactersName());
   
       if (!charactersName) {
@@ -88,22 +89,13 @@ export class CharactersService{
           })
         );
     
-        const portraitRequest = this.http.get(`${environment.apiUrl}/characters/${name}/portrait`, {
-          headers: this.getHttpHeaders(),
-          observe: 'response',
-          responseType: 'blob'
-        }).pipe(
-          map(iconResponse => iconResponse.body ? URL.createObjectURL(iconResponse.body) : ''),
-          catchError(() => of(''))
-        );
-    
-        return forkJoin([generalInformationRequest, portraitRequest]).pipe(
-          map(([generalData, img]) =>
+        return forkJoin([generalInformationRequest]).pipe(
+          map(([generalData]) =>
             this.charactersMapper.mapRemote( 
               new ProjectClass.Remote.Characters(
                 { 
                   name: name, 
-                  img: img, 
+                  img: `${environment.apiUrl}/characters/${name}/portrait`, 
                   vision_key: generalData.vision_key, 
                   release: generalData.release 
                 }
@@ -114,6 +106,7 @@ export class CharactersService{
       });
 
       forkJoin(characterRequests).subscribe(characters => {
+        this.charactersLoaded = true;
         this.charactersSubject.next(characters);
         this.cacheProvider.set(CHARACTERS_CACHE_KEY, characters, this.defaultTTL);
       });
@@ -171,5 +164,23 @@ export class CharactersService{
 
   public deselectCharacter(): void {
     this.loadedCharactersSubject.next(null);
+  }
+
+  private blobToBase64(blob: Blob): Observable<string> {
+    return new Observable<string>(observer => {
+      const reader = new FileReader();
+      
+      reader.onloadend = () => {
+        observer.next(reader.result as string);
+        observer.complete();
+      };
+      
+      reader.onerror = () => {
+        observer.error('Erreur de conversion');
+        observer.complete();
+      };
+      
+      reader.readAsDataURL(blob);
+    });
   }
 }
