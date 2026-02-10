@@ -5,6 +5,18 @@
   src: url(assets/font/genshin_policy.ttf);
 }
 
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Genshin', sans-serif;
+}
+
+app-root {
+  display: block;
+  height: 100vh;
+}
+
 /*Easy SCSS*/
 
 .flex {
@@ -161,4 +173,36 @@ button {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #a1a1a1;
+  border-radius: 50%;
+  animation: spin 1s ease infinite;
+
+  &.absolute {
+    position: absolute;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+dialog-component {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

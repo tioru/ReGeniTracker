@@ -1,12 +1,10 @@
 @use './../variables.scss' as vars;
 
 main {
-  background: 
-    radial-gradient(circle at 20% 20%, #1a2332 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, #0d1b2a 0%, transparent 40%),
-    radial-gradient(circle at 40% 60%, #162238 0%, transparent 30%),
-    radial-gradient(circle at 60% 40%, #0a1520 0%, transparent 35%),
-    #000000;
+  background:  
+    radial-gradient(circle at 40% 30%, rgba(26, 42, 62, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 60% 70%, rgba(15, 37, 55, 0.6) 0%, transparent 50%),
+    linear-gradient(135deg, #000000, #0d1b2a);
   height: vars.$height-after-topbar;
 
   .blurEffect {
@@ -16,12 +14,5 @@ main {
 
 .topbarContainer {
   height: vars.$topbar-height;
-  position: sticky; 
   top: 0;
-}
-
-.appContainer {
-  position: relative;
-  height: 150%;
-  overflow: scroll;
 }
