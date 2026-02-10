@@ -7,16 +7,24 @@
   padding: 10px 0;
   overflow: auto;
   width: 98%;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 15px,
+    black calc(100% - 30px),
+    transparent
+  );
 }
 
 .characterCard  {
   --border-radius: 1rem;
   border-radius: var(--border-radius);
   min-height: 500px;
-  box-shadow: 5px 5px 5px #1c1c1c;
+  box-shadow: 5px 5px 5px rgba(28, 28, 28, 0.500);
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   width: 250px;
+  height: 500px;
 
   &:hover {
     transform: translateY(-5px);
@@ -28,6 +36,9 @@
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     backdrop-filter: blur(12px);
     height: calc(100% - 100px);
+    overflow: hidden;
+    color: white;
+    text-align: center;
 
     img {
       width: 100%;
@@ -36,12 +47,20 @@
       overflow: hidden;
       object-fit: cover;
       object-position: top;
+
+      &.loading {
+        filter: blur(5px);
+        transition: filter 0.3s ease-in-out;
+      }
+
+      &.error {
+        display: none;
+      }
     }
 
     &::before {
       content: "";
       position: absolute;
-      z-index: -1;
       inset: 0;
       border-radius: inherit;
       border: 2px solid #808080;
@@ -53,11 +72,14 @@
 
   .bottomSection {
     height: 100px;
-    background: radial-gradient(circle at center, rgb(44, 44, 44) 0%, rgb(58, 58, 58) 100%);
+    background: radial-gradient(circle at center, rgba(44, 44, 44, 0.500) 0%, rgba(58, 58, 58, 0.500) 100%);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-  }
-
-  .name {
     color: white;
+
+    .name {
+      font-weight: 100;
+      font-style: italic;
+      text-transform: capitalize;
+    }
   }
 }
