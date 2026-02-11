@@ -1,1 +1,4 @@
-<p>characters works!</p>
+<h1>Personnage :</h1>
+@if (charactersService.loadedCharacter$ | async; as character) {
+  <span>{{character.name}}</span>
+}

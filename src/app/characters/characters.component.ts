@@ -4,10 +4,11 @@ import { CacheProvider } from '../../utilities/provider/cache.provider';
 import { CharactersService } from '../../utilities/services/api/characters.service';
 import { ProjectClass } from '../../utilities/classes/class';
 import { DialogComponent, DialogStyle } from "../../components/dialog/dialog.component";
+import { CharacterComponent } from "./character/character.component";
 
 @Component({
   selector: 'app-characters',
-  imports: [CommonModule, DialogComponent],
+  imports: [CommonModule, DialogComponent, CharacterComponent],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss',
   standalone: true

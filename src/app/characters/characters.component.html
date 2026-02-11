@@ -14,7 +14,7 @@
                 @if(!character.img) {
                   <span>Pas d'image</span>
                 } @else {
-                  <img #imgElement [class.loading]="imgElement.dataset['loaded'] !== 'true'" [class.error]="imgElement.dataset['error'] === 'true'" (load)="imgElement.dataset['loaded'] = 'true'" (error)="imgElement.dataset['loaded'] = 'true'; imgElement.dataset['error'] = 'true'" [src]="character.img">
+                  <img loading="lazy" #imgElement [class.loading]="imgElement.dataset['loaded'] !== 'true'" [class.error]="imgElement.dataset['error'] === 'true'" (load)="imgElement.dataset['loaded'] = 'true'" (error)="imgElement.dataset['loaded'] = 'true'; imgElement.dataset['error'] = 'true'" [src]="character.img">
                   @if(imgElement.dataset['loaded'] !== 'true') {
                     <div class="spinner absolute"></div>
                   }
@@ -37,10 +37,7 @@
 @if(characterDialogVisibility && charactersService.characterLoaded) {
   <dialog-component [style]="dialogStyle.B" [modal]="true" [draggable]="true" [dialogVisibility]="characterDialogVisibility" (onHide)="characterDialogVisibility = false">
     <div body class="flex column aic jcc">
-      <h1>Personnage :</h1>
-      @if (charactersService.loadedCharacter$ | async; as character) {
-        <span>{{character.name}}</span>
-      }
+      <app-character></app-character>
     </div>
   </dialog-component>
 }
