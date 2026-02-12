@@ -34,11 +34,16 @@
     position: relative;
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
-    backdrop-filter: blur(12px);
     height: calc(100% - 100px);
     overflow: hidden;
     color: white;
     text-align: center;
+
+    &::after {
+      content: "";
+      position: absolute;
+      backdrop-filter: blur(12px);
+    }
 
     img {
       width: 100%;
