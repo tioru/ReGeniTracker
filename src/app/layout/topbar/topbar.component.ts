@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Pages } from '../../app.routes';
 import { CacheProvider } from '../../../utilities/provider/cache.provider';
+import { SharedService } from '../../../utilities/services/shared.service';
 
 @Component({
   selector: 'app-topbar',
@@ -14,11 +14,7 @@ export class TopbarComponent {
   public pages : typeof Pages = Pages;
 
   constructor(
-    public router: Router,
+    public sharedService : SharedService,
     public cacheProvider : CacheProvider
   ) {}
-
-  public goTo(path : Pages) : void {
-    this.router.navigateByUrl(path)
-  }
 }

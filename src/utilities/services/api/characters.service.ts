@@ -15,7 +15,7 @@ const CHARACTERS_NAME_CACHE_KEY = "characters_name";
 @Injectable({
     providedIn: 'root'
 })
-export class CharactersService{
+export class CharactersService {
   constructor(
     public http: HttpClient,
     private readonly cacheProvider: CacheProvider,
@@ -164,23 +164,5 @@ export class CharactersService{
 
   public deselectCharacter(): void {
     this.loadedCharactersSubject.next(null);
-  }
-
-  private blobToBase64(blob: Blob): Observable<string> {
-    return new Observable<string>(observer => {
-      const reader = new FileReader();
-      
-      reader.onloadend = () => {
-        observer.next(reader.result as string);
-        observer.complete();
-      };
-      
-      reader.onerror = () => {
-        observer.error('Erreur de conversion');
-        observer.complete();
-      };
-      
-      reader.readAsDataURL(blob);
-    });
   }
 }

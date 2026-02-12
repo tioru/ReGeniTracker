@@ -1,8 +1,8 @@
 <div class="topbar fh flex aic jcc gap20">
-    <button (click)="goTo(pages.HOME)">
+    <button (click)="sharedService.goTo(pages.HOME)">
         Accueil
     </button>
-    <button (click)="goTo(pages.CHARACTERS_LISTING)">
+    <button (click)="sharedService.goTo(pages.CHARACTERS_LISTING)">
         Personnages
     </button>
     <button (click)="cacheProvider.clearAll()">

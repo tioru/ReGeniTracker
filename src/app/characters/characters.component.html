@@ -1,6 +1,6 @@
 <div class="charactersTopContainer flex aic jcc column gap30 fh fw">
   @if (!charactersService.charactersLoaded) {
-    <span>Loading</span>
+    <div class="spinner"></div>
   } @else {
     <div class="gap30 flex aic jcc column fw fh">
       <div class="">
@@ -9,35 +9,29 @@
       <div class="characterCardContainer fh">
         @for (character of charactersService.characters$ | async; track $index) {
           <div class="fw fh flex aic jcc">
-            <div [class]="'characterCard ' + character.vision" (click)="openCharacterInfo(character)">
-              <div class="topSection flex aic jcc">
-                @if(!character.img) {
-                  <span>Pas d'image</span>
-                } @else {
-                  <img loading="lazy" #imgElement [class.loading]="imgElement.dataset['loaded'] !== 'true'" [class.error]="imgElement.dataset['error'] === 'true'" (load)="imgElement.dataset['loaded'] = 'true'" (error)="imgElement.dataset['loaded'] = 'true'; imgElement.dataset['error'] = 'true'" [src]="character.img">
-                  @if(imgElement.dataset['loaded'] !== 'true') {
-                    <div class="spinner absolute"></div>
+            @if(character.name) {
+              <div [class]="'characterCard ' + character.vision" (click)="sharedService.goTo(pages.CHARACTER, [character.name])">
+                <div class="topSection flex aic jcc">
+                  @if(!character.img) {
+                    <span>Pas d'image</span>
+                  } @else {
+                    <img loading="lazy" #imgElement [class.loading]="imgElement.dataset['loaded'] !== 'true'" [class.error]="imgElement.dataset['error'] === 'true'" (load)="imgElement.dataset['loaded'] = 'true'" (error)="imgElement.dataset['loaded'] = 'true'; imgElement.dataset['error'] = 'true'" [src]="character.img">
+                    @if(imgElement.dataset['loaded'] !== 'true') {
+                      <div class="spinner absolute"></div>
+                    }
+                    @if(imgElement.dataset['error'] === 'true') {
+                      <span>Pas d'image pour ce personnage</span>
+                    }
                   }
-                  @if(imgElement.dataset['error'] === 'true') {
-                    <span>Pas d'image pour ce personnage</span>
-                  }
-                }
+                </div>
+                <div class="bottomSection flex aic jcc">
+                  <h1 class="name">{{character.name}}</h1>
+                </div>
               </div>
-              <div class="bottomSection flex aic jcc">
-                <h1 class="name">{{character.name}}</h1>
-              </div>
-            </div>
+            }
           </div>
         }
       </div>
     </div>
   }
 </div>
-
-@if(characterDialogVisibility && charactersService.characterLoaded) {
-  <dialog-component [style]="dialogStyle.B" [modal]="true" [draggable]="true" [dialogVisibility]="characterDialogVisibility" (onHide)="characterDialogVisibility = false">
-    <div body class="flex column aic jcc">
-      <app-character></app-character>
-    </div>
-  </dialog-component>
-}

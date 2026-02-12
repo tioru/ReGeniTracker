@@ -1,4 +1,10 @@
-<h1>Personnage :</h1>
-@if (charactersService.loadedCharacter$ | async; as character) {
-  <span>{{character.name}}</span>
-}
+<div class="flex aic jcc column fw fh">
+  @if (!charactersService.characterLoaded) {
+    <div class="spinner"></div>
+  } @else {
+    @if (charactersService.loadedCharacter$ | async; as character) {
+      <span> Nom du personnage : {{character.name}}</span>
+      <span> Date de naissance : {{character.birthday | date:'dd MMMM'}}</span>
+    }
+  }
+</div>
