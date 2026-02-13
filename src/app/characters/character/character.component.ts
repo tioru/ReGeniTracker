@@ -22,11 +22,12 @@ export class CharacterComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.characterName = this.route.snapshot.paramMap.get('name');
-    
-    console.log('Character name:', this.characterName);
 
     if (this.characterName) {
       this.charactersService.loadCharacter(this.characterName)
+      this.charactersService.character$.subscribe((character) => {
+        console.log("Character loaded :", character)
+      })
     } else {
       console.error("No character name provided")
     }

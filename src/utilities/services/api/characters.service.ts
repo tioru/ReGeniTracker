@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ProjectClass } from "../../classes/class";
 import { environment } from "../../../environments/environment";
-import { BehaviorSubject, catchError, firstValueFrom, forkJoin, map, Observable, of, switchMap } from "rxjs";
+import { BehaviorSubject, catchError, firstValueFrom, forkJoin, map, Observable, of } from "rxjs";
 import { CacheProvider } from "../../provider/cache.provider";
 import { CharactersMapper } from "../../mapper/character/characters";
 import { CharacterMapper } from "../../mapper/character/character";
@@ -27,7 +27,7 @@ export class CharactersService {
   public characters$ = this.charactersSubject.asObservable();
 
   private readonly loadedCharactersSubject = new BehaviorSubject<ProjectClass.Local.Character | null>(null);
-  public loadedCharacter$ = this.loadedCharactersSubject.asObservable();
+  public character$ = this.loadedCharactersSubject.asObservable();
 
   public charactersLoaded : boolean = false;
   public characterLoaded : boolean = false;

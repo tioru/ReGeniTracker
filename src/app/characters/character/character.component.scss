@@ -1,3 +1,28 @@
+.characterPreview {
+    flex: 1;
+    width: 98%;
+    position: relative;
+    border-radius: 1rem;
+    margin-top: 15px;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 2px solid #808080;
+      mask: linear-gradient(black, black) border-box,
+        linear-gradient(black, black) padding-box;
+      mask-composite: subtract;
+    }
+}
+
+.basicInformation {
+    flex: 1;
+}
+
 span {
     color: white;
 }
+

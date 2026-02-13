@@ -2,9 +2,14 @@
   @if (!charactersService.characterLoaded) {
     <div class="spinner"></div>
   } @else {
-    @if (charactersService.loadedCharacter$ | async; as character) {
-      <span> Nom du personnage : {{character.name}}</span>
-      <span> Date de naissance : {{character.birthday | date:'dd MMMM'}}</span>
+    @if (charactersService.character$ | async; as character) {
+      <div class="characterPreview">
+        <img [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/gacha-splash'">
+      </div>
+      <div class="basicInformation fw">
+        <span> Nom du personnage : {{character.name}}</span>
+        <span> Date de naissance : {{character.birthday | date:'dd MMMM'}}</span>
+      </div>
     }
   }
 </div>
