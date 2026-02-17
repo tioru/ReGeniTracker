@@ -14,9 +14,13 @@ export class AttributeScallingMapper {
     }
 
     public mapRemote(rAttributeScalling : ProjectClass.Remote.AttributeScaling) : ProjectClass.Local.AttributeScaling {
-        return new ProjectClass.Local.AttributeScaling({
-            name : rAttributeScalling.name,
-            value : rAttributeScalling.value
-        })
+        try {
+            return new ProjectClass.Local.AttributeScaling({
+                name : rAttributeScalling.name,
+                value : rAttributeScalling.value
+            })
+        } catch (error) {
+          throw new Error("Error mapping Remote AttributeScaling to Local AttributeScaling  : " + error);
+        }
     }
 }

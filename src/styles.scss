@@ -175,6 +175,17 @@ button {
   }
 }
 
+img {
+  &.loading {
+    filter: blur(5px);
+    transition: filter 0.3s ease-in-out;
+  }
+
+  &.error {
+    display: none;
+  }
+}
+
 .spinner {
   width: 100px;
   height: 100px;
@@ -192,6 +203,18 @@ button {
       transform: rotate(360deg);
     }
   }
+}
+
+.splitter {
+  &.horizontal {
+    width: 100%;
+    height: 2px;
+  }
+  &.vertical {
+    width: 2px;
+    height: 100%;
+  }
+  background-color: #4a4a4a;
 }
 
 dialog-component {

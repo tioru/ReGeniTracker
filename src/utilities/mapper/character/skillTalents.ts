@@ -19,13 +19,18 @@ export class SkillTalentsMapper {
     }
 
     public mapRemote(rSkillTalents : ProjectClass.Remote.SkillTalents) : ProjectClass.Local.SkillTalents {
-        return new ProjectClass.Local.SkillTalents({
-            name : rSkillTalents.name,
-            unlock : rSkillTalents.unlock,
-            description : rSkillTalents.description,
-            upgrades : this.upgradesMapper.mapRemoteArray(rSkillTalents.upgrades),
-            type : rSkillTalents.type,
-            attributeScaling : rSkillTalents["attribute-scaling"] ? this.attributeScallingMapper.mapRemoteArray(rSkillTalents["attribute-scaling"]) : []
-        })
+        try {
+            return new ProjectClass.Local.SkillTalents({
+                name : rSkillTalents.name,
+                unlock : rSkillTalents.unlock,
+                description : rSkillTalents.description,
+                upgrades : rSkillTalents.upgrades ? this.upgradesMapper.mapRemoteArray(rSkillTalents.upgrades) : [],
+                type : rSkillTalents.type,
+                attributeScaling : rSkillTalents["attribute-scaling"] ? this.attributeScallingMapper.mapRemoteArray(rSkillTalents["attribute-scaling"]) : []
+            })
+        }
+        catch (error) {
+            throw new Error("Error mapping Remote SkillTalents to Local SkillTalents  : " + error);
+        }
     }
 }

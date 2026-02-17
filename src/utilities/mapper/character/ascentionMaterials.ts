@@ -14,9 +14,13 @@ export class AscentionMaterialsMapper {
     }
     
     public mapRemote(rAscentionMaterials : ProjectClass.Remote.AscentionMaterials) : ProjectClass.Local.AscentionMaterials {
-        return new ProjectClass.Local.AscentionMaterials({
-            name: rAscentionMaterials.name,
-            value: rAscentionMaterials.value
-        })
+        try {
+            return new ProjectClass.Local.AscentionMaterials({
+                name: rAscentionMaterials.name,
+                value: rAscentionMaterials.value
+            })
+        } catch (error) {
+          throw new Error("Error mapping Remote AscentionMaterials to Local AscentionMaterials  : " + error);
+        }
     }
 }

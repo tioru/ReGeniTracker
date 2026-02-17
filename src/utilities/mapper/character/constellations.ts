@@ -14,11 +14,15 @@ export class ConstellationsMapper {
     }
 
     public mapRemote(rConstellation : ProjectClass.Remote.Constellation) : ProjectClass.Local.Constellation {
-        return new ProjectClass.Local.Constellation({
-            name : rConstellation.name,
-            unlock : rConstellation.unlock,
-            description : rConstellation.description,
-            level : rConstellation.level,
-        })
+        try {
+            return new ProjectClass.Local.Constellation({
+                name : rConstellation.name,
+                unlock : rConstellation.unlock,
+                description : rConstellation.description,
+                level : rConstellation.level,
+            })
+        } catch (error) {
+          throw new Error("Error mapping Remote Constellation to Local Constellation  : " + error);
+        }
     }
 }

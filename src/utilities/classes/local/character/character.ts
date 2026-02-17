@@ -3,6 +3,7 @@ import { ConstellationClass } from "./constellations"
 import { AscentionMaterialsClass } from "./ascensionMaterials"
 import { VisionTypeClass } from "./visionType"
 import { PassiveTalentsClass } from "./passiveTalents";
+import { NationTypeClass } from "./nation";
 
 export class CharacterClass {
   name : string | null = null;
@@ -10,7 +11,7 @@ export class CharacterClass {
   vision : VisionTypeClass | null = null;
   weapon : string | null = null;
   gender : string | null = null;
-  nation : string | null = null;
+  nation : NationTypeClass | null = null;
   affiliation : string | null = null;
   rarity : number | null = null;
   releaseDate : string | null = null;

@@ -19,4 +19,8 @@ export class SharedService {
 
     this.router.navigate([finalRoute]);
   }
+
+  public getArray(n: number): number[] {
+    return new Array(n).fill(0);
+  }
 }

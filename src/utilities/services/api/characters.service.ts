@@ -148,7 +148,11 @@ export class CharactersService {
       this.loadedCharactersSubject.next(this.characterMapper.mapRemote(entry));
       this.characterLoaded = true;
     } else {
-      this.http.get(`${environment.apiUrl}/characters/${characterName}`, {headers: this.getHttpHeaders(),observe: 'response'}).subscribe((response) => {
+      this.http.get(`${environment.apiUrl}/characters/${characterName}/?lang=fr`, {headers: this.getHttpHeaders(),observe: 'response'}).pipe(
+      catchError(() => {
+        console.log("Requesting character in English");
+        return this.http.get(`${environment.apiUrl}/characters/${characterName}/?lang=en`, {headers: this.getHttpHeaders(),observe: 'response'})
+      })).subscribe((response) => {
         const loadedCharacter = response.body ? new ProjectClass.Remote.Character(response.body) : null;
         const etag = response.headers.get('ETag');
 

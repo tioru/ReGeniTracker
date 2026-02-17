@@ -14,9 +14,14 @@ export class UpgradesMapper {
     }
 
     public mapRemote(rUpgrade : ProjectClass.Remote.Upgrade) : ProjectClass.Local.Upgrade {
-        return new ProjectClass.Local.Upgrade({
-            name : rUpgrade.name,
-            value : rUpgrade.value,
-        })
+        try {
+            return new ProjectClass.Local.Upgrade({
+                name : rUpgrade.name,
+                value : rUpgrade.value,
+            })
+        }
+        catch (error) {
+          throw new Error("Error mapping Remote Upgrade to Local Upgrade  : " + error);
+        }
     }
 }

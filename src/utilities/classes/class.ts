@@ -11,6 +11,8 @@ import { UpgradeClass as LocalUpgradeClass } from "./local/character/upgrade";
 import { VisionTypeClass as LocalVisionTypeClass, VisionTypeListEnum as LocalVisionTypeListEnum } from "./local/character/visionType";
 import { WeaponClass as LocalWeaponClass } from "./local/weapon/weapon";
 import { WeaponListingClass as LocalWeaponListingClass } from "./local/weapon/weaponsListing";
+import { NationTypeClass as LocalNationClass, NationTypeListEnum as LocalNationTypeListEnum } from "./local/character/nation";
+
 
 import { AscentionMaterialsClass as RemoteAscentionMaterialsClass } from "./remote/character/ascensionMaterials";
 import { AttributeScalingClass as RemoteAttributeScalingClass } from "./remote/character/attributeScaling";
@@ -25,6 +27,7 @@ import { UpgradeClass as RemoteUpgradeClass } from "./remote/character/upgrade";
 import { VisionTypeClass as RemoteVisionTypeClass, VisionTypeListEnum as RemoteVisionTypeListEnum } from "./remote/character/visionType";
 import { WeaponClass as RemoteWeaponClass } from "./remote/weapon/weapon";
 import { WeaponListingClass as RemoteWeaponListingClass } from "./remote/weapon/weaponsListing";
+import { NationTypeClass as RemoteNationClass, NationTypeListEnum as RemoteNationTypeListEnum } from "./remote/character/nation";
 
 export namespace ProjectClass {
     export namespace Local {
@@ -44,6 +47,8 @@ export namespace ProjectClass {
         export class AscentionMaterials extends LocalAscentionMaterialsClass {};
         export class WeaponListing extends LocalWeaponListingClass {};
         export class Weapon extends LocalWeaponClass {};
+        export type NationType = LocalNationClass;
+        export import NationTypeList = LocalNationTypeListEnum;
     }
 
     export namespace Remote {
@@ -63,5 +68,7 @@ export namespace ProjectClass {
         export class AscentionMaterials extends RemoteAscentionMaterialsClass {};
         export class WeaponListing extends RemoteWeaponListingClass {};
         export class Weapon extends RemoteWeaponClass {};
+        export type NationType = RemoteNationClass;
+        export import NationTypeList = RemoteNationTypeListEnum;
     }
 }

@@ -14,11 +14,15 @@ export class PassiveTalentsMapper {
     }
 
     public mapRemote(rPassiveTalents : ProjectClass.Remote.PassiveTalents) : ProjectClass.Local.PassiveTalents {
-        return new ProjectClass.Local.PassiveTalents({
-            name : rPassiveTalents.name,
-            unlock : rPassiveTalents.unlock,
-            description : rPassiveTalents.description,
-            level : rPassiveTalents.level,
-        })
+        try {
+            return new ProjectClass.Local.PassiveTalents({
+                name : rPassiveTalents.name,
+                unlock : rPassiveTalents.unlock,
+                description : rPassiveTalents.description,
+                level : rPassiveTalents.level,
+            })
+        } catch (error) {
+          throw new Error("Error mapping Remote PassiveTalents to Local PassiveTalents  : " + error);
+        }
     }
 }

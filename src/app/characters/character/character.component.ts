@@ -3,6 +3,8 @@ import { CharactersService } from '../../../utilities/services/api/characters.se
 import { CacheProvider } from '../../../utilities/provider/cache.provider';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { SharedService } from '../../../utilities/services/shared.service';
+import { ProjectClass } from '../../../utilities/classes/class';
 
 @Component({
   selector: 'app-character',
@@ -13,11 +15,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CharacterComponent implements OnInit, OnDestroy{
   public characterName : string | null = null;
+  public projectClass = ProjectClass;
 
   constructor(
     public charactersService : CharactersService,
     public cacheProvider : CacheProvider,
     private readonly route: ActivatedRoute,
+    public sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
@@ -35,5 +39,10 @@ export class CharacterComponent implements OnInit, OnDestroy{
   
   ngOnDestroy(): void {
     this.charactersService.characterLoaded = false;
+  }
+
+  public getNationImage(nation: ProjectClass.Local.NationType): string {
+    const nationKey = nation.toLowerCase().replaceAll(/\s/g, '');
+    return `assets/img/nation/${nationKey}.webp`;
   }
 }
