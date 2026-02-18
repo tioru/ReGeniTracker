@@ -27,6 +27,31 @@
 .basicInformation {
   flex: 3;
 
+  .infoCard {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    border: 2px solid #808080;
+    padding: 15px;
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+    padding-left: 50px;
+
+    &:after {
+      content: "";
+      position: absolute;
+      backdrop-filter: blur(12px);
+    }
+
+    svg {
+      width: 55px;
+      position: absolute;
+      left: 0;
+      transform: translateX(-30%);
+      fill: rgba(255, 255, 255, 0.603);
+    }
+  }
+
   .characterName {
     font-size: 55px;
   }

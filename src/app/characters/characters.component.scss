@@ -54,7 +54,7 @@
       object-position: top;
     }
 
-    &::before {
+    &:before {
       content: "";
       position: absolute;
       inset: 0;
