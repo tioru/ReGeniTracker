@@ -7,6 +7,7 @@
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
+  text-align: center;
   
   img {
     object-fit: cover;
@@ -36,6 +37,7 @@
     position: relative;
     overflow: hidden;
     padding-left: 50px;
+    flex: 1;
 
     &:after {
       content: "";
@@ -71,6 +73,25 @@
 
   .nationName {
     font-size: 20px;
+  }
+}
+
+.nationCard {
+  height: 33vh;
+  width: 15%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  border: 2px solid #808080;
+
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid #808080;
+    mask: linear-gradient(black, black) border-box,
+      linear-gradient(black, black) padding-box;
+    mask-composite: subtract;
   }
 }
 

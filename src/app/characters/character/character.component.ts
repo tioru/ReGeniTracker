@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../../../utilities/services/shared.service';
 import { ProjectClass } from '../../../utilities/classes/class';
+import { skip, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-character',
@@ -16,6 +17,7 @@ import { ProjectClass } from '../../../utilities/classes/class';
 export class CharacterComponent implements OnInit, OnDestroy{
   public characterName : string | null = null;
   public projectClass = ProjectClass;
+  private destroy$ = new Subject<void>();
 
   constructor(
     public charactersService : CharactersService,
@@ -28,21 +30,29 @@ export class CharacterComponent implements OnInit, OnDestroy{
     this.characterName = this.route.snapshot.paramMap.get('name');
 
     if (this.characterName) {
-      this.charactersService.loadCharacter(this.characterName)
-      this.charactersService.character$.subscribe((character) => {
+      // Skipping first null value
+      this.charactersService.character$.pipe(takeUntil(this.destroy$)).pipe(skip(1)).subscribe((character) => {
         console.log("Character loaded :", character)
       })
+      this.charactersService.loadCharacter(this.characterName)
     } else {
       console.error("No character name provided")
     }
   }
   
   ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
     this.charactersService.characterLoaded = false;
+    this.charactersService.deselectCharacter();
   }
 
   public getNationImage(nation: ProjectClass.Local.NationType): string {
     const nationKey = nation.toLowerCase().replaceAll(/\s/g, '');
     return `assets/img/nation/${nationKey}.webp`;
+  }
+
+  public getNationLandscape(nation: ProjectClass.Local.NationType): string {
+    return '';
   }
 }
