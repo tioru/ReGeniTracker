@@ -21,6 +21,6 @@ export class SharedService {
   }
 
   public getArray(n: number): number[] {
-    return new Array(n).fill(0);
+    return new Array(n).fill(0).map((_, i) => i);
   }
 }

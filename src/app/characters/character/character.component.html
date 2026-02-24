@@ -42,12 +42,19 @@
             </div>
             @if (character.nation) {
               <div class="nationCard flex aic jcc">
-                <img class="nationLandscape" [src]="getNationLandscape(character.nation)">
-                <span>Nation : </span>
-                @if (character.nation !== projectClass.Local.NationTypeList.OTHER) {
-                  <img class="nationImage" [src]="getNationImage(character.nation)">
-                }
-                <span class="nationName">{{character.nation}}</span>
+                <div class="innerContainer">
+                  @for (landscape of sharedService.getArray(sumeruLandscapeNumber); track $index) {
+                    <img class="nationLandscape" [src]="'assets/img/nation/'+character.nation+'/'+(landscape+1)+'.jpg'">
+                  }
+                </div>
+                
+                <div class="overlay">
+                  <span>Nation : </span>
+                  @if (character.nation !== projectClass.Local.NationTypeList.OTHER) {
+                    <img class="nationImage" [src]="getNationEmblem(character.nation)">
+                  }
+                  <span class="nationName">{{character.nation}}</span>
+                </div>
               </div>
             }
           </div>

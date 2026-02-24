@@ -82,6 +82,8 @@
   background: rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
   border: 2px solid #808080;
+  position: relative;
+  overflow: hidden;
 
   &:before {
     content: "";
@@ -92,6 +94,28 @@
     mask: linear-gradient(black, black) border-box,
       linear-gradient(black, black) padding-box;
     mask-composite: subtract;
+  }
+
+  .nationLandscape {
+    top: 0;
+    position: absolute;
+    object-fit: cover;
+    width: 250px;
+    height: 310px;
+    user-select: none;
+  }
+
+  .innerContainer {
+    display: flex;
+    gap: 25px;
+    pointer-events: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+
+  .overlay {
+    z-index: 1;
   }
 }
 

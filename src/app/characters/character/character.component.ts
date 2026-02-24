@@ -7,6 +7,8 @@ import { SharedService } from '../../../utilities/services/shared.service';
 import { ProjectClass } from '../../../utilities/classes/class';
 import { skip, Subject, takeUntil } from 'rxjs';
 
+export const SUMERU_LANDSCAPE_NUMBER = 7;
+
 @Component({
   selector: 'app-character',
   imports: [CommonModule],
@@ -18,6 +20,7 @@ export class CharacterComponent implements OnInit, OnDestroy{
   public characterName : string | null = null;
   public projectClass = ProjectClass;
   private destroy$ = new Subject<void>();
+  public sumeruLandscapeNumber = SUMERU_LANDSCAPE_NUMBER;
 
   constructor(
     public charactersService : CharactersService,
@@ -47,12 +50,8 @@ export class CharacterComponent implements OnInit, OnDestroy{
     this.charactersService.deselectCharacter();
   }
 
-  public getNationImage(nation: ProjectClass.Local.NationType): string {
+  public getNationEmblem(nation: ProjectClass.Local.NationType): string {
     const nationKey = nation.toLowerCase().replaceAll(/\s/g, '');
-    return `assets/img/nation/${nationKey}.webp`;
-  }
-
-  public getNationLandscape(nation: ProjectClass.Local.NationType): string {
-    return '';
+    return `assets/img/nation/${nationKey}/emblem.webp`;
   }
 }
