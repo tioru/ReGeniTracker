@@ -8,6 +8,8 @@ import { ProjectClass } from '../../../utilities/classes/class';
 import { skip, Subject, takeUntil } from 'rxjs';
 
 export const SUMERU_LANDSCAPE_NUMBER = 7;
+export const INAZUMA_LANDSCAPE_NUMBER = 8;
+export const FONTAINE_LANDSCAPE_NUMBER = 11;
 
 @Component({
   selector: 'app-character',
@@ -20,7 +22,11 @@ export class CharacterComponent implements OnInit, OnDestroy{
   public characterName : string | null = null;
   public projectClass = ProjectClass;
   private destroy$ = new Subject<void>();
-  public sumeruLandscapeNumber = SUMERU_LANDSCAPE_NUMBER;
+  private readonly landscapeNumberMap: Record<string, number> = {
+    [ProjectClass.Local.NationTypeList.SUMERU]: SUMERU_LANDSCAPE_NUMBER,
+    [ProjectClass.Local.NationTypeList.INAZUMA]: INAZUMA_LANDSCAPE_NUMBER,
+    [ProjectClass.Local.NationTypeList.FONTAINE]: FONTAINE_LANDSCAPE_NUMBER,
+  };
 
   constructor(
     public charactersService : CharactersService,
@@ -50,8 +56,7 @@ export class CharacterComponent implements OnInit, OnDestroy{
     this.charactersService.deselectCharacter();
   }
 
-  public getNationEmblem(nation: ProjectClass.Local.NationType): string {
-    const nationKey = nation.toLowerCase().replaceAll(/\s/g, '');
-    return ``;
+  public getLandscapeNumber(nation: string): number {
+    return this.landscapeNumberMap[nation] ?? 1;
   }
 }
