@@ -52,6 +52,6 @@ export class CharacterComponent implements OnInit, OnDestroy{
 
   public getNationEmblem(nation: ProjectClass.Local.NationType): string {
     const nationKey = nation.toLowerCase().replaceAll(/\s/g, '');
-    return `assets/img/nation/${nationKey}/emblem.webp`;
+    return ``;
   }
 }

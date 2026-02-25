@@ -39,7 +39,7 @@
     color: white;
     text-align: center;
 
-    &:after {
+    &:before {
       content: "";
       position: absolute;
       backdrop-filter: blur(12px);

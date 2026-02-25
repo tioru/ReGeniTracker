@@ -49,11 +49,14 @@
                 </div>
                 
                 <div class="overlay">
-                  <span>Nation : </span>
-                  @if (character.nation !== projectClass.Local.NationTypeList.OTHER) {
-                    <img class="nationImage" [src]="getNationEmblem(character.nation)">
-                  }
-                  <span class="nationName">{{character.nation}}</span>
+                  <div class="blurContainer fw fh flex">
+                    <div class="nationInformation flex aic jcc gap10">
+                      @if (character.nation !== projectClass.Local.NationTypeList.OTHER) {
+                        <img class="nationImage" [src]="'assets/img/nation/'+character.nation+'/emblem.webp'">
+                      }
+                      <span class="nationName">{{character.nation}}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             }
