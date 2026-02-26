@@ -44,7 +44,9 @@
               <div class="nationCard flex aic jcc">
                 <div class="innerContainer">
                   @for (landscape of sharedService.getArray(getLandscapeNumber(character.nation)); track $index) {
-                    <img class="nationLandscape" [src]="'assets/img/nation/'+character.nation+'/'+(landscape+1)+'.jpg'">
+                    <img class="nationLandscape" 
+                    [src]="'assets/img/nation/'+character.nation+'/'+(landscape+1)+'.jpg'"
+                    [class.visible]="$index === currentIndex">
                   }
                 </div>
                 
@@ -62,7 +64,7 @@
                         [class.active]="$index === currentIndex"
                         [class.done]="$index < currentIndex"
                         [style.--dot-duration]="slideDuration + 's'"
-                        (click)="goToSlide($index)">
+                        (click)="goToSlide($index, character.nation)">
                       </div>
                       }
                     </div>

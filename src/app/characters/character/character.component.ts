@@ -7,9 +7,13 @@ import { SharedService } from '../../../utilities/services/shared.service';
 import { ProjectClass } from '../../../utilities/classes/class';
 import { skip, Subject, takeUntil } from 'rxjs';
 
-export const SUMERU_LANDSCAPE_NUMBER = 7;
+export const MONDSTADT_LANDSCAPE_NUMBER = 4;
+export const LIYUE_LANDSCAPE_NUMBER = 5;
 export const INAZUMA_LANDSCAPE_NUMBER = 8;
+export const SUMERU_LANDSCAPE_NUMBER = 7;
 export const FONTAINE_LANDSCAPE_NUMBER = 11;
+export const NATLAN_LANDSCAPE_NUMBER = 9;
+export const NODKRAI_LANDSCAPE_NUMBER = 9;
 
 @Component({
   selector: 'app-character',
@@ -23,13 +27,18 @@ export class CharacterComponent implements OnInit, OnDestroy{
   public projectClass = ProjectClass;
   private destroy$ = new Subject<void>();
   private readonly landscapeNumberMap: Record<string, number> = {
-    [ProjectClass.Local.NationTypeList.SUMERU]: SUMERU_LANDSCAPE_NUMBER,
+    [ProjectClass.Local.NationTypeList.MONDSTADT]: MONDSTADT_LANDSCAPE_NUMBER,
+    [ProjectClass.Local.NationTypeList.LIYUE]: LIYUE_LANDSCAPE_NUMBER,
     [ProjectClass.Local.NationTypeList.INAZUMA]: INAZUMA_LANDSCAPE_NUMBER,
+    [ProjectClass.Local.NationTypeList.SUMERU]: SUMERU_LANDSCAPE_NUMBER,
     [ProjectClass.Local.NationTypeList.FONTAINE]: FONTAINE_LANDSCAPE_NUMBER,
+    [ProjectClass.Local.NationTypeList.NATLAN]: NATLAN_LANDSCAPE_NUMBER,
+    [ProjectClass.Local.NationTypeList.NODKRAI]: NODKRAI_LANDSCAPE_NUMBER,
   };
 
-  currentIndex = 0;
-  slideDuration = 10; // secondes par image
+  public currentIndex = 0;
+  public slideDuration = 1000;
+  private slideTimer: any;
 
   constructor(
     public charactersService : CharactersService,
@@ -45,13 +54,14 @@ export class CharacterComponent implements OnInit, OnDestroy{
       // Skipping first null value
       this.charactersService.character$.pipe(takeUntil(this.destroy$)).pipe(skip(1)).subscribe((character) => {
         console.log("Character loaded :", character)
-      })
+        if (character?.nation) {
+          this.startDotTimer(character.nation);
+        }
+      });
       this.charactersService.loadCharacter(this.characterName)
     } else {
       console.error("No character name provided")
     }
-
-    this.startDotTimer();
   }
   
   ngOnDestroy(): void {
@@ -59,20 +69,23 @@ export class CharacterComponent implements OnInit, OnDestroy{
     this.destroy$.complete();
     this.charactersService.characterLoaded = false;
     this.charactersService.deselectCharacter();
+    clearTimeout(this.slideTimer);
   }
 
   public getLandscapeNumber(nation: string): number {
-    return this.landscapeNumberMap[nation];
+    return this.landscapeNumberMap[nation] || 0;
   }
 
-  public goToSlide(index : number) {
+  public goToSlide(index : number, nation: string) : void {
+    clearTimeout(this.slideTimer);
     this.currentIndex = index;
-    this.startDotTimer();
+    this.startDotTimer(nation);
   }
 
-  public startDotTimer() : void {
-    var timer = setTimeout(() => {
-      this.goToSlide((this.currentIndex + 1) ); // TODO % this.getLandscapeNumber(this.charactersService.character$)
-    }, this.slideDuration * 100);
+  public startDotTimer(nation : string) : void {
+    this.slideTimer = setTimeout(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.getLandscapeNumber(nation);
+      this.startDotTimer(nation);
+    }, this.slideDuration * 10);
   }
 }
