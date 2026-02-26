@@ -28,6 +28,9 @@ export class CharacterComponent implements OnInit, OnDestroy{
     [ProjectClass.Local.NationTypeList.FONTAINE]: FONTAINE_LANDSCAPE_NUMBER,
   };
 
+  currentIndex = 0;
+  slideDuration = 10; // secondes par image
+
   constructor(
     public charactersService : CharactersService,
     public cacheProvider : CacheProvider,
@@ -47,6 +50,8 @@ export class CharacterComponent implements OnInit, OnDestroy{
     } else {
       console.error("No character name provided")
     }
+
+    this.startDotTimer();
   }
   
   ngOnDestroy(): void {
@@ -57,6 +62,17 @@ export class CharacterComponent implements OnInit, OnDestroy{
   }
 
   public getLandscapeNumber(nation: string): number {
-    return this.landscapeNumberMap[nation] ?? 1;
+    return this.landscapeNumberMap[nation];
+  }
+
+  public goToSlide(index : number) {
+    this.currentIndex = index;
+    this.startDotTimer();
+  }
+
+  public startDotTimer() : void {
+    var timer = setTimeout(() => {
+      this.goToSlide((this.currentIndex + 1) ); // TODO % this.getLandscapeNumber(this.charactersService.character$)
+    }, this.slideDuration * 100);
   }
 }

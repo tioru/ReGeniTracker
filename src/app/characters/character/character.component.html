@@ -56,6 +56,16 @@
                       }
                       <span class="nationName">{{character.nation}}</span>
                     </div>
+                    <div class="dotNavigationContainer flex aic jcc gap10">
+                      @for (landscape of sharedService.getArray(getLandscapeNumber(character.nation)); track $index) {
+                        <div class="dotNavigation" 
+                        [class.active]="$index === currentIndex"
+                        [class.done]="$index < currentIndex"
+                        [style.--dot-duration]="slideDuration + 's'"
+                        (click)="goToSlide($index)">
+                      </div>
+                      }
+                    </div>
                   </div>
                 </div>
               </div>
