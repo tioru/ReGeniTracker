@@ -37,7 +37,7 @@ export class CharacterComponent implements OnInit, OnDestroy{
   };
 
   public currentIndex = 0;
-  public slideDuration = 1000;
+  public slideDuration = 10;
   private slideTimer: any;
 
   constructor(
@@ -86,6 +86,6 @@ export class CharacterComponent implements OnInit, OnDestroy{
     this.slideTimer = setTimeout(() => {
       this.currentIndex = (this.currentIndex + 1) % this.getLandscapeNumber(nation);
       this.startDotTimer(nation);
-    }, this.slideDuration * 10);
+    }, this.slideDuration * 1000);
   }
 }
