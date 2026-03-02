@@ -59,10 +59,15 @@
       position: absolute;
       inset: 0;
       border-radius: inherit;
+      backdrop-filter: blur(12px);
       border: 2px solid #808080;
-      mask: linear-gradient(black, black) border-box,
-        linear-gradient(black, black) padding-box;
-      mask-composite: subtract;
+        
+      mask-image: 
+        linear-gradient(black, black),
+        linear-gradient(black, black);
+      mask-clip: border-box, padding-box;
+      mask-origin: border-box, padding-box;
+      mask-composite: exclude;
     }
   }
 
