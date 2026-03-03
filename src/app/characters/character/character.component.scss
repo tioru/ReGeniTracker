@@ -37,6 +37,7 @@
     position: relative;
     overflow: hidden;
     padding-left: 50px;
+    width: 70%;
 
     &:after {
       content: "";
@@ -50,6 +51,10 @@
       left: 0;
       transform: translateX(-30%);
       fill: rgba(255, 255, 255, 0.603);
+    }
+
+    span {
+      white-space: nowrap;
     }
   }
 
@@ -67,7 +72,7 @@
 
   .nationCard {
     height: 33vh;
-    width: 65%;
+    width: 100%;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 1rem;
     border: 2px solid #808080;
@@ -201,6 +206,6 @@ span {
     flex: 4;
   }
   .sideBar {
-    flex: 1;
+    flex: 0.7;
   }
 }
