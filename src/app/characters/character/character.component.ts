@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../../../utilities/services/shared.service';
 import { ProjectClass } from '../../../utilities/classes/class';
 import { skip, Subject, takeUntil } from 'rxjs';
+import { CapitalizePipe } from "../../../utilities/pipes/capitalizePipe";
 
 export const MONDSTADT_LANDSCAPE_NUMBER = 4;
 export const LIYUE_LANDSCAPE_NUMBER = 5;
@@ -17,7 +18,7 @@ export const NODKRAI_LANDSCAPE_NUMBER = 9;
 
 @Component({
   selector: 'app-character',
-  imports: [CommonModule],
+  imports: [CommonModule, CapitalizePipe],
   templateUrl: './character.component.html',
   styleUrl: './character.component.scss',
   standalone: true
@@ -87,5 +88,26 @@ export class CharacterComponent implements OnInit, OnDestroy{
       this.currentIndex = (this.currentIndex + 1) % this.getLandscapeNumber(nation);
       this.startDotTimer(nation);
     }, this.slideDuration * 1000);
+  }
+
+  public getVisionImg(vision : ProjectClass.Local.VisionType) : string {
+    switch (vision) {
+      case ProjectClass.Local.VisionTypeList.ANEMO :
+        return "./assets/img/vision/anemo.webp";
+      case ProjectClass.Local.VisionTypeList.CRYO :
+        return "./assets/img/vision/cryo.webp";
+      case ProjectClass.Local.VisionTypeList.DENDRO :
+        return "./assets/img/vision/dendro.webp";
+      case ProjectClass.Local.VisionTypeList.ELECTRO :
+        return "./assets/img/vision/electro.webp";
+      case ProjectClass.Local.VisionTypeList.GEO :
+        return "./assets/img/vision/geo.webp";
+      case ProjectClass.Local.VisionTypeList.HYDRO :
+        return "./assets/img/vision/hydro.webp";
+      case ProjectClass.Local.VisionTypeList.PYRO :
+        return "./assets/img/vision/pyro.webp";
+      default : 
+        return "";
+    }
   }
 }
