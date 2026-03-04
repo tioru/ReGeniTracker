@@ -91,6 +91,7 @@ export class CharacterComponent implements OnInit, OnDestroy{
   }
 
   public getVisionImg(vision : ProjectClass.Local.VisionType) : string {
+    // TODO Improve the function to not put the path here
     switch (vision) {
       case ProjectClass.Local.VisionTypeList.ANEMO :
         return "./assets/img/vision/anemo.webp";
