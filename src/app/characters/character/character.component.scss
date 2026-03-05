@@ -205,7 +205,13 @@ span {
   .mainContent {
     flex: 4;
   }
-  .sideBar {
+  .sideContent {
     flex: 0.7;
+    flex-shrink: 0;
   }
+}
+
+.descriptionContainer {
+  border-radius: 1rem;
+  border: 2px solid #808080;
 }

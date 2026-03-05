@@ -16,6 +16,17 @@ export const FONTAINE_LANDSCAPE_NUMBER = 11;
 export const NATLAN_LANDSCAPE_NUMBER = 9;
 export const NODKRAI_LANDSCAPE_NUMBER = 9;
 
+export const VISION_IMAGE_BASE_PATH = "./assets/img/vision/"
+export const VISION_IMAGE_MAP: Partial<Record<ProjectClass.Local.VisionType, string>> = {
+  [ProjectClass.Local.VisionTypeList.ANEMO]: "anemo",
+  [ProjectClass.Local.VisionTypeList.CRYO]: "cryo",
+  [ProjectClass.Local.VisionTypeList.DENDRO]: "dendro",
+  [ProjectClass.Local.VisionTypeList.ELECTRO]: "electro",
+  [ProjectClass.Local.VisionTypeList.GEO]: "geo",
+  [ProjectClass.Local.VisionTypeList.HYDRO]: "hydro",
+  [ProjectClass.Local.VisionTypeList.PYRO]: "pyro",
+}
+
 @Component({
   selector: 'app-character',
   imports: [CommonModule, CapitalizePipe],
@@ -90,25 +101,8 @@ export class CharacterComponent implements OnInit, OnDestroy{
     }, this.slideDuration * 1000);
   }
 
-  public getVisionImg(vision : ProjectClass.Local.VisionType) : string {
-    // TODO Improve the function to not put the path here
-    switch (vision) {
-      case ProjectClass.Local.VisionTypeList.ANEMO :
-        return "./assets/img/vision/anemo.webp";
-      case ProjectClass.Local.VisionTypeList.CRYO :
-        return "./assets/img/vision/cryo.webp";
-      case ProjectClass.Local.VisionTypeList.DENDRO :
-        return "./assets/img/vision/dendro.webp";
-      case ProjectClass.Local.VisionTypeList.ELECTRO :
-        return "./assets/img/vision/electro.webp";
-      case ProjectClass.Local.VisionTypeList.GEO :
-        return "./assets/img/vision/geo.webp";
-      case ProjectClass.Local.VisionTypeList.HYDRO :
-        return "./assets/img/vision/hydro.webp";
-      case ProjectClass.Local.VisionTypeList.PYRO :
-        return "./assets/img/vision/pyro.webp";
-      default : 
-        return "";
-    }
+  public getVisionImg(vision: ProjectClass.Local.VisionType): string {
+    const img = VISION_IMAGE_MAP[vision];
+    return img ? `${VISION_IMAGE_BASE_PATH}${img}.webp` : "";
   }
 }
