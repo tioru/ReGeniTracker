@@ -120,82 +120,67 @@
       width: 100%;
       height: 25%;
 
-      .blurContainer {
-        position: relative;
+      .nationInformation {
+        z-index: 2;
 
-        &:before {
-          content: "";
-          position: absolute;
-          backdrop-filter: blur(4px);
-          left: -7px;
-          width: 110%;
-          height: 110%;
-
-          mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
+        .nationImage {
+          width: clamp(24px, 3.5vw, 45px);
+          height: clamp(24px, 3.5vw, 45px);
         }
-
-        .nationInformation {
-          z-index: 2;
-
-          .nationImage {
-            width: clamp(24px, 3.5vw, 45px);
-            height: clamp(24px, 3.5vw, 45px);
-          }
-        
-          .nationName {
-            font-size: clamp(11px, 1.2vw, 18px);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-          }
+      
+        .nationName {
+          font-size: clamp(11px, 1.2vw, 18px);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
         }
+      }
 
-        .dotNavigationContainer {
-          position: absolute;
-          bottom: 0;
-          width: 100%;
-          height: 20px;
-          transition: background-position 0s;
+      .dotNavigationContainer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 20px;
+        transition: background-position 0s;
 
-          .dotNavigation {
-            z-index: 3;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: rgba(145, 145, 145, 0.5);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.2s;
-            cursor: pointer;
+        .dotNavigation {
+          z-index: 3;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: rgba(145, 145, 145, 0.5);
+          position: relative;
+          overflow: hidden;
+          transition: transform 0.2s;
+          cursor: pointer;
 
-            &::after {
-              content: '';
-              position: absolute;
-              inset: 0;
-              background-color: white;
-              transform: translateX(-100%);
-              transition: transform 0.1s;
-            }
-            
-            &.active::after {
-              animation: fillDot var(--dot-duration, 3s) linear forwards;
-            }
-            
-            &.done::after {
-              transform: translateX(0%);
-            }
+          &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: white;
+            transform: translateX(-100%);
+            transition: transform 0.1s;
+          }
+          
+          &.active::after {
+            animation: fillDot var(--dot-duration, 3s) linear forwards;
+          }
+          
+          &.done::after {
+            transform: translateX(0%);
+          }
 
-            @keyframes fillDot {
-              from { transform: translateX(-100%); }
-              to   { transform: translateX(0%); }
-            }
+          @keyframes fillDot {
+            from { transform: translateX(-100%); }
+            to   { transform: translateX(0%); }
           }
         }
       }
+      }
     }
   }
-}
 
 span {
   color: white;
@@ -212,6 +197,42 @@ span {
 }
 
 .descriptionContainer {
-  border-radius: 1rem;
-  border: 2px solid #808080;
+  position: absolute;
+  padding: 2rem 1.2rem 1.2rem;
+  bottom: 0;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+
+  span {
+    font-size: clamp(11px, 1vw, 14px);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+    display: block;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Display only when image loaded */
+.characterPreview:has(img[data-loaded="true"]:not([data-error="true"])) .descriptionContainer {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.blurContainer {
+  &:before {
+    content: "";
+    position: absolute;
+    backdrop-filter: blur(4px);
+    left: -7px;
+    width: 110%;
+    height: 110%;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
+  }
+}
+
+.descriptionOverlay {
+  position: absolute;
+  bottom: 0;
+  height: 20%;
 }

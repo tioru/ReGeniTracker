@@ -5,6 +5,14 @@
     @if (charactersService.character$ | async; as character) {
       <div class="characterPreview fh flex aic jcc">
         <img #imgElement [class.loading]="imgElement.dataset['loaded'] !== 'true'" [class.error]="imgElement.dataset['error'] === 'true'" (load)="imgElement.dataset['loaded'] = 'true'" (error)="imgElement.dataset['loaded'] = 'true'; imgElement.dataset['error'] = 'true'" class="fw fh" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/gacha-splash'">
+        <div class="descriptionOverlay fw">
+          <div class="blurContainer">
+            <div class="flex aic jcc descriptionContainer p10">
+              <span>{{character.description}}</span>
+            </div>
+          </div>
+        </div>
+        
         <!--TODO Add fade and show video of caracter after a delay-->
         @if(imgElement.dataset['loaded'] !== 'true') {
           <div class="spinner absolute"></div>
@@ -33,9 +41,7 @@
         <div class="splitter horizontal"></div>
         <div class="bottomContainer flex jcc gap10 fh">
           <div class="flex column aic mainContent">
-            <div class="flex aic jcc descriptionContainer p10">
-              <span>{{character.description}}</span>
-            </div>
+            
           </div>
           <div class="flex column aic gap20 sideContent">
             @if (character.nation) {
