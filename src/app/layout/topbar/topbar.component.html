@@ -1,8 +1,12 @@
 <div class="topbar fh flex aic jcc gap20">
-    <button (click)="sharedService.goTo(pages.HOME)">
+    <button 
+        (click)="sharedService.goTo(pages.HOME)" 
+        (mouseup)="$event.button === 1 && sharedService.goTo(pages.HOME, true)">
         Accueil
     </button>
-    <button (click)="sharedService.goTo(pages.CHARACTERS_LISTING)">
+    <button 
+        (click)="sharedService.goTo(pages.CHARACTERS_LISTING)"
+        (mouseup)="$event.button === 1 && sharedService.goTo(pages.CHARACTERS_LISTING, true)">
         Personnages
     </button>
     <button (click)="cacheProvider.clearAll()">

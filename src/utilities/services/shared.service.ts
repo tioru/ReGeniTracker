@@ -8,16 +8,15 @@ export class SharedService {
 
   constructor(private readonly router: Router) {}
   
-  public goTo(route: string, params?: string[]) {
-    let finalRoute = route;
-    
-    if (params && params.length > 0) {
-      params.forEach(param => {
-        finalRoute = finalRoute.replace(/:[^/]+/, param);
-      });
-    }
+  public goTo(route: string, newTab : boolean = false, params?: string[]) { 
+    const finalRoute = this.router.createUrlTree([route === '' ? '/' : route, params])
 
-    this.router.navigate([finalRoute]);
+    console.log(finalRoute)
+    if (newTab) {
+      window.open(finalRoute.toString(), '_blank')
+    } else {
+      this.router.navigate([finalRoute]);
+    }
   }
 
   public getArray(n: number): number[] {

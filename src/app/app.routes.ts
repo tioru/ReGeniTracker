@@ -6,7 +6,7 @@ import { CharacterComponent } from './characters/character/character.component';
 export enum Pages {
   HOME = "",
   CHARACTERS_LISTING = "characters",
-  CHARACTER = "character/:name"
+  CHARACTER = "character"
 };
 
 export const routes: Routes = [

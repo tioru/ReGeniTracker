@@ -22,6 +22,7 @@
     mask: linear-gradient(black, black) border-box,
       linear-gradient(black, black) padding-box;
     mask-composite: subtract;
+    z-index: 1;
   }
 }
 
@@ -38,6 +39,7 @@
     overflow: hidden;
     padding-left: 50px;
     width: 70%;
+    font-size: clamp(11px, 1vw, 14px);
 
     &:after {
       content: "";
@@ -55,6 +57,11 @@
 
     span {
       white-space: nowrap;
+    }
+
+    .affilation {
+      white-space: initial;
+      text-align: center;
     }
   }
 
@@ -214,7 +221,7 @@ span {
 }
 
 /* Display only when image loaded */
-.characterPreview:has(img[data-loaded="true"]:not([data-error="true"])) .descriptionContainer {
+.characterPreview:has(img[data-loaded="true"]) .descriptionContainer {
   transform: translateY(0);
   opacity: 1;
 }
