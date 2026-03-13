@@ -1,12 +1,13 @@
 <div class="tabHeader">
-    @for (tab of tabs; track $index) {
-        <button 
-            (click)="selectTab($index)"
-            [class.active]="activeIndex === $index">
-            {{ tab.header }}
-        </button>
-    }
-  
+  @for (tab of tabs; track $index) {
+    <button (click)="selectTab($index)" [class.active]="activeIndex === $index">
+      @if (tab.headerTpl) {
+        <ng-container *ngTemplateOutlet="tab.headerTpl"></ng-container>
+      } @else {
+        {{ tab.header }}
+      }
+    </button>
+  }
 </div>
 <div class="tabContent">
   <ng-container 
