@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 export class SharedService {
 
   constructor(private readonly router: Router) {}
-  
-  public goTo(route: string, params?: string[]) {
+
+  public constructUrl(route: string, params?: string[]) : string {
     let finalRoute = route;
     
     if (params && params.length > 0) {
@@ -17,7 +17,11 @@ export class SharedService {
       });
     }
 
-    this.router.navigateByUrl(finalRoute);
+    return "/" + finalRoute;
+  }
+  
+  public goTo(route: string, params?: string[]) {
+    this.router.navigateByUrl(this.constructUrl(route, params));
   }
 
   public getArray(n: number): number[] {

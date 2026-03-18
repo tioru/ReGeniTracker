@@ -4,10 +4,11 @@ import { CacheProvider } from '../../utilities/provider/cache.provider';
 import { CharactersService } from '../../utilities/services/api/characters.service';
 import { SharedService } from '../../utilities/services/shared.service';
 import { Pages } from '../app.routes';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-characters',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss',
   standalone: true
