@@ -95,7 +95,7 @@ export class CharactersService {
               new ProjectClass.Remote.Characters(
                 { 
                   name: name, 
-                  img: `${environment.apiUrl}/characters/${name}/portrait`, 
+                  img: `${environment.apiUrl}/characters/${name}/icon-big`, 
                   vision_key: generalData.vision_key, 
                   release: generalData.release 
                 }
