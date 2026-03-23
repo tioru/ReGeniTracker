@@ -26,15 +26,14 @@
             <span class="characterName">{{character.name}}</span>
             <span class="characterTitle">{{character.title}}</span>
           </div>
-          <div class="flex aic jcc column">
-            <div>
+          <div class="flex fh">
+            <div class="m10">
             @if (character.rarity) {
               @for (item of sharedService.getArray(character.rarity); track $index) {
                 <svg xmlns="http://www.w3.org/2000/svg" width="35px" fill="white" viewBox="0 0 24 24"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9L12,1Z" /></svg>
               }
             }
             </div>
-            <span class="rarity">{{character.rarity}} étoiles</span>
           </div>
         </div>
         <div class="splitter horizontal"></div>

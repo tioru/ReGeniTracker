@@ -17,6 +17,13 @@
                 <div class="infoSection fh fw flex jcc aic">
                   <span class="characterName">{{character.name}}</span>
                   <div class="vision"></div>
+                  @if (character.rarity) {
+                    <div class="rarity">
+                      @for (item of sharedService.getArray(character.rarity); track $index) {
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15px" fill="white" viewBox="0 0 24 24"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9L12,1Z" /></svg>
+                      }
+                    </div>
+                  }
                 </div>
               </a>
             }

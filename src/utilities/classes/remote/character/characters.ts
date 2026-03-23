@@ -5,6 +5,7 @@ export class CharactersClass {
   img : string | null = null;
   vision_key : VisionTypeClass | null = null;
   release : string | null = null;
+  rarity : number | null = null;
     
   constructor(init?:Partial<CharactersClass>) {
     Object.assign(this, init);

@@ -84,7 +84,8 @@ export class CharactersService {
             const character = response.body as ProjectClass.Remote.Characters;
             return { 
               vision_key: character.vision_key,
-              release: character.release
+              release: character.release,
+              rarity: character.rarity
             };
           })
         );
@@ -97,7 +98,8 @@ export class CharactersService {
                   name: name, 
                   img: `${environment.apiUrl}/characters/${name}/icon-big`, 
                   vision_key: generalData.vision_key, 
-                  release: generalData.release 
+                  release: generalData.release,
+                  rarity: generalData.rarity
                 }
               )
             )
