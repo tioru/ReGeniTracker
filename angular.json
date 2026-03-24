@@ -33,7 +33,7 @@
             ],
             "scripts": [],
             "externalDependencies": [
-              "assets/img/elements/*"
+              "assets/img/*"
             ]
           },
           "configurations": {

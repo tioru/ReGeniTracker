@@ -85,7 +85,8 @@ export class CharactersService {
             return { 
               vision_key: character.vision_key,
               release: character.release,
-              rarity: character.rarity
+              rarity: character.rarity,
+              weapon: character.weapon
             };
           })
         );
@@ -99,7 +100,8 @@ export class CharactersService {
                   img: `${environment.apiUrl}/characters/${name}/icon-big`, 
                   vision_key: generalData.vision_key, 
                   release: generalData.release,
-                  rarity: generalData.rarity
+                  rarity: generalData.rarity,
+                  weapon : generalData.weapon
                 }
               )
             )

@@ -23,7 +23,7 @@
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   width: 300px;
-  height: 100px;
+  height: 85px;
   background-color: rgb(153, 153, 153);
   border: 2px solid rgb(92, 92, 92);
   text-decoration: none;
@@ -42,6 +42,22 @@
     "HYDRO": (color: rgb(0, 94, 182), image: "HydroElement.webp"),
     "ELECTRO": (color: rgb(124, 0, 182), image: "ElectroElement.webp")
   );
+
+  $weapons : (
+    "Sword": (image: "sword.webp"),
+    "Bow": (image: "bow.webp"),
+    "Catalyst": (image: "catalyst.webp"),
+    "Claymore": (image: "claymore.webp"),
+    "Polearm": (image: "polearm.webp"),
+  );
+
+  @each $weapon, $values in $weapons {
+    &.#{$weapon} {
+      .weapon {
+        background-image: url('assets/img/weapons/icons/#{map-get($values, image)}');
+      }
+    }
+  }
 
   @each $element, $values in $elements {
     &.#{$element} {
@@ -66,11 +82,10 @@
   }
 
   .characterName {
-    position: absolute;
-    top: 5px;
-    left: 15px;
+    font-size: 17px;
     color: white;
     text-transform: capitalize;
+    z-index: 1;
   }
 
   .vision {
@@ -85,12 +100,23 @@
     filter: invert(30%);
   }
 
+  .weapon {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 95%;
+    height: 100%;
+    width: 110px;
+    position: absolute;
+    opacity: 60%;
+    top: 0;
+  }
+
   .rarity {
     position: absolute;
     bottom: 0;
 
     svg {
-      fill-opacity: 50%;
+      fill-opacity: 75%;
     }
   }
 }

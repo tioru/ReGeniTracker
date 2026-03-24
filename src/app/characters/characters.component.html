@@ -10,13 +10,14 @@
         @for (character of charactersService.characters$ | async; track $index) {
           <div class="fw fh flex aic jcc">
             @if(character.name) {
-              <a [class]="'flex aic characterCard ' + character.vision" [routerLink]="sharedService.constructUrl(pages.CHARACTER, [character.name])">
+              <a [class]="'flex aic characterCard ' + character.vision + ' ' + character.weapon" [routerLink]="sharedService.constructUrl(pages.CHARACTER, [character.name])">
                 <div class="fh characterPortrait">
                   <img class="fw fh" [src]="character.img">
                 </div>
                 <div class="infoSection fh fw flex jcc aic">
                   <span class="characterName">{{character.name}}</span>
                   <div class="vision"></div>
+                  <div class="weapon"></div>
                   @if (character.rarity) {
                     <div class="rarity">
                       @for (item of sharedService.getArray(character.rarity); track $index) {

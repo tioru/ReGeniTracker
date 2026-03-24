@@ -21,7 +21,8 @@ export class CharactersMapper {
                   img : characters.img,
                   vision : characters.vision_key ? this.visionTypeMapper.mapRemote(characters.vision_key) : null,
                   releaseDate : characters.release,
-                  rarity: characters.rarity
+                  rarity: characters.rarity,
+                  weapon: characters.weapon
               })
         } catch (error) {
             console.log(characters)
