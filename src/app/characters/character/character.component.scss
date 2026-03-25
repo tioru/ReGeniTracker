@@ -196,6 +196,7 @@ span {
 .bottomContainer {
   .mainContent {
     flex: 4;
+    overflow: hidden;
   }
   .sideContent {
     flex: 0.7;
@@ -242,4 +243,31 @@ span {
   position: absolute;
   bottom: 0;
   height: 20%;
+}
+
+$weapons : (
+  "SWORD": (image: "sword.webp"),
+  "BOW": (image: "bow.webp"),
+  "CATALYST": (image: "catalyst.webp"),
+  "CLAYMORE": (image: "claymore.webp"),
+  "POLEARM": (image: "polearm.webp"),
+);
+
+@each $weapon, $values in $weapons {
+  .#{$weapon} {
+    .weapon {
+      background-image: url('assets/img/weapons/icons/#{map-get($values, image)}');
+    }
+  }
+}
+
+.weapon {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+  width: 70px;
+  position: absolute;
+  top: 0;
+  left: -20px;
 }
