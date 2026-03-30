@@ -3,7 +3,7 @@
     <div class="spinner"></div>
   } @else {
     @if (charactersService.character$ | async; as character) {
-      <div class="firstRow flex aic jcc fh p10 gap20 fw">
+      <div class="firstRow flex aic jcc fh gap20">
         <div class="characterPreview fh flex aic jcc">
           <img #imgElement [class.loading]="imgElement.dataset['loaded'] !== 'true'" [class.error]="imgElement.dataset['error'] === 'true'" (load)="imgElement.dataset['loaded'] = 'true'" (error)="imgElement.dataset['loaded'] = 'true'; imgElement.dataset['error'] = 'true'" class="fw fh" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/gacha-splash'">
           <div class="descriptionOverlay fw">
