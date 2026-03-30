@@ -1,5 +1,7 @@
 .characterContainer {
   box-sizing: border-box;
+  overflow: scroll;
+  padding-right: 10px;
 }
 
 .characterPreview {
@@ -270,4 +272,8 @@ $weapons : (
   position: absolute;
   top: 0;
   left: -20px;
+}
+
+.firstRow {
+  width: 99%;
 }

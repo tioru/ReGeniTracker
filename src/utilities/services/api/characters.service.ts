@@ -29,6 +29,9 @@ export class CharactersService {
   private readonly loadedCharactersSubject = new BehaviorSubject<ProjectClass.Local.Character | null>(null);
   public character$ = this.loadedCharactersSubject.asObservable();
 
+  private readonly loadedCharacterArtSubject = new BehaviorSubject<ProjectClass.Local.CharacterArts | null>(null);
+  public characterArt$ = this.loadedCharacterArtSubject.asObservable();
+
   public charactersLoaded : boolean = false;
   public characterLoaded : boolean = false;
   private readonly defaultTTL = TTL_EXPIRATION_MINUTES * 60 * 1000;
@@ -116,34 +119,6 @@ export class CharactersService {
       });
     }
   }
-
-  public getCharacterArts(characterName: string): Observable<ProjectClass.Remote.CharacterArts> {
-    const artRequests = ProjectClass.Remote.CharacterArtsArray.map((artType) => {
-      return this.http.get(`${environment.apiUrl}/characters/${characterName}/${artType}`, {
-        headers: this.getHttpHeaders(),
-        observe: 'response',
-        responseType: 'blob'
-      }).pipe(
-        map(response => ({
-          type: artType,
-          url: response.body ? URL.createObjectURL(response.body) : null
-        })),
-        catchError(() => of({ type: artType, url: null }))
-      );
-    });
-      
-    return forkJoin(artRequests).pipe(
-      map(arts => {
-        const characterArts = new ProjectClass.Remote.CharacterArts;
-
-        arts.forEach(art => {
-          characterArts[art.type] = art.url;
-        });
-
-        return characterArts;
-      })
-    );
-  }    
 
   public loadCharacter(characterName: string): void {
     const entry = this.cacheProvider.get<ProjectClass.Remote.Character>(characterName);

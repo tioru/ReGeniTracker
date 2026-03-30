@@ -1,149 +1,153 @@
-<div class="characterContainer flex aic jcc fh p10 gap20">
+<div class="characterContainer flex aic jcc fh p10 gap20 column">
   @if (!charactersService.characterLoaded) {
     <div class="spinner"></div>
   } @else {
     @if (charactersService.character$ | async; as character) {
-      <div class="characterPreview fh flex aic jcc">
-        <img #imgElement [class.loading]="imgElement.dataset['loaded'] !== 'true'" [class.error]="imgElement.dataset['error'] === 'true'" (load)="imgElement.dataset['loaded'] = 'true'" (error)="imgElement.dataset['loaded'] = 'true'; imgElement.dataset['error'] = 'true'" class="fw fh" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/gacha-splash'">
-        <div class="descriptionOverlay fw">
-          <div class="blurContainer">
-            <div class="flex aic jcc descriptionContainer p10">
-              <span>{{character.description}}</span>
+      <div class="firstRow flex aic jcc fh p10 gap20 fw">
+        <div class="characterPreview fh flex aic jcc">
+          <img #imgElement [class.loading]="imgElement.dataset['loaded'] !== 'true'" [class.error]="imgElement.dataset['error'] === 'true'" (load)="imgElement.dataset['loaded'] = 'true'" (error)="imgElement.dataset['loaded'] = 'true'; imgElement.dataset['error'] = 'true'" class="fw fh" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/gacha-splash'">
+          <div class="descriptionOverlay fw">
+            <div class="blurContainer">
+              <div class="flex aic jcc descriptionContainer p10">
+                <span>{{character.description}}</span>
+              </div>
             </div>
           </div>
+          <!--TODO Add fade and show video of caracter after a delay-->
+          @if(imgElement.dataset['loaded'] !== 'true') {
+            <div class="spinner absolute"></div>
+          }
+          @if(imgElement.dataset['error'] === 'true') {
+            <span>Pas d'image pour ce personnage</span>
+          }
         </div>
-        <!--TODO Add fade and show video of caracter after a delay-->
-        @if(imgElement.dataset['loaded'] !== 'true') {
-          <div class="spinner absolute"></div>
-        }
-        @if(imgElement.dataset['error'] === 'true') {
-          <span>Pas d'image pour ce personnage</span>
-        }
-      </div>
-      <div class="basicInformation fh fw flex column gap10">
-        <div class="flex aic jcsb">
-          <div class="flex jcc column">
-            <span class="characterName">{{character.name}}</span>
-            <span class="characterTitle">{{character.title}}</span>
-          </div>
-          <div class="flex fh">
-            <div class="m10">
-            @if (character.rarity) {
-              @for (item of sharedService.getArray(character.rarity); track $index) {
-                <svg xmlns="http://www.w3.org/2000/svg" width="35px" fill="white" viewBox="0 0 24 24"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9L12,1Z" /></svg>
+        <div class="basicInformation fh fw flex column gap10">
+          <div class="flex aic jcsb">
+            <div class="flex jcc column">
+              <span class="characterName">{{character.name}}</span>
+              <span class="characterTitle">{{character.title}}</span>
+            </div>
+            <div class="flex fh">
+              <div class="m10">
+              @if (character.rarity) {
+                @for (item of sharedService.getArray(character.rarity); track $index) {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="35px" fill="white" viewBox="0 0 24 24"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9L12,1Z" /></svg>
+                }
               }
-            }
+              </div>
             </div>
           </div>
-        </div>
-        <div class="splitter horizontal"></div>
-        <div class="bottomContainer flex jcc gap10 fh">
-          <div class="flex column aic mainContent">
-            <tab-component class="fw fh">
-              <tab-item-component>
-                <div header>
-                  <img [src]="''">
-                  <span>Talents passifs</span>
-                </div>
-                <div content class="fh fw flex aic jcsb gap20">
-                  @for (passiveTalent of character.passiveTalents; track $index) {
-                    <div class="flex aic jcc column gap10">
-                      <span>{{passiveTalent.name}}</span>
-                      <span>{{passiveTalent.level}}</span>
-                      <span>{{passiveTalent.description}}</span>
-                      <span>{{passiveTalent.unlock}}</span>
-                    </div>
-                  }
-                </div>
-              </tab-item-component>
-              <tab-item-component>
-                <span header>Compétence</span>
-                <div content class="fh fw flex aic jcc">
-                  @for (skillTalent of character.skillTalents; track $index) {
-                    <div class="flex aic jcc column gap10">
-                      <span>{{skillTalent.name}}</span>
-                      <span>{{skillTalent.upgrades}}</span>
-                      <span>{{skillTalent.description}}</span>
-                      <span>{{skillTalent.unlock}}</span>
-                      <span>{{skillTalent.type}}</span>
-                      <span>{{skillTalent.attributeScaling}}</span>
-                    </div>
-                  }
-                </div>
-              </tab-item-component>
-              <tab-item-component>
-                <span header>Constellation</span>
-                <div content class="fh fw flex aic jcc column">
-                  <span>{{character.constellation}}</span>
-                  <div class="flex aic jcc">
-                    @for (constellation of character.constellations; track $index) {
-                      <div class="flex aic jcc column gap10">
-                        <span>{{constellation.name}}</span>
-                        <span>{{constellation.description}}</span>
-                        <span>{{constellation.level}}</span>
-                        <span>{{constellation.unlock}}</span>
-                      </div>
+          <div class="splitter horizontal"></div>
+          <div class="bottomContainer flex jcc gap10 fh">
+            <div class="flex column aic mainContent">
+            </div>
+            <div class="flex column aic gap20 sideContent">
+              @if (character.nation) {
+                <div class="nationCard flex aic jcc">
+                  <div class="innerContainer">
+                    @for (landscape of sharedService.getArray(getLandscapeNumber(character.nation)); track $index) {
+                      <img class="nationLandscape" 
+                      [src]="'assets/img/nation/'+character.nation+'/'+(landscape+1)+'.jpg'"
+                      [class.visible]="$index === currentIndex">
                     }
                   </div>
-                </div>
-              </tab-item-component>
-            </tab-component>
-          </div>
-          <div class="flex column aic gap20 sideContent">
-            @if (character.nation) {
-              <div class="nationCard flex aic jcc">
-                <div class="innerContainer">
-                  @for (landscape of sharedService.getArray(getLandscapeNumber(character.nation)); track $index) {
-                    <img class="nationLandscape" 
-                    [src]="'assets/img/nation/'+character.nation+'/'+(landscape+1)+'.jpg'"
-                    [class.visible]="$index === currentIndex">
-                  }
-                </div>
-                <div class="overlay">
-                  <div class="blurContainer fw fh flex">
-                    <div class="nationInformation flex aic jcc gap10">
-                      @if (character.nation !== projectClass.Local.NationTypeList.OTHER) {
-                        <img class="nationImage" [src]="'assets/img/nation/'+character.nation+'/emblem.webp'">
-                      }
-                      <span class="nationName">{{character.nation}}</span>
-                    </div>
-                    <div class="dotNavigationContainer flex aic jcc gap10">
-                      @for (landscape of sharedService.getArray(getLandscapeNumber(character.nation)); track $index) {
-                        <div class="dotNavigation" 
-                        [class.active]="$index === currentIndex"
-                        [class.done]="$index < currentIndex"
-                        [style.--dot-duration]="slideDuration + 's'"
-                        (click)="goToSlide($index, character.nation)">
+                  <div class="overlay">
+                    <div class="blurContainer fw fh flex">
+                      <div class="nationInformation flex aic jcc gap10">
+                        @if (character.nation !== projectClass.Local.NationTypeList.OTHER) {
+                          <img class="nationImage" [src]="'assets/img/nation/'+character.nation+'/emblem.webp'">
+                        }
+                        <span class="nationName">{{character.nation}}</span>
                       </div>
-                      }
+                      <div class="dotNavigationContainer flex aic jcc gap10">
+                        @for (landscape of sharedService.getArray(getLandscapeNumber(character.nation)); track $index) {
+                          <div class="dotNavigation" 
+                          [class.active]="$index === currentIndex"
+                          [class.done]="$index < currentIndex"
+                          [style.--dot-duration]="slideDuration + 's'"
+                          (click)="goToSlide($index, character.nation)">
+                        </div>
+                        }
+                      </div>
                     </div>
                   </div>
                 </div>
+              }
+              @if (character.vision) {
+                <div class="infoCard flex aic jcc">
+                  <img [src]="getVisionImg(character.vision)">
+                  <span>{{character.vision | capitalize }}</span>
+                </div>
+              }
+              <div [class]="character.weaponType + ' infoCard flex aic jcc'">
+                <div class="weapon"></div>
+                <span>{{character.weapon}}</span>
               </div>
-            }
-            @if (character.vision) {
               <div class="infoCard flex aic jcc">
-                <img [src]="getVisionImg(character.vision)">
-                <span>{{character.vision | capitalize }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.5,0.5C12,0.75 13,2.4 13,3.5C13,4.6 12.33,5 11.5,5C10.67,5 10,4.85 10,3.75C10,2.65 11,2 11.5,0.5M18.5,9C21,9 23,11 23,13.5C23,15.06 22.21,16.43 21,17.24V23H12L3,23V17.24C1.79,16.43 1,15.06 1,13.5C1,11 3,9 5.5,9H10V6H13V9H18.5M12,16A2.5,2.5 0 0,0 14.5,13.5H16A2.5,2.5 0 0,0 18.5,16A2.5,2.5 0 0,0 21,13.5A2.5,2.5 0 0,0 18.5,11H5.5A2.5,2.5 0 0,0 3,13.5A2.5,2.5 0 0,0 5.5,16A2.5,2.5 0 0,0 8,13.5H9.5A2.5,2.5 0 0,0 12,16Z" /></svg>
+                <span>{{character.birthday | date:'d MMMM'}}</span>
               </div>
-            }
-            <div [class]="character.weaponType + ' infoCard flex aic jcc'">
-              <div class="weapon"></div>
-              <span>{{character.weapon}}</span>
-            </div>
-            <div class="infoCard flex aic jcc">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.5,0.5C12,0.75 13,2.4 13,3.5C13,4.6 12.33,5 11.5,5C10.67,5 10,4.85 10,3.75C10,2.65 11,2 11.5,0.5M18.5,9C21,9 23,11 23,13.5C23,15.06 22.21,16.43 21,17.24V23H12L3,23V17.24C1.79,16.43 1,15.06 1,13.5C1,11 3,9 5.5,9H10V6H13V9H18.5M12,16A2.5,2.5 0 0,0 14.5,13.5H16A2.5,2.5 0 0,0 18.5,16A2.5,2.5 0 0,0 21,13.5A2.5,2.5 0 0,0 18.5,11H5.5A2.5,2.5 0 0,0 3,13.5A2.5,2.5 0 0,0 5.5,16A2.5,2.5 0 0,0 8,13.5H9.5A2.5,2.5 0 0,0 12,16Z" /></svg>
-              <span>{{character.birthday | date:'d MMMM'}}</span>
-            </div>
-            <div class="infoCard flex aic jcc">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H6V1H8V3H16V1H18V3H19M19,19V8H5V19H19M9,14V16H7V14H9M13,14V16H11V14H13M17,14V16H15V14H17Z" /></svg>
-              <span>{{character.releaseDate | date:'d MMMM y'}}</span>
-            </div>
-            <div class="infoCard flex aic jcc">
-              <span class="affilation">{{character.affiliation}}</span>
+              <div class="infoCard flex aic jcc">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H6V1H8V3H16V1H18V3H19M19,19V8H5V19H19M9,14V16H7V14H9M13,14V16H11V14H13M17,14V16H15V14H17Z" /></svg>
+                <span>{{character.releaseDate | date:'d MMMM y'}}</span>
+              </div>
+              <div class="infoCard flex aic jcc">
+                <span class="affilation">{{character.affiliation}}</span>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="secondRow">
+        <tab-component class="fw fh">
+          <tab-item-component>
+            <div header>
+              <img [src]="''">
+              <span>Talents passifs</span>
+            </div>
+            <div content class="fh fw flex aic jcsb gap20">
+              @for (passiveTalent of character.passiveTalents; track $index) {
+                <div class="flex aic jcc column gap10">
+                  <span>{{passiveTalent.name}}</span>
+                  <span>{{passiveTalent.level}}</span>
+                  <span>{{passiveTalent.description}}</span>
+                  <span>{{passiveTalent.unlock}}</span>
+                </div>
+              }
+            </div>
+          </tab-item-component>
+          <tab-item-component>
+            <span header>Compétence</span>
+            <div content class="fh fw flex aic jcc">
+              @for (skillTalent of character.skillTalents; track $index) {
+                <div class="flex aic jcc column gap10">
+                  <span>{{skillTalent.name}}</span>
+                  <span>{{skillTalent.upgrades}}</span>
+                  <span>{{skillTalent.description}}</span>
+                  <span>{{skillTalent.unlock}}</span>
+                  <span>{{skillTalent.type}}</span>
+                  <span>{{skillTalent.attributeScaling}}</span>
+                </div>
+              }
+            </div>
+          </tab-item-component>
+          <tab-item-component>
+            <span header>Constellation</span>
+            <div content class="fh fw flex aic jcc column">
+              <span>{{character.constellation}}</span>
+              <div class="flex aic jcc">
+                @for (constellation of character.constellations; track $index) {
+                  <div class="flex aic jcc column gap10">
+                    <span>{{constellation.name}}</span>
+                    <span>{{constellation.description}}</span>
+                    <span>{{constellation.level}}</span>
+                    <span>{{constellation.unlock}}</span>
+                  </div>
+                }
+              </div>
+            </div>
+          </tab-item-component>
+        </tab-component>
       </div>
     }
   }
