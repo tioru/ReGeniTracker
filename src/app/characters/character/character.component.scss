@@ -1,7 +1,10 @@
+@use './../../../variables.scss' as vars;
+
 .characterContainer {
   box-sizing: border-box;
   overflow: scroll;
   padding-right: 10px;
+  min-height: vars.$height-after-topbar;
 }
 
 .characterPreview {
@@ -276,4 +279,10 @@ $weapons : (
 
 .firstRow {
   width: 99%;
+  min-height: vars.$height-after-topbar;
+}
+
+.secondRow {
+  width: 99%;
+  min-height: vars.$height-after-topbar;
 }
