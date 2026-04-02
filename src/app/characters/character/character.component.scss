@@ -1,10 +1,9 @@
-@use './../../../variables.scss' as vars;
-
 .characterContainer {
   box-sizing: border-box;
   overflow: scroll;
   padding-right: 10px;
-  min-height: vars.$height-after-topbar;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 .characterPreview {
@@ -206,6 +205,7 @@ span {
   .sideContent {
     flex: 0.7;
     flex-shrink: 0;
+    padding: 0px 5px;
   }
 }
 
@@ -279,10 +279,14 @@ $weapons : (
 
 .firstRow {
   width: 99%;
-  min-height: 100%
+  min-height: 100%;
+  overflow: hidden;
+  scroll-snap-align: center;
 }
 
 .secondRow {
   width: 99%;
   min-height: 100%;
+  overflow: hidden;
+  scroll-snap-align: center;
 }
