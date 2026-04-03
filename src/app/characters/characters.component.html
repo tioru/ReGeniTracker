@@ -26,7 +26,11 @@
                     </div>
                   }
                 </div>
-                <a [routerLink]="sharedService.constructUrl(pages.CHARACTER, [character.name])" [fragment]="'talent'">Talent</a>
+                <a class="talentBtn" [routerLink]="sharedService.constructUrl(pages.CHARACTER, [character.name])" [fragment]="'talent'">
+                  <div>
+                    <span>Talent</span>
+                  </div>
+                </a>
               </a>
             }
           </div>
