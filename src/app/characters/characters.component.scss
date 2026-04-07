@@ -21,16 +21,16 @@
   --border-radius: 1rem;
   border-radius: var(--border-radius);
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
   width: 300px;
   height: 85px;
   background-color: rgb(153, 153, 153);
   border: 2px solid rgb(92, 92, 92);
   text-decoration: none;
   overflow: hidden;
+  transition: scaleZ 0.2 ease-in-out;
 
-  &:hover {
-    transform: scale(1.04);
+  >&.shortcutVisibility {
+    transform: scaleZ(1.05);
   }
 
   $elements: (
@@ -121,11 +121,37 @@
   }
 }
 
+.characterCardWrapper {
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.04);
+  }
+}
+
+.options {
+  height: 5vh;
+}
+
 .talentBtn {
   position: absolute;
   bottom: 10px;
 
   div {
     background-color: grey;
+  }
+}
+
+.shortcut {
+  color: white;
+}
+
+.shortcutContainer {
+  position: relative;
+  height: 50px;
+  transition: transform 0.2s ease-in-out;
+  &.shortcutVisibility {
+    transform: translateY(1);
   }
 }

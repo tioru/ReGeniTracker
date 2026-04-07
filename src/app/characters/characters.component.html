@@ -1,37 +1,45 @@
-<div class="charactersTopContainer flex aic jcc column gap30 fh fw">
+<div class="charactersTopContainer flex aic jcc column gap20 fh fw">
   @if (!charactersService.charactersLoaded) {
     <div class="spinner"></div>
   } @else {
     <div class="gap30 flex aic jcc column fw fh">
-      <div class="">
-      <input >
+      <div class="options flex jcc aic fw gap20">
+        <input >
+        <div class="shortcut flex gap10">
+          <input type="checkbox" [(ngModel)]="shortcutVisibility">
+          <label>Afficher les raccourcis</label>
+        </div>
       </div>
       <div class="characterCardContainer fh">
         @for (character of charactersService.characters$ | async; track $index) {
           <div class="fw fh flex aic jcc">
             @if(character.name) {
-              <a [class]="'flex aic characterCard ' + character.vision + ' ' + character.weapon" [routerLink]="sharedService.constructUrl(pages.CHARACTER, [character.name])">
-                <div class="fh characterPortrait">
-                  <img class="fw fh" [src]="character.img">
-                </div>
-                <div class="infoSection fh fw flex jcc aic">
-                  <span class="characterName">{{character.name}}</span>
-                  <div class="vision"></div>
-                  <div class="weapon"></div>
-                  @if (character.rarity) {
-                    <div class="rarity">
+              <div [class.shortcutVisibility]="shortcutVisibility" class="characterCardWrapper">
+                <a [class]="'flex aic characterCard ' + character.vision + ' ' + character.weapon" [routerLink]="sharedService.constructUrl(pages.CHARACTER, [character.name])">
+                  <div class="fh characterPortrait">
+                    <img class="fw fh" [src]="character.img">
+                  </div>
+                  <div class="infoSection fh fw flex jcc aic">
+                    <span class="characterName">{{character.name}}</span>
+                    <div class="vision"></div>
+                    <div class="weapon"></div>
+                    @if (character.rarity) {
+                      <div class="rarity">
                       @for (item of sharedService.getArray(character.rarity); track $index) {
-                        <svg xmlns="http://www.w3.org/2000/svg" width="15px" fill="white" viewBox="0 0 24 24"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9L12,1Z" /></svg>
-                      }
-                    </div>
-                  }
-                </div>
-                <a class="talentBtn" [routerLink]="sharedService.constructUrl(pages.CHARACTER, [character.name])" [fragment]="'talent'">
-                  <div>
-                    <span>Talent</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15px" fill="white" viewBox="0 0 24 24"><path d="M12,1L9,9L1,12L9,15L12,23L15,15L23,12L15,9L12,1Z" /></svg>
+                        }
+                      </div>
+                    }
                   </div>
                 </a>
-              </a>
+                <div class="shortcutContainer">
+                  <a class="talentBtn" [routerLink]="sharedService.constructUrl(pages.CHARACTER, [character.name])" [fragment]="'talent'">
+                    <div>
+                      <span>Talent</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
             }
           </div>
         }
