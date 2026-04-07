@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class CharactersComponent implements OnInit, OnDestroy{
   public pages : typeof Pages = Pages;
-  public shortcutVisibility : boolean = false;
 
   constructor(
     public charactersService : CharactersService,
