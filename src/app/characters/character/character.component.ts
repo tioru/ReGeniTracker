@@ -62,30 +62,29 @@ export class CharacterComponent implements OnInit, OnDestroy{
   ) {}
 
   ngOnInit(): void {
-  this.characterName = this.route.snapshot.paramMap.get('name');
+    this.characterName = this.route.snapshot.paramMap.get('name');
 
-  if (this.characterName) {
-    this.charactersService.character$.pipe(takeUntil(this.destroy$)).pipe(skip(1)).subscribe((character) => {
-      console.log("Character loaded :", character)
-      if (character?.nation) {
-        this.startDotTimer(character.nation);
-      }
+    if (this.characterName) {
+      this.charactersService.character$.pipe(takeUntil(this.destroy$)).pipe(skip(1)).subscribe((character) => {
+        console.log("Character loaded :", character)
+        if (character?.nation) {
+          this.startDotTimer(character.nation);
+        }
 
-      // Lire le fragment une seule fois ici, après le chargement du character
-      const fragment = this.route.snapshot.fragment;
-if (fragment) {
-  setTimeout(() => {
-    const element = document.getElementById(fragment);
-    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 100);
-}
-    });
+        const fragment = this.route.snapshot.fragment;
+        if (fragment) {
+          setTimeout(() => {
+            const element = document.getElementById(fragment);
+            element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      });
 
-    this.charactersService.loadCharacter(this.characterName);
-  } else {
-    console.error("No character name provided")
+      this.charactersService.loadCharacter(this.characterName);
+    } else {
+      console.error("No character name provided")
+    }
   }
-}
   
   ngOnDestroy(): void {
     this.destroy$.next();
