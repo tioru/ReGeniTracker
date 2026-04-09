@@ -124,7 +124,19 @@
             <span header>Compétence</span>
             <div content class="fh fw flex aic jcc">
               @for (skillTalent of character.skillTalents; track $index) {
-                <div class="flex aic jcc column gap10">
+                <div class="talentCard flex aic jcc column gap10">
+                  @switch (skillTalent.type) {
+                    @case (skillTalentTypeList.NORMAL_ATTACK) {
+                      <img [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-na'">
+                    }
+                    @case (skillTalentTypeList.ELEMENTAL_SKILL) {
+                      <img [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-skill'">
+                    }
+                    @case (skillTalentTypeList.ELEMENTAL_BURST) {
+                      <img [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-burst'">
+                    }
+                  }
+                  <img [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-passive-'+$index">
                   <span>{{skillTalent.name}}</span>
                   <span>{{skillTalent.upgrades}}</span>
                   <span>{{skillTalent.description}}</span>

@@ -1,4 +1,5 @@
 import { AttributeScalingClass } from "./attributeScaling";
+import { SkillTalentTypeClass } from "./skillTalentType";
 import { UpgradeClass } from "./upgrade";
 
 export class SkillTalentsClass {
@@ -6,7 +7,7 @@ export class SkillTalentsClass {
   unlock : string | null = null;
   description : string | null = null;
   upgrades : Array<UpgradeClass> = [];
-  type : string | null = null;
+  type : SkillTalentTypeClass | null = null;
   "attribute-scaling" : Array<AttributeScalingClass> = [];
 
   constructor(init?:Partial<SkillTalentsClass>) {

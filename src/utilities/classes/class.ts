@@ -12,7 +12,7 @@ import { VisionTypeClass as LocalVisionTypeClass, VisionTypeListEnum as LocalVis
 import { WeaponClass as LocalWeaponClass } from "./local/weapon/weapon";
 import { WeaponListingClass as LocalWeaponListingClass } from "./local/weapon/weaponsListing";
 import { NationTypeClass as LocalNationClass, NationTypeListEnum as LocalNationTypeListEnum } from "./local/character/nation";
-
+import { SkillTalentTypeClass as LocalSkillTalentType, SkillTalentTypeListEnum as LocalSkillTalentTypeListEnum } from "./local/character/skillTalentType";
 
 import { AscentionMaterialsClass as RemoteAscentionMaterialsClass } from "./remote/character/ascensionMaterials";
 import { AttributeScalingClass as RemoteAttributeScalingClass } from "./remote/character/attributeScaling";
@@ -28,6 +28,7 @@ import { VisionTypeClass as RemoteVisionTypeClass, VisionTypeListEnum as RemoteV
 import { WeaponClass as RemoteWeaponClass } from "./remote/weapon/weapon";
 import { WeaponListingClass as RemoteWeaponListingClass } from "./remote/weapon/weaponsListing";
 import { NationTypeClass as RemoteNationClass, NationTypeListEnum as RemoteNationTypeListEnum } from "./remote/character/nation";
+import { SkillTalentTypeClass as RemoteSkillTalentType, SkillTalentTypeListEnum as RemoteSkillTalentTypeListEnum} from "./remote/character/skillTalentType";
 
 export namespace ProjectClass {
     export namespace Local {
@@ -49,6 +50,8 @@ export namespace ProjectClass {
         export class Weapon extends LocalWeaponClass {};
         export type NationType = LocalNationClass;
         export import NationTypeList = LocalNationTypeListEnum;
+        export type SkillTalentType = LocalSkillTalentType; 
+        export import SkillTalentTypeList = LocalSkillTalentTypeListEnum; 
     }
 
     export namespace Remote {
@@ -70,5 +73,7 @@ export namespace ProjectClass {
         export class Weapon extends RemoteWeaponClass {};
         export type NationType = RemoteNationClass;
         export import NationTypeList = RemoteNationTypeListEnum;
+        export type SkillTalentType = RemoteSkillTalentType; 
+        export import SkillTalentTypeList = RemoteSkillTalentTypeListEnum; 
     }
 }
