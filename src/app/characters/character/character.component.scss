@@ -304,9 +304,28 @@ $weapons : (
     border: 2px solid #808080;
     height: 75%;
 
-    .description, .passiveTalent {
+    .description, .passiveTalent, .attributeScaling {
       text-wrap: balance;
       text-align: center;
+    }
+
+    .topContainer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-50%);
+    }
+    
+    .talentIcon {
+      border: 2px solid #808080;
+      border-radius: 50%;
+    }
+
+    .nameWrapper {
+      background-color: grey;
+      border-radius: 2rem;
+      border: 2px solid #3b3b3b;
+      padding: 7px;
     }
 
     .footer {
