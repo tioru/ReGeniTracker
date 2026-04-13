@@ -110,8 +110,10 @@
             <div content class="fh fw flex aic jcsb gap20">
               @for (passiveTalent of character.passiveTalents; track $index) {
                 <div class="talentCard flex aic jcc column gap10">
-                  <div class="topContainer fw flex aic jcsa">
-                    <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-passive-'+$index">
+                  <div class="topContainer fw flex aic">
+                    <div class="talentIconWrapper flex aic jcc">
+                      <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-passive-'+$index">
+                    </div>
                     <div class="nameWrapper">
                       <span>{{passiveTalent.name}}</span>
                     </div>
@@ -129,18 +131,20 @@
             <div content class="fh fw flex aic jcsb gap20">
               @for (skillTalent of character.skillTalents; track $index) {
                 <div class="talentCard flex aic jcc column gap10">
-                  <div class="topContainer fw flex aic jcsa">
-                    @switch (skillTalent.type) {
-                      @case (skillTalentTypeList.NORMAL_ATTACK) {
-                        <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-na'">
+                  <div class="topContainer fw flex aic">
+                    <div class="talentIconWrapper flex aic jcc">
+                      @switch (skillTalent.type) {
+                        @case (skillTalentTypeList.NORMAL_ATTACK) {
+                          <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-na'">
+                        }
+                        @case (skillTalentTypeList.ELEMENTAL_SKILL) {
+                          <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-skill'">
+                        }
+                        @case (skillTalentTypeList.ELEMENTAL_BURST) {
+                          <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-burst'">
+                        }
                       }
-                      @case (skillTalentTypeList.ELEMENTAL_SKILL) {
-                        <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-skill'">
-                      }
-                      @case (skillTalentTypeList.ELEMENTAL_BURST) {
-                        <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-burst'">
-                      }
-                    }
+                    </div>
                     <div class="nameWrapper">
                       <span>{{skillTalent.name}}</span>
                     </div>
@@ -159,13 +163,19 @@
             <span header>Constellation</span>
             <div content class="fh fw flex aic jcc column">
               <span>{{character.constellation}}</span>
-              <div class="flex aic jcc">
+              <div class="flex aic jcc column fh gap20">
                 @for (constellation of character.constellations; track $index) {
-                  <div class="flex aic jcc column gap10">
-                    <span>{{constellation.name}}</span>
-                    <span>{{constellation.description}}</span>
-                    <span>{{constellation.level}}</span>
-                    <span>{{constellation.unlock}}</span>
+                  <div class="constellationCard flex aic jcc gap10">
+                    <div class="nameWrapper">
+                      <span>{{constellation.name}}</span>
+                    </div>
+                    <div class="levelWrapper">
+                      <span>{{constellation.level}}</span>
+                    </div>
+                    <div class="splitter vertical"></div>
+                    <div class="descriptionWrapper">
+                      <span>{{constellation.description}}</span>
+                    </div>
                   </div>
                 }
               </div>

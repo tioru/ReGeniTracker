@@ -315,17 +315,24 @@ $weapons : (
       left: 0;
       transform: translateY(-50%);
     }
-    
-    .talentIcon {
-      border: 2px solid #808080;
-      border-radius: 50%;
+
+    .talentIconWrapper {
+      flex: 2;
+      .talentIcon {
+        border: 2px solid #808080;
+        border-radius: 50%;
+      }
     }
 
     .nameWrapper {
-      background-color: grey;
-      border-radius: 2rem;
-      border: 2px solid #3b3b3b;
-      padding: 7px;
+      flex: 4;
+
+      span {
+        background-color: grey;
+        border-radius: 2rem;
+        border: 2px solid #3b3b3b;
+        padding: 7px;
+      }
     }
 
     .footer {
@@ -337,6 +344,45 @@ $weapons : (
       border-bottom: 0;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
+    }
+  }
+
+  .constellationCard {
+    position: relative;
+    border: 2px solid #808080;
+    border-radius: 2rem;
+    width: 98%;
+    height: 100%;
+
+    .nameWrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-50%);
+
+      span {
+        background-color: grey;
+        border-radius: 2rem;
+        border: 2px solid #3b3b3b;
+        padding: 7px;
+      }
+    }
+
+    .levelWrapper {
+      flex: 1;
+
+      span {
+        font-style: 50px;
+        text-align: center;
+      }
+    }
+
+    .descriptionWrapper {
+      flex: 10;
+
+      span {
+        text-align: center;
+      }
     }
   }
 }
