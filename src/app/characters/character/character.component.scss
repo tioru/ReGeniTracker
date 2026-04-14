@@ -347,6 +347,17 @@ $weapons : (
     }
   }
 
+  .constellationWrapper {
+    span {
+      font-size: 20px;
+    }
+  }
+
+  .cardWrapper {
+    overflow: hidden;
+    padding-top: 20px;
+  }
+
   .constellationCard {
     position: relative;
     border: 2px solid #808080;
@@ -372,17 +383,23 @@ $weapons : (
       flex: 1;
 
       span {
-        font-style: 50px;
+        font-size: 35px;
         text-align: center;
+        display: block;
       }
     }
 
     .descriptionWrapper {
       flex: 10;
+      margin-left: 25px;
 
       span {
         text-align: center;
       }
     }
+  }
+
+  .upgradeWrapper, .attributeScalingWrapper {
+    overflow: scroll;
   }
 }

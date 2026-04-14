@@ -118,7 +118,7 @@
                       <span>{{passiveTalent.name}}</span>
                     </div>
                   </div>
-                  <span class="description">{{passiveTalent.description}}</span>
+                  <span class="description p10">{{passiveTalent.description}}</span>
                   <div class="footer flex aic jcc">
                     <span class="passiveTalent">{{passiveTalent.unlock}}</span>
                   </div>
@@ -130,7 +130,7 @@
             <span header>Compétence</span>
             <div content class="fh fw flex aic jcsb gap20">
               @for (skillTalent of character.skillTalents; track $index) {
-                <div class="talentCard flex aic jcc column gap10">
+                <div class="talentCard flex aic jcc column gap10 p10">
                   <div class="topContainer fw flex aic">
                     <div class="talentIconWrapper flex aic jcc">
                       @switch (skillTalent.type) {
@@ -149,9 +149,23 @@
                       <span>{{skillTalent.name}}</span>
                     </div>
                   </div>
-                  <span>{{skillTalent.upgrades}}</span>
-                  <span>{{skillTalent.description}}</span>
-                  <span>{{skillTalent.attributeScaling}}</span>
+                  @if (skillTalent.upgrades.length) {
+                    <div class="upgradeWrapper">
+                      @for (upgrade of skillTalent.upgrades; track $index) {
+                        <span>{{upgrade.name}}</span>
+                        <span>{{upgrade.value}}</span>
+                      }
+                    </div>
+                  }
+                  <span class="description p10">{{skillTalent.description}}</span>
+                  @if (skillTalent.attributeScaling.length) {
+                    <div class="attributeScalingWrapper">
+                      @for (attributeScaling of skillTalent.attributeScaling; track $index) {
+                        <span>{{attributeScaling.name}}</span>
+                        <span>{{attributeScaling.value}}</span>
+                      }
+                    </div>
+                  }
                   <div class="footer flex aic jcc">
                     <span class="description">{{skillTalent.unlock}}</span>
                   </div>
@@ -162,8 +176,10 @@
           <tab-item-component>
             <span header>Constellation</span>
             <div content class="fh fw flex aic jcc column">
-              <span>{{character.constellation}}</span>
-              <div class="flex aic jcc column fh gap20">
+              <div class="constellationWrapper">
+                <span>{{character.constellation}}</span>
+              </div>
+              <div class="cardWrapper flex aic jcc column fh gap20 mb50">
                 @for (constellation of character.constellations; track $index) {
                   <div class="constellationCard flex aic jcc gap10">
                     <div class="nameWrapper">
