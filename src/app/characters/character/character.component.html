@@ -151,19 +151,39 @@
                   </div>
                   @if (skillTalent.upgrades.length) {
                     <div class="upgradeWrapper">
-                      @for (upgrade of skillTalent.upgrades; track $index) {
-                        <span>{{upgrade.name}}</span>
-                        <span>{{upgrade.value}}</span>
-                      }
+                      <table>
+                        <th>Nom</th>
+                        <th>Valeur</th>
+                        @for (upgrade of skillTalent.upgrades; track $index) {
+                          <tr>
+                            <td>
+                              <span>{{upgrade.name}}</span>
+                            </td>
+                            <td>
+                              <span>{{upgrade.value}}</span>
+                            </td>
+                          </tr>
+                        }
+                      </table>
                     </div>
                   }
                   <span class="description p10">{{skillTalent.description}}</span>
                   @if (skillTalent.attributeScaling.length) {
                     <div class="attributeScalingWrapper">
-                      @for (attributeScaling of skillTalent.attributeScaling; track $index) {
-                        <span>{{attributeScaling.name}}</span>
-                        <span>{{attributeScaling.value}}</span>
-                      }
+                      <table>
+                        <th>Nom</th>
+                        <th>Valeur</th>
+                        @for (attributeScaling of skillTalent.attributeScaling; track $index) {
+                          <tr>
+                            <td>
+                              <span>{{attributeScaling.name}}</span>
+                            </td>
+                            <td>
+                              <span>{{attributeScaling.value}}</span>
+                            </td>
+                          </tr>
+                        }
+                      </table>
                     </div>
                   }
                   <div class="footer flex aic jcc">
