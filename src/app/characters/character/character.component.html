@@ -109,18 +109,16 @@
             </div>
             <div content class="fh fw flex aic jcsb gap20">
               @for (passiveTalent of character.passiveTalents; track $index) {
-                <div class="talentCard flex aic jcc column gap10">
-                  <div class="topContainer fw flex aic">
-                    <div class="talentIconWrapper flex aic jcc">
-                      <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-passive-'+$index">
-                    </div>
-                    <div class="nameWrapper">
-                      <span>{{passiveTalent.name}}</span>
-                    </div>
+                <div class="talentCard flex aic column gap10">
+                  <div class="top flex jcc aic p10 gap20">
+                    <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-passive-'+$index">
+                    <span>{{passiveTalent.name}}</span>
                   </div>
-                  <span class="description p10">{{passiveTalent.description}}</span>
-                  <div class="footer flex aic jcc">
-                    <span class="passiveTalent">{{passiveTalent.unlock}}</span>
+                  <div class="body fh flex aic jcc">
+                    <span class="description p10">{{passiveTalent.description}}</span>
+                  </div>
+                  <div class="footer">
+                    <span>{{passiveTalent.unlock}}</span>
                   </div>
                 </div>
               }

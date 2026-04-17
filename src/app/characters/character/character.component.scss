@@ -301,10 +301,28 @@ $weapons : (
     position: relative;
     flex: 1;
     border-radius: 1rem;
-    border: 2px solid #808080;
+    border: 2px solid rgba(255,255,255,0.07);
     height: 75%;
+    background: #14141e;
 
-    .description, .passiveTalent, .attributeScaling {
+    .top {
+      border-bottom: 2px solid rgba(255,255,255,0.06);
+    }
+
+    .body {
+      border-bottom: 2px solid rgba(255,255,255,0.06);
+      padding: 0px 15px;
+
+      span {
+        text-align: center;
+      }
+    }
+
+    .footer {
+      margin: 15px;
+    }
+
+    .description, .attributeScaling {
       text-wrap: balance;
       text-align: center;
     }
@@ -316,34 +334,10 @@ $weapons : (
       transform: translateY(-50%);
     }
 
-    .talentIconWrapper {
-      flex: 2;
-      .talentIcon {
-        border: 2px solid #808080;
-        border-radius: 50%;
-      }
-    }
-
-    .nameWrapper {
-      flex: 4;
-
-      span {
-        background-color: grey;
-        border-radius: 2rem;
-        border: 2px solid #3b3b3b;
-        padding: 7px;
-      }
-    }
-
-    .footer {
-      position: absolute;
-      bottom: 0;
-      width: 50%;
-      background-color: rgb(54, 54, 54);
-      border: 2px solid #808080;
-      border-bottom: 0;
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
+    .talentIcon {
+      height: 75px;
+      border: 3px solid rgba(255,255,255,0.07);
+      border-radius: 50%;
     }
   }
 
