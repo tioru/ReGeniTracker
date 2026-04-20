@@ -307,6 +307,7 @@ $weapons : (
 
     .top {
       border-bottom: 2px solid rgba(255,255,255,0.06);
+      box-sizing: border-box;
     }
 
     .body {
@@ -315,6 +316,7 @@ $weapons : (
 
       span {
         text-align: center;
+        color: #bbbbbb;
       }
     }
 
@@ -358,20 +360,6 @@ $weapons : (
     border-radius: 2rem;
     width: 98%;
     height: 100%;
-
-    .nameWrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform: translateY(-50%);
-
-      span {
-        background-color: grey;
-        border-radius: 2rem;
-        border: 2px solid #3b3b3b;
-        padding: 7px;
-      }
-    }
 
     .levelWrapper {
       flex: 1;

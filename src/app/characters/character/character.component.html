@@ -109,8 +109,8 @@
             </div>
             <div content class="fh fw flex aic jcsb gap20">
               @for (passiveTalent of character.passiveTalents; track $index) {
-                <div class="talentCard flex aic column gap10">
-                  <div class="top flex jcc aic p10 gap20">
+                <div class="talentCard flex aic column">
+                  <div class="top flex jcc aic p10 gap20 fw">
                     <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-passive-'+$index">
                     <span>{{passiveTalent.name}}</span>
                   </div>
@@ -129,61 +129,77 @@
             <div content class="fh fw flex aic jcsb gap20">
               @for (skillTalent of character.skillTalents; track $index) {
                 <div class="talentCard flex aic jcc column gap10 p10">
-                  <div class="topContainer fw flex aic">
-                    <div class="talentIconWrapper flex aic jcc">
-                      @switch (skillTalent.type) {
-                        @case (skillTalentTypeList.NORMAL_ATTACK) {
-                          <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-na'">
-                        }
-                        @case (skillTalentTypeList.ELEMENTAL_SKILL) {
-                          <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-skill'">
-                        }
-                        @case (skillTalentTypeList.ELEMENTAL_BURST) {
-                          <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-burst'">
-                        }
+                  <div class="top flex jcc aic p10 gap20 fw">
+                    @switch (skillTalent.type) {
+                      @case (skillTalentTypeList.NORMAL_ATTACK) {
+                        <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-na'">
                       }
-                    </div>
-                    <div class="nameWrapper">
-                      <span>{{skillTalent.name}}</span>
-                    </div>
+                      @case (skillTalentTypeList.ELEMENTAL_SKILL) {
+                        <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-skill'">
+                      }
+                      @case (skillTalentTypeList.ELEMENTAL_BURST) {
+                        <img class="talentIcon" [src]="'https://genshin.jmp.blue'+'/characters/'+characterName+'/talent-burst'">
+                      }
+                    }
+                    <span>{{skillTalent.name}}</span>
                   </div>
-                  @if (skillTalent.upgrades.length) {
-                    <div class="upgradeWrapper">
-                      <table>
-                        <th>Nom</th>
-                        <th>Valeur</th>
-                        @for (upgrade of skillTalent.upgrades; track $index) {
-                          <tr>
-                            <td>
-                              <span>{{upgrade.name}}</span>
-                            </td>
-                            <td>
-                              <span>{{upgrade.value}}</span>
-                            </td>
-                          </tr>
-                        }
-                      </table>
-                    </div>
-                  }
-                  <span class="description p10">{{skillTalent.description}}</span>
-                  @if (skillTalent.attributeScaling.length) {
-                    <div class="attributeScalingWrapper">
-                      <table>
-                        <th>Nom</th>
-                        <th>Valeur</th>
-                        @for (attributeScaling of skillTalent.attributeScaling; track $index) {
-                          <tr>
-                            <td>
-                              <span>{{attributeScaling.name}}</span>
-                            </td>
-                            <td>
-                              <span>{{attributeScaling.value}}</span>
-                            </td>
-                          </tr>
-                        }
-                      </table>
-                    </div>
-                  }
+                  <div class="body fh">
+                    <tab-component class="fw fh">
+                      <tab-item-component>
+                        <div header>
+                          <span>Description</span>
+                        </div>
+                        <div content class="fh fw">
+                          <div class="body fh flex aic jcc">
+                            <span class="description p10">{{skillTalent.description}}</span>
+                          </div>
+                        </div>
+                      </tab-item-component>
+                      <tab-item-component>
+                        <div header>
+                          <span>Statistique</span>
+                        </div>
+                        <div content>
+                          @if (skillTalent.upgrades.length) {
+                          <div class="upgradeWrapper">
+                            <table>
+                              <th>Nom</th>
+                              <th>Valeur</th>
+                              @for (upgrade of skillTalent.upgrades; track $index) {
+                                <tr>
+                                  <td>
+                                    <span>{{upgrade.name}}</span>
+                                  </td>
+                                  <td>
+                                    <span>{{upgrade.value}}</span>
+                                  </td>
+                                </tr>
+                                }
+                              </table>
+                            </div>
+                          }
+                          @if (skillTalent.attributeScaling.length) {
+                            <div class="attributeScalingWrapper">
+                              <table>
+                                <th>Nom</th>
+                                <th>Valeur</th>
+                                @for (attributeScaling of skillTalent.attributeScaling; track $index) {
+                                  <tr>
+                                    <td>
+                                      <span>{{attributeScaling.name}}</span>
+                                    </td>
+                                    <td>
+                                      <span>{{attributeScaling.value}}</span>
+                                    </td>
+                                  </tr>
+                                }
+                              </table>
+                            </div>
+                          }
+                        </div>
+                      </tab-item-component>
+                    </tab-component>
+                  </div>
                   <div class="footer flex aic jcc">
                     <span class="description">{{skillTalent.unlock}}</span>
                   </div>
