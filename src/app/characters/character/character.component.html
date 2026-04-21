@@ -128,7 +128,7 @@
             <span header>Compétence</span>
             <div content class="fh fw flex aic jcsb gap20">
               @for (skillTalent of character.skillTalents; track $index) {
-                <div class="talentCard flex aic jcc column gap10 p10">
+                <div class="talentCard flex aic jcc column gap10">
                   <div class="top flex jcc aic p10 gap20 fw">
                     @switch (skillTalent.type) {
                       @case (skillTalentTypeList.NORMAL_ATTACK) {
@@ -143,8 +143,8 @@
                     }
                     <span>{{skillTalent.name}}</span>
                   </div>
-                  <div class="body fh">
-                    <tab-component class="fw fh">
+                  <div class="body fh fw">
+                    <tab-component class="flex column fw fh">
                       <tab-item-component>
                         <div header>
                           <span>Description</span>
@@ -160,49 +160,52 @@
                           <span>Statistique</span>
                         </div>
                         <div content>
+                          <div>
+                            <span>Futur slider</span>
+                          </div>
                           @if (skillTalent.upgrades.length) {
-                          <div class="upgradeWrapper">
-                            <table>
-                              <th>Nom</th>
-                              <th>Valeur</th>
-                              @for (upgrade of skillTalent.upgrades; track $index) {
-                                <tr>
-                                  <td>
-                                    <span>{{upgrade.name}}</span>
-                                  </td>
-                                  <td>
-                                    <span>{{upgrade.value}}</span>
-                                  </td>
-                                </tr>
-                                }
-                              </table>
-                            </div>
-                          }
-                          @if (skillTalent.attributeScaling.length) {
-                            <div class="attributeScalingWrapper">
+                            <div class="upgradeWrapper">
                               <table>
                                 <th>Nom</th>
                                 <th>Valeur</th>
-                                @for (attributeScaling of skillTalent.attributeScaling; track $index) {
+                                @for (upgrade of skillTalent.upgrades; track $index) {
                                   <tr>
                                     <td>
-                                      <span>{{attributeScaling.name}}</span>
+                                      <span>{{upgrade.name}}</span>
                                     </td>
                                     <td>
-                                      <span>{{attributeScaling.value}}</span>
+                                      <span>{{upgrade.value}}</span>
                                     </td>
                                   </tr>
-                                }
-                              </table>
-                            </div>
-                          }
+                                  }
+                                </table>
+                              </div>
+                            }
+                            @if (skillTalent.attributeScaling.length) {
+                              <div class="attributeScalingWrapper">
+                                <table>
+                                  <th>Nom</th>
+                                  <th>Valeur</th>
+                                  @for (attributeScaling of skillTalent.attributeScaling; track $index) {
+                                    <tr>
+                                      <td>
+                                        <span>{{attributeScaling.name}}</span>
+                                      </td>
+                                      <td>
+                                        <span>{{attributeScaling.value}}</span>
+                                      </td>
+                                    </tr>
+                                  }
+                                </table>
+                              </div>
+                            }
                         </div>
                       </tab-item-component>
                     </tab-component>
                   </div>
-                  <div class="footer flex aic jcc">
-                    <span class="description">{{skillTalent.unlock}}</span>
-                  </div>
+                <div class="footer flex aic jcc">
+                  <span class="description">{{skillTalent.unlock}}</span>
+                </div>
               </div>
               }
             </div>
