@@ -1,7 +1,13 @@
 .sliderWrapper {
-    position: relative;
-    height: 100%;
+    --ballBigSize : 25px;
+    --ballNormalSize : 20px;
+    --ballSmallSize : 15px; 
+
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     &.light {
         .sliderBar {
@@ -22,36 +28,44 @@
             background-color: rgb(216, 216, 216);
         }
     }
-}
-
-.sliderBar {
-    width: 100%;
-    height: 10px;
-    border-radius: 15px;
-}
-
-.sliderBall {
-    --bigSize : 25px;
-    --normalSize : 20px;
-    --smallSize : 15px;
-
-    border-radius: 50%;
-    position: absolute;
-    cursor: grab;
-    transform: translateY(-75%);
 
     &.big {
-        height: var(--bigSize);
-        width: var(--bigSize);
+        height: var(--ballBigSize);
     }
 
     &.normal {
-        height: var(--normalSize);
-        width: var(--normalSize);
+        height: var(--ballNormalSize);
     }
 
     &.small {
-        height: var(--smallSize);
-        width: var(--smallSize);
+        height: var(--ballSmallSize);
+    }
+
+    .sliderBar {
+        width: 100%;
+        height: 10px;
+        border-radius: 15px;
+    }
+
+    .sliderBall {
+        position: absolute;
+        border-radius: 50%;
+        box-sizing: border-box;
+        cursor: grab;
+
+        &.big {
+            height: var(--ballBigSize);
+            width: var(--ballBigSize);
+        }
+
+        &.normal {
+            height: var(--ballNormalSize);
+            width: var(--ballNormalSize);
+        }
+
+        &.small {
+            height: var(--ballSmallSize);
+            width: var(--ballSmallSize);
+        }
     }
 }

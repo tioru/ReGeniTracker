@@ -128,7 +128,7 @@
             <span header>Compétence</span>
             <div content class="fh fw flex aic jcsb gap20">
               @for (skillTalent of character.skillTalents; track $index) {
-                <div class="talentCard flex aic jcc column gap10">
+                <div class="talentCard flex aic jcc column">
                   <div class="top flex jcc aic p10 gap20 fw">
                     @switch (skillTalent.type) {
                       @case (skillTalentTypeList.NORMAL_ATTACK) {
@@ -160,8 +160,9 @@
                           <span>Statistique</span>
                         </div>
                         <div content>
-                          <div>
+                          <div class="flex column fw jcc">
                             <span>Futur slider</span>
+                            <slider-component></slider-component>
                           </div>
                           @if (skillTalent.upgrades.length) {
                             <div class="upgradeWrapper">

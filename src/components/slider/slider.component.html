@@ -1,4 +1,4 @@
-<div class="sliderWrapper" [class]="sliderTheme">
+<div [class]="'sliderWrapper ' + ballSize + ' ' + sliderTheme">
     <div class="sliderBar"></div>
-    <div class="sliderBall" [class]="ballSize"></div>
+    <div class="sliderBall" [class]="ballSize" cdkDragLockAxis="x" cdkDragBoundary=".sliderWrapper" cdkDrag></div>
 </div>

@@ -9,6 +9,7 @@ import { skip, Subject, takeUntil } from 'rxjs';
 import { CapitalizePipe } from "../../../utilities/pipes/capitalizePipe";
 import { TabComponent } from "../../../components/tab/tab.component";
 import { TabItemComponent } from "../../../components/tab/tab-item/tab-item.component";
+import { SliderComponent } from "../../../components/slider/slider.component";
 
 export const MONDSTADT_LANDSCAPE_NUMBER = 4;
 export const LIYUE_LANDSCAPE_NUMBER = 5;
@@ -31,7 +32,7 @@ export const VISION_IMAGE_MAP: Partial<Record<ProjectClass.Local.VisionType, str
 
 @Component({
   selector: 'app-character',
-  imports: [CommonModule, CapitalizePipe, TabComponent, TabItemComponent],
+  imports: [CommonModule, CapitalizePipe, TabComponent, TabItemComponent, SliderComponent],
   templateUrl: './character.component.html',
   styleUrl: './character.component.scss',
   standalone: true

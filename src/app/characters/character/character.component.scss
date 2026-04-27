@@ -313,8 +313,9 @@ $weapons : (
 
     >.body {
       border-bottom: 2px solid rgba(255,255,255,0.06);
-      padding: 0px 15px;
+      padding: 15px 15px 0px 15px;
       box-sizing: border-box;
+
 
       span {
         text-align: center;
