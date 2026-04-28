@@ -162,7 +162,7 @@
                         <div content>
                           <div class="flex column fw jcc">
                             <span>Futur slider</span>
-                            <slider-component></slider-component>
+                            <slider-component [(ngModel)]="testValue" [min]="2" [max]="10"></slider-component>
                           </div>
                           @if (skillTalent.upgrades.length) {
                             <div class="upgradeWrapper">

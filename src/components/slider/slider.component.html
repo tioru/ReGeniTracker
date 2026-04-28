@@ -1,4 +1,9 @@
 <div [class]="'sliderWrapper ' + ballSize + ' ' + sliderTheme">
-    <div class="sliderBar"></div>
-    <div class="sliderBall" [class]="ballSize" cdkDragLockAxis="x" cdkDragBoundary=".sliderWrapper" cdkDrag></div>
+    <div class="sliderBar">
+        @for (anchor of anchors; track anchor) {
+            <div class="sliderAnchor" [style.left.%]="((anchor - min) / (max - min)) * 100">
+            </div>
+        }
+    </div>
+    <div class="sliderBall" [class]="ballSize" (cdkDragEnded)="test()" cdkDragLockAxis="x" cdkDragBoundary=".sliderWrapper" cdkDrag></div>
 </div>
