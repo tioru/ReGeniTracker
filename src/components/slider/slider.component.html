@@ -1,9 +1,6 @@
-<div [class]="'sliderWrapper ' + ballSize + ' ' + sliderTheme">
-    <div class="sliderBar">
-        @for (anchor of anchors; track anchor) {
-            <div class="sliderAnchor" [style.left.%]="((anchor - min) / (max - min)) * 100">
-            </div>
-        }
+<div class="range-wrapper">
+    <input type="range" [(ngModel)]="value" [min]="min" [max]="max" />
+    <div class="range-tooltip">
+        <span>{{ value }}</span>
     </div>
-    <div class="sliderBall" [class]="ballSize" (cdkDragEnded)="test()" cdkDragLockAxis="x" cdkDragBoundary=".sliderWrapper" cdkDrag></div>
 </div>

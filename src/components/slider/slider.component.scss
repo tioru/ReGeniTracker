@@ -1,76 +1,36 @@
-.sliderWrapper {
-    --ballBigSize : 25px;
-    --ballNormalSize : 20px;
-    --ballSmallSize : 15px; 
-
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    &.light {
-        .sliderBar {
-            background-color: azure;
-        }
-        
-        .sliderBall {
-            background-color: gray;
-        }
+input[type=range] {
+    &::-webkit-slider-thumb {
+        anchor-name: --thumb;
     }
+}
 
-    &.dark {
-        .sliderBar {
-            background-color: rgb(90, 90, 90);
-        }
-        
-        .sliderBall {
-            background-color: rgb(216, 216, 216);
-        }
-    }
+.range-tooltip {
+    position: absolute;
+    position-anchor: --thumb;
+    bottom: calc(anchor(top) + 10px);
+    left: anchor(center);
+    transform: translateX(-50%);
+    opacity: 1;
+    transition: opacity 200ms ease;
+    background: #333;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    white-space: nowrap;
 
-    &.big {
-        height: var(--ballBigSize);
-    }
-
-    &.normal {
-        height: var(--ballNormalSize);
-    }
-
-    &.small {
-        height: var(--ballSmallSize);
-    }
-
-    .sliderBar {
-        width: 100%;
-        height: 10px;
-        border-radius: 15px;
-        position: relative;
-    }
-
-    .sliderAnchor {
+    &::after {
+        content: '';
         position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 5px solid transparent;
+        border-top-color: #333;
     }
+}
 
-    .sliderBall {
-        position: absolute;
-        border-radius: 50%;
-        box-sizing: border-box;
-        cursor: grab;
-
-        &.big {
-            height: var(--ballBigSize);
-            width: var(--ballBigSize);
-        }
-
-        &.normal {
-            height: var(--ballNormalSize);
-            width: var(--ballNormalSize);
-        }
-
-        &.small {
-            height: var(--ballSmallSize);
-            width: var(--ballSmallSize);
-        }
-    }
+.range-wrapper:has(input:active) .range-tooltip {
+    opacity: 1;
 }
