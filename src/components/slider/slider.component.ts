@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 export class SliderComponent {
   @Input() min: number = 0;
   @Input() max: number = 10;
-
-  value: number = 0;
-  tooltipPosition: string = '0%';
+  @Input() value: number = 0;
+  @Input() tooltip: boolean = true;
+  @Output() valueChange = new EventEmitter<number>();
 }

@@ -46,12 +46,12 @@ export class CharacterMapper {
                 constellations : character.constellations ? this.constellationsMapper.mapRemoteArray(character.constellations) : [],
                 weaponType : character.weapon_type,
                 ascensionMaterials : character.ascension_materials ? {
-                    level20 : character.ascension_materials?.level20 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level20) : [],
-                    level40 : character.ascension_materials?.level40 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level40) : [],
-                    level50 : character.ascension_materials?.level50 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level50) : [],
-                    level60 : character.ascension_materials?.level60 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level60) : [],
-                    level70 : character.ascension_materials?.level70 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level70) : [],
-                    level80 : character.ascension_materials?.level80 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level80) : [],
+                    level20 : character.ascension_materials?.level_20 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level_20) : [],
+                    level40 : character.ascension_materials?.level_40 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level_40) : [],
+                    level50 : character.ascension_materials?.level_50 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level_50) : [],
+                    level60 : character.ascension_materials?.level_60 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level_60) : [],
+                    level70 : character.ascension_materials?.level_70 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level_70) : [],
+                    level80 : character.ascension_materials?.level_80 ? this.ascentionMaterialsMapper.mapRemoteArray(character.ascension_materials.level_80) : [],
                 } : null,
                 id: character.id
             })

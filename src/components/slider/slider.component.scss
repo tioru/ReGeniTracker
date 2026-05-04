@@ -4,13 +4,17 @@ input[type=range] {
     }
 }
 
+input {
+    width: 100%;
+}
+
 .range-tooltip {
     position: absolute;
     position-anchor: --thumb;
     bottom: calc(anchor(top) + 10px);
     left: anchor(center);
     transform: translateX(-50%);
-    opacity: 1;
+    opacity: 0;
     transition: opacity 200ms ease;
     background: #333;
     color: white;

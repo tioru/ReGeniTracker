@@ -1,6 +1,8 @@
 <div class="range-wrapper">
-    <input type="range" [(ngModel)]="value" [min]="min" [max]="max" />
-    <div class="range-tooltip">
-        <span>{{ value }}</span>
-    </div>
+    <input type="range" (input)="valueChange.emit(+$any($event.target).value)" [(ngModel)]="value" [min]="min" [max]="max" />
+    @if (tooltip) {
+      <div class="range-tooltip">
+          <span>{{ value }}</span>
+      </div>
+    }
 </div>

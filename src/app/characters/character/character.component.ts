@@ -57,7 +57,7 @@ export class CharacterComponent implements OnInit, OnDestroy{
   private slideTimer: any;
   public skillTalentTypeList = ProjectClass.Local.SkillTalentTypeList;
 
-  public testValue = 4;
+  public skillTalentIndex = 1;
 
   constructor(
     public charactersService : CharactersService,

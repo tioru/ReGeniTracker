@@ -39,7 +39,89 @@
           </div>
           <div class="splitter horizontal"></div>
           <div class="bottomContainer flex jcc gap10 fh">
-            <div class="flex column aic mainContent">
+            <div class="flex column gap30 jcc aic mainContent">
+              <div class="upgradeCostCard fh flex column gap10 aic fw">
+                <span class="characterUpgradeCost">Coût d'amélioration du personnage</span>
+                <div class="splitter horizontal"></div>
+                @if (character.ascensionMaterials) {
+                  <div class="verticalCardCostContainer flex aic jcc gap20">
+                    <div class="ascension20">
+                      <span>Ascension 20</span>
+                      <div>
+                        @for (ascensionMaterial of character.ascensionMaterials.level20; track $index) {
+                          <div class="costItem flex aic jcc gap5">
+                            <span>{{ascensionMaterial.name}}</span>
+                            <span>{{ascensionMaterial.value}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                    <div class="ascension40">
+                      <span>Ascension 40</span>
+                      <div>
+                        @for (ascensionMaterial of character.ascensionMaterials.level40; track $index) {
+                          <div class="costItem flex aic jcc gap5">
+                            <span>{{ascensionMaterial.name}}</span>
+                            <span>{{ascensionMaterial.value}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                    <div class="ascension50">
+                      <span>Ascension 50</span>
+                      <div>
+                        @for (ascensionMaterial of character.ascensionMaterials.level50; track $index) {
+                          <div class="costItem flex aic jcc gap5">
+                            <span>{{ascensionMaterial.name}}</span>
+                            <span>{{ascensionMaterial.value}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                    <div class="ascension60">
+                      <span>Ascension 60</span>
+                      <div>
+                        @for (ascensionMaterial of character.ascensionMaterials.level60; track $index) {
+                          <div class="costItem flex aic jcc gap5">
+                            <span>{{ascensionMaterial.name}}</span>
+                            <span>{{ascensionMaterial.value}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                    <div class="ascension70">
+                      <span>Ascension 70</span>
+                      <div>
+                        @for (ascensionMaterial of character.ascensionMaterials.level70; track $index) {
+                          <div class="costItem flex aic jcc gap5">
+                            <span>{{ascensionMaterial.name}}</span>
+                            <span>{{ascensionMaterial.value}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                    <div class="ascension80">
+                      <span>Ascension 80</span>
+                      <div>
+                        @for (ascensionMaterial of character.ascensionMaterials.level80; track $index) {
+                          <div class="costItem flex aic jcc gap5">
+                            <span>{{ascensionMaterial.name}}</span>
+                            <span>{{ascensionMaterial.value}}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                } @else {
+                  <div class="flex aic jcc fh fw">
+                    <span>Déso, ya rien et j'y peux rien</span>
+                  </div>
+                }
+              </div>
+              <div class="upgradeCostCard fh flex column gap10 aic fw">
+                <span class="characterUpgradeCost">Coût d'amélioration des compétences</span>
+                <div class="splitter horizontal"></div>
+              </div>
             </div>
             <div class="flex column aic gap20 sideContent">
               @if (character.nation) {
@@ -161,26 +243,18 @@
                         </div>
                         <div content>
                           <div class="flex column fw jcc">
-                            <span>Futur slider</span>
-                            <slider-component [(ngModel)]="testValue" [min]="2" [max]="10"></slider-component>
+                            <div class="flex aic fw">
+                              <span class="levelSpan">Niveau</span>
+                              <slider-component class="slider" [(value)]="skillTalentIndex" [tooltip]="false" [min]="1" [max]="skillTalent.upgrades.length"></slider-component>                          
+                              <span class="levelIndex">{{skillTalentIndex}}</span>
+                            </div>
                           </div>
+                            
                           @if (skillTalent.upgrades.length) {
-                            <div class="upgradeWrapper">
-                              <table>
-                                <th>Nom</th>
-                                <th>Valeur</th>
-                                @for (upgrade of skillTalent.upgrades; track $index) {
-                                  <tr>
-                                    <td>
-                                      <span>{{upgrade.name}}</span>
-                                    </td>
-                                    <td>
-                                      <span>{{upgrade.value}}</span>
-                                    </td>
-                                  </tr>
-                                  }
-                                </table>
-                              </div>
+                            <div class="upgradeWrapper flex aic jcc gap10">
+                              <span>{{skillTalent.upgrades[skillTalentIndex].name}}</span>
+                              <span>{{skillTalent.upgrades[skillTalentIndex].value}}</span>
+                            </div>
                             }
                             @if (skillTalent.attributeScaling.length) {
                               <div class="attributeScalingWrapper">

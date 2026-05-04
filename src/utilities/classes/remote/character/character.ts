@@ -24,12 +24,12 @@ export class CharacterClass {
   vision_key : VisionTypeClass | null = null;
   weapon_type : string | null = null;
   ascension_materials : {
-    level20 : AscentionMaterialsClass[]
-    level40 : AscentionMaterialsClass[]
-    level50 : AscentionMaterialsClass[]
-    level60 : AscentionMaterialsClass[]
-    level70 : AscentionMaterialsClass[]
-    level80 : AscentionMaterialsClass[]
+    level_20 : AscentionMaterialsClass[]
+    level_40 : AscentionMaterialsClass[]
+    level_50 : AscentionMaterialsClass[]
+    level_60 : AscentionMaterialsClass[]
+    level_70 : AscentionMaterialsClass[]
+    level_80 : AscentionMaterialsClass[]
   } | null = null;
   id : string | null = null;
 

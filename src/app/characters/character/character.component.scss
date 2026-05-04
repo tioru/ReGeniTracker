@@ -6,6 +6,7 @@
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+  scrollbar-gutter: stable;
 }
 
 .characterPreview {
@@ -385,6 +386,33 @@ $weapons : (
   }
 
   .upgradeWrapper, .attributeScalingWrapper {
-    overflow: scroll;
+  
   }
+}
+
+.levelSpan {
+  flex: 1;
+}
+
+.slider {
+  flex: 3;
+}
+
+.levelIndex {
+  flex: 1;
+}
+
+.upgradeCostCard {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  border: 2px solid #808080;
+  position: relative;
+  overflow: hidden;
+  font-size: clamp(11px, 1vw, 14px);
+  box-sizing: border-box;
+}
+
+.characterUpgradeCost {
+  font-size: 15px;
+  margin-top: 10px;
 }
