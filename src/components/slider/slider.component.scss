@@ -1,5 +1,11 @@
 input[type=range] {
+    // For Chromium
     &::-webkit-slider-thumb {
+        anchor-name: --thumb;
+    }
+    
+    // For Firefox
+    &::-moz-range-thumb {
         anchor-name: --thumb;
     }
 }
@@ -35,6 +41,24 @@ input {
     }
 }
 
+.range-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0px;
+
+    input {
+        width: 100%;
+    }
+}
+
 .range-wrapper:has(input:active) .range-tooltip {
     opacity: 1;
+}
+
+// Not working atm so disabling the tooltip
+@supports selector(::-moz-range-thumb) {
+    .range-wrapper:has(input:active) .range-tooltip {
+        opacity: 0;
+    }
 }

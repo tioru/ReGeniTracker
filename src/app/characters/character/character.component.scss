@@ -416,3 +416,23 @@ $weapons : (
   font-size: 15px;
   margin-top: 10px;
 }
+
+.ascensionCard {
+  border-radius: 1rem;
+  border: 2px solid #808080;
+
+  .ascensionSpanWrapper {
+    text-align: center;
+  }
+}
+
+.costItem {
+  span {
+    text-align: center;
+  }
+}
+
+.costItemImg {
+  height: 40px;
+  width: 40px;
+}

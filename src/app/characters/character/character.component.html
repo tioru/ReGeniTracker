@@ -44,68 +44,122 @@
                 <span class="characterUpgradeCost">Coût d'amélioration du personnage</span>
                 <div class="splitter horizontal"></div>
                 @if (character.ascensionMaterials) {
-                  <div class="verticalCardCostContainer flex aic jcc gap20">
-                    <div class="ascension20">
-                      <span>Ascension 20</span>
-                      <div>
+                  <div class="verticalCardCostContainer fh fw flex aic gap20">
+                    <div class="ascensionCard fh">
+                      <div class="ascensionSpanWrapper">
+                        <span>Ascension 20</span>
+                      </div>
+                      <div class="flex column fh aic jcsa">
                         @for (ascensionMaterial of character.ascensionMaterials.level20; track $index) {
-                          <div class="costItem flex aic jcc gap5">
-                            <span>{{ascensionMaterial.name}}</span>
+                          <div class="costItem column flex aic">
+                            <tooltip-component>
+                              <div tooltipedElement>
+                                <img class="costItemImg" [src]="">
+                              </div>
+                              <div #tooltipContent tooltipContent>
+                                <span>{{ascensionMaterial.name}}</span>
+                              </div>
+                            </tooltip-component>
                             <span>{{ascensionMaterial.value}}</span>
                           </div>
                         }
                       </div>
                     </div>
-                    <div class="ascension40">
-                      <span>Ascension 40</span>
-                      <div>
+                    <div class="ascensionCard fh">
+                      <div class="ascensionSpanWrapper">
+                        <span>Ascension 40</span>
+                      </div>
+                      <div class="flex column aic jcsa">
                         @for (ascensionMaterial of character.ascensionMaterials.level40; track $index) {
-                          <div class="costItem flex aic jcc gap5">
-                            <span>{{ascensionMaterial.name}}</span>
+                          <div class="costItem column flex aic">
+                            <tooltip-component>
+                              <div tooltipedElement>
+                                <img class="costItemImg" [src]="">
+                              </div>
+                              <div #tooltipContent tooltipContent>
+                                <span>{{ascensionMaterial.name}}</span>
+                              </div>
+                            </tooltip-component>
                             <span>{{ascensionMaterial.value}}</span>
                           </div>
                         }
                       </div>
                     </div>
-                    <div class="ascension50">
-                      <span>Ascension 50</span>
-                      <div>
+                    <div class="ascensionCard fh">
+                      <div class="ascensionSpanWrapper">
+                        <span>Ascension 50</span>
+                      </div>
+                      <div class="flex column aic jcsa">
                         @for (ascensionMaterial of character.ascensionMaterials.level50; track $index) {
-                          <div class="costItem flex aic jcc gap5">
-                            <span>{{ascensionMaterial.name}}</span>
+                          <div class="costItem column flex aic">
+                            <tooltip-component>
+                              <div tooltipedElement>
+                                <img class="costItemImg" [src]="">
+                              </div>
+                              <div #tooltipContent tooltipContent>
+                                <span>{{ascensionMaterial.name}}</span>
+                              </div>
+                            </tooltip-component>
                             <span>{{ascensionMaterial.value}}</span>
                           </div>
                         }
                       </div>
                     </div>
-                    <div class="ascension60">
-                      <span>Ascension 60</span>
-                      <div>
+                    <div class="ascensionCard fh">
+                      <div class="ascensionSpanWrapper">
+                        <span>Ascension 60</span>
+                      </div>
+                      <div class="flex column aic jcsa">
                         @for (ascensionMaterial of character.ascensionMaterials.level60; track $index) {
-                          <div class="costItem flex aic jcc gap5">
-                            <span>{{ascensionMaterial.name}}</span>
+                          <div class="costItem column flex aic">
+                            <tooltip-component>
+                              <div tooltipedElement>
+                                <img class="costItemImg" [src]="">
+                              </div>
+                              <div #tooltipContent tooltipContent>
+                                <span>{{ascensionMaterial.name}}</span>
+                              </div>
+                            </tooltip-component>
                             <span>{{ascensionMaterial.value}}</span>
                           </div>
                         }
                       </div>
                     </div>
-                    <div class="ascension70">
-                      <span>Ascension 70</span>
-                      <div>
+                    <div class="ascensionCard fh">
+                      <div class="ascensionSpanWrapper">
+                        <span>Ascension 70</span>
+                      </div>
+                      <div class="flex column aic jcsa">
                         @for (ascensionMaterial of character.ascensionMaterials.level70; track $index) {
-                          <div class="costItem flex aic jcc gap5">
-                            <span>{{ascensionMaterial.name}}</span>
+                          <div class="costItem column flex aic">
+                            <tooltip-component>
+                              <div tooltipedElement>
+                                <img class="costItemImg" [src]="">
+                              </div>
+                              <div #tooltipContent tooltipContent>
+                                <span>{{ascensionMaterial.name}}</span>
+                              </div>
+                            </tooltip-component>
                             <span>{{ascensionMaterial.value}}</span>
                           </div>
                         }
                       </div>
                     </div>
-                    <div class="ascension80">
-                      <span>Ascension 80</span>
-                      <div>
+                    <div class="ascensionCard fh">
+                      <div class="ascensionSpanWrapper">
+                        <span>Ascension 80</span>
+                      </div>
+                      <div class="flex column aic jcsa">
                         @for (ascensionMaterial of character.ascensionMaterials.level80; track $index) {
-                          <div class="costItem flex aic jcc gap5">
-                            <span>{{ascensionMaterial.name}}</span>
+                          <div class="costItem column flex aic">
+                            <tooltip-component>
+                              <div tooltipedElement>
+                                <img class="costItemImg" [src]="">
+                              </div>
+                              <div #tooltipContent tooltipContent>
+                                <span>{{ascensionMaterial.name}}</span>
+                              </div>
+                            </tooltip-component>
                             <span>{{ascensionMaterial.value}}</span>
                           </div>
                         }
