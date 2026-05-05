@@ -384,10 +384,6 @@ $weapons : (
       }
     }
   }
-
-  .upgradeWrapper, .attributeScalingWrapper {
-  
-  }
 }
 
 .levelSpan {
@@ -407,32 +403,23 @@ $weapons : (
   border-radius: 1rem;
   border: 2px solid #808080;
   position: relative;
-  overflow: hidden;
   font-size: clamp(11px, 1vw, 14px);
   box-sizing: border-box;
+  padding: 10px 0px;
 }
 
 .characterUpgradeCost {
   font-size: 15px;
-  margin-top: 10px;
 }
 
-.ascensionCard {
-  border-radius: 1rem;
-  border: 2px solid #808080;
-
-  .ascensionSpanWrapper {
-    text-align: center;
-  }
+.cardSeparator {
+  width: 3px;
+  min-width: 3px;
 }
 
-.costItem {
-  span {
-    text-align: center;
-  }
-}
-
-.costItemImg {
-  height: 40px;
-  width: 40px;
+.verticalCardCostContainer {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+  scrollbar-gutter: stable;
 }
