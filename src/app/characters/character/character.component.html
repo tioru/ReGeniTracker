@@ -127,7 +127,7 @@
       <div id="talents" class="secondRow flex column jcc gap20">
         <span class="talents">Talents</span>
         <div class="splitter horizontal"></div>
-        <tab-component class="fw fh">
+        <tab-component class="fw fh flex column">
           <tab-item-component>
             <div header>
               <img [src]="''">
@@ -185,39 +185,38 @@
                         <div header>
                           <span>Statistique</span>
                         </div>
-                        <div content>
-                          <div class="flex column fw jcc">
-                            <div class="flex aic fw">
-                              <span class="levelSpan">Niveau</span>
-                              <slider-component class="slider" [(value)]="skillTalentIndex" [tooltip]="false" [min]="1" [max]="skillTalent.upgrades.length"></slider-component>                          
-                              <span class="levelIndex">{{skillTalentIndex}}</span>
-                            </div>
-                          </div>
-                            
+                        <div content class="fh fw">
                           @if (skillTalent.upgrades.length) {
+                            <div class="flex column fw jcc">
+                              <div class="flex aic fw">
+                                <span class="levelSpan">Niveau</span>
+                                <slider-component class="slider" [(value)]="skillTalentIndex" [tooltip]="false" [min]="1" [max]="skillTalent.upgrades.length"></slider-component>                          
+                                <span class="levelIndex">{{skillTalentIndex}}</span>
+                              </div>
+                            </div>
+                            @if (skillTalent.upgrades.length) {
                             <div class="upgradeWrapper flex aic jcc gap10">
                               <span>{{skillTalent.upgrades[skillTalentIndex].name}}</span>
                               <span>{{skillTalent.upgrades[skillTalentIndex].value}}</span>
                             </div>
                             }
                             @if (skillTalent.attributeScaling.length) {
-                              <div class="attributeScalingWrapper">
-                                <table>
-                                  <th>Nom</th>
-                                  <th>Valeur</th>
-                                  @for (attributeScaling of skillTalent.attributeScaling; track $index) {
-                                    <tr>
-                                      <td>
-                                        <span>{{attributeScaling.name}}</span>
-                                      </td>
-                                      <td>
-                                        <span>{{attributeScaling.value}}</span>
-                                      </td>
-                                    </tr>
-                                  }
-                                </table>
+                              <div class="attributeScalingWrapper flex column aic gap20">
+                                @for (attributeScaling of skillTalent.attributeScaling; track $index) {
+                                  <div class="splitter horizontal"></div>
+                                  <div class="flex aic jcsb fw">
+                                    <span>{{attributeScaling.name}}</span>
+                                    <span>{{attributeScaling.value}}</span>
+                                  </div>
+
+                                }
                               </div>
                             }
+                          } @else {
+                            <div class="fh fw flex jcc aic">
+                              <span>Déso, ya rien et j'y peux rien</span>
+                            </div>
+                          }
                         </div>
                       </tab-item-component>
                     </tab-component>

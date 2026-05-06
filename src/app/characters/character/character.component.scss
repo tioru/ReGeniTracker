@@ -303,7 +303,7 @@ $weapons : (
     flex: 1;
     border-radius: 1rem;
     border: 2px solid rgba(255,255,255,0.07);
-    height: 75%;
+    height: 65vh;
     background: #14141e;
     box-sizing: border-box;
 
@@ -316,6 +316,7 @@ $weapons : (
       border-bottom: 2px solid rgba(255,255,255,0.06);
       padding: 15px 15px 0px 15px;
       box-sizing: border-box;
+      overflow-y: auto;
 
 
       span {
@@ -422,4 +423,9 @@ $weapons : (
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
   scrollbar-gutter: stable;
+}
+
+.attributeScalingWrapper {
+  overflow: scroll;
+  padding-bottom: 15px;
 }
