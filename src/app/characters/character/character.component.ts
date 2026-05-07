@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { CharactersService } from '../../../utilities/services/api/characters.service';
 import { CacheProvider } from '../../../utilities/provider/cache.provider';
 import { CommonModule } from '@angular/common';
@@ -35,7 +35,7 @@ export const VISION_IMAGE_MAP: Partial<Record<ProjectClass.Local.VisionType, str
 
 @Component({
   selector: 'app-character',
-  imports: [CommonModule, CapitalizePipe, TabComponent, TabItemComponent, SliderComponent, FormsModule, TooltipComponent, CostCardComponent],
+  imports: [CommonModule, CapitalizePipe, TabComponent, TabItemComponent, SliderComponent, FormsModule, CostCardComponent],
   templateUrl: './character.component.html',
   styleUrl: './character.component.scss',
   standalone: true
@@ -65,7 +65,8 @@ export class CharacterComponent implements OnInit, OnDestroy{
     public charactersService : CharactersService,
     public cacheProvider : CacheProvider,
     private readonly route: ActivatedRoute,
-    public sharedService: SharedService
+    public sharedService: SharedService,
+    private readonly cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -74,6 +75,7 @@ export class CharacterComponent implements OnInit, OnDestroy{
     if (this.characterName) {
       this.charactersService.character$.pipe(takeUntil(this.destroy$)).pipe(skip(1)).subscribe((character) => {
         console.log("Character loaded :", character)
+        this.cdr.detectChanges();
         if (character?.nation) {
           this.startDotTimer(character.nation);
         }

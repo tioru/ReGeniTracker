@@ -10,9 +10,7 @@ import { TabItemComponent } from './tab-item/tab-item.component';
 })
 export class TabComponent {
   @ContentChildren(TabItemComponent) tabs!: QueryList<TabItemComponent>;
-  activeIndex = 0;
-
-  ngAfterContentInit() {}
+  public activeIndex = 0;
 
   selectTab(index: number) {
     this.activeIndex = index;

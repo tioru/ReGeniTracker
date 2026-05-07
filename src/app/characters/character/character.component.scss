@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 .characterContainer {
   box-sizing: border-box;
   overflow-y: scroll;
@@ -264,7 +266,7 @@ $weapons : (
 @each $weapon, $values in $weapons {
   .#{$weapon} {
     .weapon {
-      background-image: url('assets/img/weapons/icons/#{map-get($values, image)}');
+      background-image: url('assets/img/weapons/icons/#{map.get($values, image)}');
     }
   }
 }
@@ -406,7 +408,7 @@ $weapons : (
   position: relative;
   font-size: clamp(11px, 1vw, 14px);
   box-sizing: border-box;
-  padding: 10px 0px;
+  padding: 10px 0px 0px 0px;
 }
 
 .characterUpgradeCost {

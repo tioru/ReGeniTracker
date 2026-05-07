@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'tab-item-component',
@@ -8,6 +8,6 @@ import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 })
 export class TabItemComponent {
   @Input() header: string = '';
-  @ViewChild('tabContent') content!: TemplateRef<any>;
-  @ViewChild('tabHeader') headerTpl!: TemplateRef<any>;
+  @ContentChild('tabHeader') headerTpl!: TemplateRef<any>;
+  @ContentChild('tabContent') content!: TemplateRef<any>;
 }

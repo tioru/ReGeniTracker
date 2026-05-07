@@ -3,12 +3,17 @@ span {
 }
 
 .ascensionCard {
+  flex: 1;
   border-radius: 0.5rem;
   padding: 10px;
   box-sizing: border-box;
 
   .ascensionSpanWrapper {
     text-align: center;
+  }
+
+  .itemList {
+    overflow: hidden;
   }
 }
 

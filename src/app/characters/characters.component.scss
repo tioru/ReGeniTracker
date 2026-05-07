@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 .characterCardsWrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -28,10 +30,6 @@
   overflow: hidden;
   transition: scaleZ 0.2 ease-in-out;
 
-  >&.shortcutVisibility {
-    transform: scaleZ(1.05);
-  }
-
   $elements: (
     "GEO": (color: rgb(255, 205, 0), image: "GeoElement.webp"),
     "CRYO": (color: rgb(0, 238, 255), image: "CryoElement.webp"),
@@ -53,17 +51,17 @@
   @each $weapon, $values in $weapons {
     &.#{$weapon} {
       .weapon {
-        background-image: url('assets/img/weapons/icons/#{map-get($values, image)}');
+        background-image: url('assets/img/weapons/icons/#{map.get($values, image)}');
       }
     }
   }
 
   @each $element, $values in $elements {
     &.#{$element} {
-      background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, map-get($values, color) 300%);
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, map.get($values, color) 300%);
       
       .vision {
-        background-image: url('assets/img/elements/#{map-get($values, image)}');
+        background-image: url('assets/img/elements/#{map.get($values, image)}');
       }
     }
   }
