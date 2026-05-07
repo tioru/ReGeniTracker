@@ -408,11 +408,16 @@ $weapons : (
   position: relative;
   font-size: clamp(11px, 1vw, 14px);
   box-sizing: border-box;
-  padding: 10px 0px 0px 0px;
 }
 
-.characterUpgradeCost {
+.spanUpgradeCost {
   font-size: 15px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  background-color: #ffffff30;
+  margin: 5px;
 }
 
 .cardSeparator {
