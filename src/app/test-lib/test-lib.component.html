@@ -1,0 +1,24 @@
+<div class="testLibContainer flex column gap20 fw">
+  <h1>Test genshin-db</h1>
+  @if (error) {
+    <span>Erreur : {{error}}</span>
+  } @else if (!genshindb) {
+    <div class="spinner"></div>
+  } @else {
+    <div class="flex aic gap20">
+      <input [(ngModel)]="query" (keyup.enter)="search()" placeholder="Nom du personnage">
+      <button (click)="search()">Chercher</button>
+      <span>{{names.length}} personnages disponibles</span>
+    </div>
+    @if (result) {
+      <div class="flex column gap10">
+        <h2>{{result.name}} — {{result.title}}</h2>
+        <span>{{result.rarity}}★ · {{result.elementText}} · {{result.weaponText}} · {{result.region}}</span>
+        <p>{{result.description}}</p>
+      </div>
+      <pre>{{result | json}}</pre>
+    } @else {
+      <span>Aucun résultat pour "{{query}}"</span>
+    }
+  }
+</div>

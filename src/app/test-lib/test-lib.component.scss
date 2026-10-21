@@ -1,0 +1,13 @@
+.testLibContainer {
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+
+  pre {
+    max-height: 60vh;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    font-size: 12px;
+  }
+}

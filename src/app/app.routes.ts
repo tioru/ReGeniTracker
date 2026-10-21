@@ -6,11 +6,13 @@ import { CharacterComponent } from './characters/character/character.component';
 export enum Pages {
   HOME = "",
   CHARACTERS_LISTING = "characters",
-  CHARACTER = "character/:name"
+  CHARACTER = "character/:name",
+  TEST_LIB = "test-lib"
 };
 
 export const routes: Routes = [
   { path: Pages.HOME, component: HomeComponent },
   { path: Pages.CHARACTERS_LISTING, component: CharactersComponent },
-  { path: Pages.CHARACTER, component: CharacterComponent }
+  { path: Pages.CHARACTER, component: CharacterComponent },
+  { path: Pages.TEST_LIB, loadComponent: () => import('./test-lib/test-lib.component').then(m => m.TestLibComponent) }
 ];
