@@ -10,4 +10,35 @@
     padding: 10px;
     font-size: 12px;
   }
+
+  .statsWrapper {
+    max-height: 60vh;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .statsTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+
+    th, td {
+      padding: 4px 10px;
+      text-align: right;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: rgb(30, 30, 30);
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    tr.ascended {
+      color: gold;
+    }
+  }
 }

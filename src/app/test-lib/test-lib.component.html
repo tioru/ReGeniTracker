@@ -16,6 +16,32 @@
         <span>{{result.rarity}}★ · {{result.elementText}} · {{result.weaponText}} · {{result.region}}</span>
         <p>{{result.description}}</p>
       </div>
+      <div class="statsWrapper">
+        <table class="statsTable">
+          <thead>
+            <tr>
+              <th>Niveau</th>
+              <th>Ascension</th>
+              <th>PV</th>
+              <th>ATQ</th>
+              <th>DÉF</th>
+              <th>{{result.substatText}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of statRows; track $index) {
+              <tr [class.ascended]="row.ascended">
+                <td>{{row.level}}{{row.ascended ? '+' : ''}}</td>
+                <td>{{row.ascension}}</td>
+                <td>{{row.hp | number:'1.0-0'}}</td>
+                <td>{{row.attack | number:'1.0-0'}}</td>
+                <td>{{row.defense | number:'1.0-0'}}</td>
+                <td>{{formatSpecialized(row.specialized)}}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
       <pre>{{result | json}}</pre>
     } @else {
       <span>Aucun résultat pour "{{query}}"</span>
